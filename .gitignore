@@ -46,10 +46,13 @@ Temporary Items
 
 # Gradle:
 .idea/**/gradle.xml
-.idea/**/libraries
+.idea
 
 # Mongo Explorer plugin:
 .idea/**/mongoSettings.xml
+
+# ij iml
+*.iml
 
 ## File-based project format:
 *.iws
