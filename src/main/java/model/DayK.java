@@ -4,7 +4,7 @@ package model;
  * Created by stonezhang on 2017/5/27.
  */
 public class DayK {
-    private String id;
+    private String symbol;
     private String name;
     private double price;
     private double deviation;
@@ -18,12 +18,12 @@ public class DayK {
     private double dealAmount;
     private double dealValue;
 
-    public String getId() {
-        return id;
+    public String getSymbol() {
+        return symbol;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setSymbol(String id) {
+        this.symbol = id;
     }
 
     public String getName() {
@@ -125,7 +125,7 @@ public class DayK {
     @Override
     public String toString() {
         return "DayK{" +
-                "id='" + id + '\'' +
+                "symbol='" + symbol + '\'' +
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 ", deviation=" + deviation +
