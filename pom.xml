@@ -222,6 +222,13 @@
             <version>4.5.3</version>
         </dependency>
 
+        <!-- 添加fastjson -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.16</version>
+        </dependency>
+
     </dependencies>
 
 </project>
