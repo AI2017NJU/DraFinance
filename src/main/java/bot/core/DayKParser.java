@@ -39,7 +39,7 @@ public class DayKParser {
         Elements stockBlock = stockBlockList.select("tr:nth-child(" + i + ")");
         while(!stockBlock.isEmpty()) {
             DayK dayK = new DayK();
-            dayK.setId(stockBlock.select("td:nth-child(1)").text());
+            dayK.setSymbol(stockBlock.select("td:nth-child(1)").text());
             dayK.setName(stockBlock.select("td:nth-child(2)").text());
 
             String price = stockBlock.select("td:nth-child(3)").text();
