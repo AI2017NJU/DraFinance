@@ -15,6 +15,6 @@ public class HomeController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String toIndex(HttpServletRequest request, Model model) {
-        return null;
+        return "index";
     }
 }

@@ -57,7 +57,7 @@
 <div id="index_first_block" class="fullBlock">
     <div id="logo_and_bench">
         <div id="logo_wrapper">
-            <img src="resources/img/index_logo.png">
+            <img src="<c:url value="/img/index_logo.png"/>">
             <h1 nowrap>Awesome Stock Analysis System</h1>
             <a href="welcome.do" target="_blank">Why outstanding?</a>
         </div>
@@ -108,7 +108,7 @@
 <div id="rank_wrapper" class="halfBlock">
     <div class="index-content index-content-row">
         <div class="rank_type">
-            <p class="stock_content_title stock_content_title_dark"><img src="resources/img/logo_s.png">个股涨幅榜</p>
+            <p class="stock_content_title stock_content_title_dark"><img src="<c:url value="/img/logo_s.png"/>">个股涨幅榜</p>
             <table>
                 <tr><th>排名</th><th>名称</th><th>最新价</th><th>涨幅	</th><th>换手率</th></tr>
                 <c:forEach items="${stockRank}" var="stock" varStatus="s">
@@ -118,7 +118,7 @@
         </div>
 
         <div class="rank_type">
-            <p class="stock_content_title stock_content_title_dark"><img src="resources/img/logo_s.png">行业涨幅榜</p>
+            <p class="stock_content_title stock_content_title_dark"><img src="<c:url value="/img/logo_s.png"/>">行业涨幅榜</p>
             <table>
                 <tr><th>排名</th><th>名称</th><th>涨幅</th><th>领涨股</th><th>涨幅</th></tr>
                 <c:forEach items="${industryRank}" var="industry" varStatus="s">
@@ -128,7 +128,7 @@
         </div>
 
         <div class="rank_type">
-            <p class="stock_content_title stock_content_title_dark"><img src="resources/img/logo_s.png">明日涨停预测</p>
+            <p class="stock_content_title stock_content_title_dark"><img src="<c:url value="/img/logo_s.png"/>">明日涨停预测</p>
             <table id="stop_recommend">
                 <tr><th>股票</th><th>id</th></tr>
                 <c:forEach items="${stopRecommend}" var="stop" varStatus="s" end="9">
@@ -144,7 +144,7 @@
 
 <div id="hot" class="fullBlock">
     <div class="index-content">
-        <p class="stock_content_title"><img src="resources/img/logo_s.png">股市热点</p>
+        <p class="stock_content_title"><img src="<c:url value="/img/logo_s.png"/>">股市热点</p>
 
         <div class="hot_item hot_item_tr">
             <div class="hot_item_title">
@@ -202,21 +202,21 @@
 <div id="news" class="halfBlock">
     <div class="index-content index-content-row">
         <div class="news_type">
-            <p class="stock_content_title stock_content_title_dark"><img src="resources/img/logo_s.png">财经要闻</p>
+            <p class="stock_content_title stock_content_title_dark"><img src="<c:url value="/img/logo_s.png"/>">财经要闻</p>
             <c:forEach items="${financeNews}" var="finance" varStatus="s" end="10">
                 <a href="${finance.url}" target="_blank">${finance.title}</a>
             </c:forEach>
         </div>
 
         <div class="news_type">
-            <p class="stock_content_title stock_content_title_dark"><img src="resources/img/logo_s.png">证券要闻</p>
+            <p class="stock_content_title stock_content_title_dark"><img src="<c:url value="/img/logo_s.png"/>">证券要闻</p>
             <c:forEach items="${stockNews}" var="stock" varStatus="s" end="10">
                 <a href="${stock.url}" target="_blank">${stock.title}</a>
             </c:forEach>
         </div>
 
         <div class="news_type">
-            <p class="stock_content_title stock_content_title_dark"><img src="resources/img/logo_s.png">公司要闻</p>
+            <p class="stock_content_title stock_content_title_dark"><img src="<c:url value="/img/logo_s.png"/>">公司要闻</p>
             <c:forEach items="${companyNews}" var="company" varStatus="s" end="10">
                 <a href="${company.url}" target="_blank">${company.title}</a>
             </c:forEach>
@@ -227,30 +227,30 @@
 <div id="agency">
     <div class="index-content">
         <div id="agencies" class="agency_wrapper">
-            <p class="stock_content_title stock_content_title_dark"><img src="resources/img/logo_s.png">机构直达</p>
+            <p class="stock_content_title stock_content_title_dark"><img src="<c:url value="/img/logo_s.png"/>">机构直达</p>
             <div class="agency_ul">
                 <a class="agency_item" target="_blank" href="http://www.tpyzq.com/main/home/index.shtml">
-                    <img src="resources/img/agency/tpy_gray.png">
+                    <img src="<c:url value="/img/agency/tpy_gray.png"/>">
                     <p>太平洋证券</p>
                 </a>
                 <a class="agency_item" target="_blank" href="http://www.foundersc.com/wskhjy/COL003140FS.shtml">
-                    <img src="resources/img/agency/fz_gray.png">
+                    <img src="<c:url value="/img/agency/fz_gray.png"/>">
                     <p>方正证券</p>
                 </a>
                 <a class="agency_item" target="_blank" href="http://dtsbc.com.cn/main/home/index.html?r=0.4924360930195768">
-                    <img src="resources/img/agency/dt_gray.png">
+                    <img src="<c:url value="/img/agency/dt_gray.png"/>">
                     <p>大同证券</p>
                 </a>
                 <a class="agency_item" target="_blank" href="http://hb.htsc.com.cn/">
-                    <img src="resources/img/agency/ht_gray.png">
+                    <img src="<c:url value="/img/agency/ht_gray.png"/>">
                     <p>华泰证券</p>
                 </a>
                 <a class="agency_item" target="_blank" href="http://hlt.zszq.com/">
-                    <img src="resources/img/agency/zs_gray.png">
+                    <img src="<c:url value="/img/agency/zs_gray.png"/>">
                     <p>中山证券</p>
                 </a>
                 <a class="agency_item" target="_blank" href="http://www.ytzq.com/web/html/index/index.html">
-                    <img src="resources/img/agency/yt_gray.png">
+                    <img src="<c:url value="/img/agency/yt_gray.png"/>">
                     <p>银泰证券</p>
                 </a>
             </div>
