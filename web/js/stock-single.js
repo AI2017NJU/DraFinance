@@ -231,10 +231,10 @@ function requestDynamicData() {
 
     $.ajax({
         type: 'GET',
-        url: "stock/active.do?id="+stock_id,
+        url: stock_id + "/realtime",
         dataType: 'json',
         success: function(data) {
-            updateDynamicData(data.current);
+            updateDynamicData(data.currentData);
             updateInstruction(data.instruction);
         },
         error: function() {
@@ -247,12 +247,12 @@ function requestDynamicData() {
 function updateDynamicData(data) {
     if(data.devia_val!=$("#dynamic_devia_val").html()){
         if(data.devia_val>=0){
-            $("#dynamic_price").html(data.price+"<img src='resources/img/up.png'>");
+            $("#dynamic_price").html(data.price+"<img src='/img/up.png'>");
             $("#dynamic_price").addClass("value_change").one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
                 $("#dynamic_price").removeClass("value_change");
             });
         }else{
-            $("#dynamic_price").html(data.price+"<img src='resources/img/down.png'>");
+            $("#dynamic_price").html(data.price+"<img src='/img/down.png'>");
             $("#dynamic_price").addClass("value_change").one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
                 $("#dynamic_price").removeClass("value_change");
             });
@@ -332,7 +332,8 @@ function updateDynamicData(data) {
     $("#dynamic_out4").html("卖四: <span>"+data.out4.toFixed(2)+"</span>");
     $("#dynamic_out5").html("卖五: <span>"+data.out5.toFixed(2)+"</span>");
 
-    var adj_price = chartData[chartData.length-1].adj_price;
+    // var adj_price = chartData[chartData.length-1].adj_price;
+    var adj_price = 0;
     $("#dynamic__adj").html("后复权价: "+adj_price);
 }
 
@@ -416,31 +417,31 @@ var forecastChart;
 AmCharts.ready(function() {
 
     AmCharts.theme = AmCharts.themes.dark;
-    initValueData();
+    // initValueData();
     initDynamicData();
-    initFutureData();
-    initGradeData();
-    initRelativeHistoryData();
-
-    initDataSet();
-    initValueChart();
-    initMacdChart();
-    initRsiChart();
-    initKdjChart();
-    initBollChart();
-
-    initGradeChart();
+    // initFutureData();
+    // initGradeData();
+    // initRelativeHistoryData();
+    //
+    // initDataSet();
+    // initValueChart();
+    // initMacdChart();
+    // initRsiChart();
+    // initKdjChart();
+    // initBollChart();
+    //
+    // initGradeChart();
     initDynamicChart();
-    initBpForecastChart();
-    initForecastChart();
-    initGradeHistoryChart();
-    initRelativeHistoryChart();
-    initTabTableChart2();
-
-    initSpecialStragtey();
-    initSeasonChart();
-    initSeasonChart2();
-    initSeasonChart3();
+    // initBpForecastChart();
+    // initForecastChart();
+    // initGradeHistoryChart();
+    // initRelativeHistoryChart();
+    // initTabTableChart2();
+    //
+    // initSpecialStragtey();
+    // initSeasonChart();
+    // initSeasonChart2();
+    // initSeasonChart3();
 });
 
 function initRelativeHistoryData() {

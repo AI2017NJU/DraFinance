@@ -82,7 +82,7 @@
         <div class="num">
             <div class="num_upper">
                 <div class="num_price">
-                    <h1 id="dynamic_price">—— ——<img src="<c:url value="/img/up.png"/>"></h1>
+                    <h1 id="dynamic_price">— —<img src="<c:url value="/img/up.png"/>"></h1>
                     <div>
                         <span id="dynamic_devia_val">--</span>
                         <span id="dynamic_devia_per">--</span>
@@ -167,10 +167,10 @@
         <div class="nav-sec-small-item" style="display: none">
             <p id="nav-sec-small-hide">↓↓↓</p>
             <a href="#k_wrapper" class="targeted">K线图</a>
-            <a href="#macd_wrapper">MACD</a>
-            <a href="#rsi_wrapper">RSI</a>
-            <a href="#kdj_wrapper">KDJ</a>
-            <a href="#boll_wrapper">BOLL</a>
+            <%--<a href="#macd_wrapper">MACD</a>--%>
+            <%--<a href="#rsi_wrapper">RSI</a>--%>
+            <%--<a href="#kdj_wrapper">KDJ</a>--%>
+            <%--<a href="#boll_wrapper">BOLL</a>--%>
         </div>
     </div>
 
@@ -184,37 +184,37 @@
             </div>
         </div>
 
-        <div id="macd_wrapper" class="basic_graph_wrapper_other">
-            <p class="stock_content_title"><img src="<c:url value="/img/logo_s.png"/>">MACD(指数平滑异同平均线)</p>
-            <div id="macd_graph" class="graph_basic_other">
+        <%--<div id="macd_wrapper" class="basic_graph_wrapper_other">--%>
+            <%--<p class="stock_content_title"><img src="<c:url value="/img/logo_s.png"/>">MACD(指数平滑异同平均线)</p>--%>
+            <%--<div id="macd_graph" class="graph_basic_other">--%>
 
-            </div>
-            <p></p>
-        </div>
+            <%--</div>--%>
+            <%--<p></p>--%>
+        <%--</div>--%>
 
-        <div id="rsi_wrapper" class="basic_graph_wrapper_other">
-            <p class="stock_content_title"><img src="<c:url value="/img/logo_s.png"/>">RSI(相对强弱指标)</p>
-            <div id="rsi_graph" class="graph_basic_other">
+        <%--<div id="rsi_wrapper" class="basic_graph_wrapper_other">--%>
+            <%--<p class="stock_content_title"><img src="<c:url value="/img/logo_s.png"/>">RSI(相对强弱指标)</p>--%>
+            <%--<div id="rsi_graph" class="graph_basic_other">--%>
 
-            </div>
-            <p id="rsi_ins">Tips:</p>
-        </div>
+            <%--</div>--%>
+            <%--<p id="rsi_ins">Tips:</p>--%>
+        <%--</div>--%>
 
-        <div id="kdj_wrapper" class="basic_graph_wrapper_other">
-            <p class="stock_content_title"><img src="<c:url value="/img/logo_s.png"/>">KDJ(随机指标)</p>
-            <div id="kdj_graph" class="graph_basic_other">
+        <%--<div id="kdj_wrapper" class="basic_graph_wrapper_other">--%>
+            <%--<p class="stock_content_title"><img src="<c:url value="/img/logo_s.png"/>">KDJ(随机指标)</p>--%>
+            <%--<div id="kdj_graph" class="graph_basic_other">--%>
 
-            </div>
-            <p id="kdj_ins">Tips:</p>
-        </div>
+            <%--</div>--%>
+            <%--<p id="kdj_ins">Tips:</p>--%>
+        <%--</div>--%>
 
-        <div id="boll_wrapper" class="basic_graph_wrapper_other">
-            <p class="stock_content_title"><img src="<c:url value="/img/logo_s.png"/>">BOLL(布林线)</p>
-            <div id="boll_graph" class="graph_basic_other">
+        <%--<div id="boll_wrapper" class="basic_graph_wrapper_other">--%>
+            <%--<p class="stock_content_title"><img src="<c:url value="/img/logo_s.png"/>">BOLL(布林线)</p>--%>
+            <%--<div id="boll_graph" class="graph_basic_other">--%>
 
-            </div>
-            <p id="boll_ins">Tips:</p>
-        </div>
+            <%--</div>--%>
+            <%--<p id="boll_ins">Tips:</p>--%>
+        <%--</div>--%>
     </div>
 
     <div id="evaluate" class="stock_content" style="display: none">
@@ -507,22 +507,21 @@
     </div>
 
     <div id="company" class="stock_content" style="display: none;">
-        <p id="company_intro" class="stock_content_title"><img src="<c:url value="/img/logo_s.png"/>">公司简介</p>
-        <h1>上市日期：${stockInfo.listDate}</h1>
-        <h1>公司状态：${stockInfo.status}</h1>
-        <h1>公司描述：${stockInfo.description}</h1>
+        <%--<p id="company_intro" class="stock_content_title"><img src="<c:url value="/img/logo_s.png"/>">公司简介</p>--%>
+        <%--<h1>上市日期：${stockInfo.listDate}</h1>--%>
+        <%--<h1>公司状态：${stockInfo.status}</h1>--%>
+        <%--<h1>公司描述：${stockInfo.description}</h1>--%>
 
         <div id="news" class="stock_content_single">
             <p id="news_news" class="stock_content_title"><img src="<c:url value="/img/logo_s.png"/>">新闻公告</p>
-            <c:forEach items="${news}" var="news_item" varStatus="s" end="10">
+            <c:forEach items="${newsList}" var="news_item" varStatus="s" end="10">
                 <a href="${news_item.url}" target="_blank" class="news_paper_item"><p>${news_item.title}</p><span>${news_item.date}</span></a>
             </c:forEach>
 
             <p id="news_paper" class="stock_content_title"><img src="<c:url value="/img/logo_s.png"/>">研究报告</p>
-            <c:forEach items="${reports}" var="report" varStatus="s" end="10">
+            <c:forEach items="${reportList}" var="report" varStatus="s" end="10">
                 <a href="${report.url}" target="_blank" class="news_paper_item"><p>${report.title}</p><span>${report.source} ${report.date}</span></a>
             </c:forEach>
-
         </div>
 
         <%--<p id="company_rise" class="stock_content_title"><img src="resources/img/logo_s.png">增长</p>--%>
@@ -530,15 +529,15 @@
 
         <%--</div>--%>
 
-        <p id="company_profit" class="stock_content_title"><img src="<c:url value="/img/logo_s.png"/>">盈利能力</p>
-        <h3>每股指标</h3>
-        <div id="season_graph1"></div>
-        <br>
-        <h3>盈利能力</h3>
-        <div id="season_graph2"></div>
-        <br>
-        <h3>成长能力</h3>
-        <div id="season_graph3"></div>
+        <%--<p id="company_profit" class="stock_content_title"><img src="<c:url value="/img/logo_s.png"/>">盈利能力</p>--%>
+        <%--<h3>每股指标</h3>--%>
+        <%--<div id="season_graph1"></div>--%>
+        <%--<br>--%>
+        <%--<h3>盈利能力</h3>--%>
+        <%--<div id="season_graph2"></div>--%>
+        <%--<br>--%>
+        <%--<h3>成长能力</h3>--%>
+        <%--<div id="season_graph3"></div>--%>
         <%--<h3>当前能力</h3>--%>
         <%--<div id="company_profit_table">--%>
         <%--<ul>--%>
@@ -590,6 +589,11 @@
 
 <!-- Insert this line above script imports  -->
 <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+
+<script>
+    var stock_id = '${ID}';
+    var tmp_dynamic = ${intraday != null ? intraday : null};
+</script>
 
 <script type="text/javascript" rel="script" src="<c:url value="/js/jquery-2.2.3.min.js"/>"></script>
 <script type="text/javascript" rel="script" src="<c:url value="/js/jquery.cookie.js"/>"></script>
