@@ -7,12 +7,12 @@ import com.alibaba.fastjson.JSONObject;
 /**
  * Created by Hermit on 2017/6/1.
  */
-public class CommentParser {
+public class XueqiuCommentParser {
 
     public static void main(String[] args) {
-        CommentJson json = new CommentJson();
+        XueqiuCommentJson json = new XueqiuCommentJson();
         String html = json.getJSONData("SH600000");
-        CommentParser parser = new CommentParser();
+        XueqiuCommentParser parser = new XueqiuCommentParser();
         JSONArray list = parser.getCommentList(html);
         for (int i=0;i<list.size();i++) {
             JSONObject item = list.getJSONObject(i);

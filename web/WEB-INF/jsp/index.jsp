@@ -31,26 +31,6 @@
         <%--&lt;%&ndash;console.log(${industryRank});&ndash;%&gt;--%>
     <%--</script>--%>
 
-    <!-- Insert this line above script imports  -->
-    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
-
-    <script type="text/javascript" rel="script" src="<c:url value="/js/jquery-2.2.3.min.js"/>"></script>
-    <script type="text/javascript" rel="script" src="<c:url value="/js/jquery.cookie.js"/>"></script>
-    <script type="text/javascript" rel="script" src="<c:url value="/plugin/amstockchart/amcharts.js"/>"></script>
-    <script type="text/javascript" rel="script" src="<c:url value="/plugin/amstockchart/serial.js"/>"></script>
-    <script type="text/javascript" rel="script" src="<c:url value="/plugin/amcharts/radar.js"/>"></script>
-    <script type="text/javascript" rel="script" src="<c:url value="/plugin/amstockchart/amstock.js"/>"></script>
-    <script type="text/javascript" rel="script" src="<c:url value="/plugin/amstockchart/themes/dark.js"/>"></script>
-    <script type="text/javascript" rel="script" src="<c:url value="/plugin/gsap/src/uncompressed/TweenMax.js"/>"></script>
-    <script type="text/javascript" rel="script" src="<c:url value="/plugin/gsap/src/uncompressed/plugins/ScrollToPlugin.js"/>"></script>
-    <script type="text/javascript" rel="script" src="<c:url value="/plugin/scrollmagic/scrollmagic/minified/ScrollMagic.min.js"/>"></script>
-    <script type="text/javascript" rel="script" src="<c:url value="/plugin/scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap.js"/>"></script>
-    <script type="text/javascript" rel="script" src="<c:url value="/js/index.js"/>"></script>
-    <script type="text/javascript" rel="script" src="<c:url value="/js/header.js"/>"></script>
-
-    <!-- Insert this line after script imports -->
-    <script>if (window.module) module = window.module;</script>
-
 </head>
 <body>
 <jsp:include page="header.jsp" flush="true"/>
@@ -59,20 +39,20 @@
         <div id="logo_wrapper">
             <img src="<c:url value="/img/index_logo.png"/>">
             <h1 nowrap>Awesome Stock Analysis System</h1>
-            <a href="welcome.do" target="_blank">Why outstanding?</a>
+            <%--<a href="welcome.do" target="_blank">Why outstanding?</a>--%>
         </div>
 
         <div id="bench_wrapper">
             <hr id="hr_bench" />
             <div id="bench_dynamic_wrapper">
                 <div id="bench_title" class="stock_content_title">
-                    沪深300(hs300)
-                    <ul>
-                        <li class="more_button">查看更多</li>
-                        <li class="bench_link"><a href="bench.do?id=399300" target="_blank">沪深300</a></li>
-                        <li class="bench_link"><a href="bench.do?id=000001" target="_blank">上证</a></li>
-                        <li class="bench_link"><a href="bench.do?id=399001" target="_blank">深证</a></li>
-                    </ul>
+                    上证指数(SH000001)
+                    <%--<ul>--%>
+                        <%--<li class="more_button">查看更多</li>--%>
+                        <%--<li class="bench_link"><a href="bench.do?id=399300" target="_blank">沪深300</a></li>--%>
+                        <%--<li class="bench_link"><a href="bench.do?id=000001" target="_blank">上证</a></li>--%>
+                        <%--<li class="bench_link"><a href="bench.do?id=399001" target="_blank">深证</a></li>--%>
+                    <%--</ul>--%>
                 </div>
                 <div class="num_wrapper">
                     <h2><span>最&nbsp;&nbsp;&nbsp;高：</span><span id="dynamic_high">--</span></h2>
@@ -105,42 +85,42 @@
     </div>
 </div>
 
-<div id="rank_wrapper" class="halfBlock">
-    <div class="index-content index-content-row">
-        <div class="rank_type">
-            <p class="stock_content_title stock_content_title_dark"><img src="<c:url value="/img/logo_s.png"/>">个股涨幅榜</p>
-            <table>
-                <tr><th>排名</th><th>名称</th><th>最新价</th><th>涨幅	</th><th>换手率</th></tr>
-                <c:forEach items="${stockRank}" var="stock" varStatus="s">
-                    <tr><td>${s.index+1}</td><td>${stock.stockname}</td><td>${stock.price}</td><td>${stock.deviation}%</td><td>${stock.turnover}</td></tr>
-                </c:forEach>
-            </table>
-        </div>
+<%--<div id="rank_wrapper" class="halfBlock">--%>
+    <%--<div class="index-content index-content-row">--%>
+        <%--<div class="rank_type">--%>
+            <%--<p class="stock_content_title stock_content_title_dark"><img src="<c:url value="/img/logo_s.png"/>">个股涨幅榜</p>--%>
+            <%--<table>--%>
+                <%--<tr><th>排名</th><th>名称</th><th>最新价</th><th>涨幅	</th><th>换手率</th></tr>--%>
+                <%--<c:forEach items="${stockRank}" var="stock" varStatus="s">--%>
+                    <%--<tr><td>${s.index+1}</td><td>${stock.stockname}</td><td>${stock.price}</td><td>${stock.deviation}%</td><td>${stock.turnover}</td></tr>--%>
+                <%--</c:forEach>--%>
+            <%--</table>--%>
+        <%--</div>--%>
 
-        <div class="rank_type">
-            <p class="stock_content_title stock_content_title_dark"><img src="<c:url value="/img/logo_s.png"/>">行业涨幅榜</p>
-            <table>
-                <tr><th>排名</th><th>名称</th><th>涨幅</th><th>领涨股</th><th>涨幅</th></tr>
-                <c:forEach items="${industryRank}" var="industry" varStatus="s">
-                    <tr><td>${s.index+1}</td><td>${industry.industryname}</td><td>${industry.industrydevia}%</td><td>${industry.stockname}</td><td>${industry.stockdevia}%</td></tr>
-                </c:forEach>
-            </table>
-        </div>
+        <%--<div class="rank_type">--%>
+            <%--<p class="stock_content_title stock_content_title_dark"><img src="<c:url value="/img/logo_s.png"/>">行业涨幅榜</p>--%>
+            <%--<table>--%>
+                <%--<tr><th>排名</th><th>名称</th><th>涨幅</th><th>领涨股</th><th>涨幅</th></tr>--%>
+                <%--<c:forEach items="${industryRank}" var="industry" varStatus="s">--%>
+                    <%--<tr><td>${s.index+1}</td><td>${industry.industryname}</td><td>${industry.industrydevia}%</td><td>${industry.stockname}</td><td>${industry.stockdevia}%</td></tr>--%>
+                <%--</c:forEach>--%>
+            <%--</table>--%>
+        <%--</div>--%>
 
-        <div class="rank_type">
-            <p class="stock_content_title stock_content_title_dark"><img src="<c:url value="/img/logo_s.png"/>">明日涨停预测</p>
-            <table id="stop_recommend">
-                <tr><th>股票</th><th>id</th></tr>
-                <c:forEach items="${stopRecommend}" var="stop" varStatus="s" end="9">
-                    <tr class="stop_recommand_stock">
-                        <td><a href="stock.do?id=${stop.id}" target="_blank">${stop.name}</a></td>
-                        <td><a href="stock.do?id=${stop.id}" target="_blank">${stop.id}</a></td>
-                    </tr>
-                </c:forEach>
-            </table>
-        </div>
-    </div>
-</div>
+        <%--<div class="rank_type">--%>
+            <%--<p class="stock_content_title stock_content_title_dark"><img src="<c:url value="/img/logo_s.png"/>">明日涨停预测</p>--%>
+            <%--<table id="stop_recommend">--%>
+                <%--<tr><th>股票</th><th>id</th></tr>--%>
+                <%--<c:forEach items="${stopRecommend}" var="stop" varStatus="s" end="9">--%>
+                    <%--<tr class="stop_recommand_stock">--%>
+                        <%--<td><a href="stock.do?id=${stop.id}" target="_blank">${stop.name}</a></td>--%>
+                        <%--<td><a href="stock.do?id=${stop.id}" target="_blank">${stop.id}</a></td>--%>
+                    <%--</tr>--%>
+                <%--</c:forEach>--%>
+            <%--</table>--%>
+        <%--</div>--%>
+    <%--</div>--%>
+<%--</div>--%>
 
 <div id="hot" class="fullBlock">
     <div class="index-content">
@@ -256,7 +236,26 @@
             </div>
         </div>
     </div>
-    <jsp:include page="footer.jsp" flush="true">
+    <jsp:include page="footer.jsp" flush="true"/>
 </div>
 </body>
+<!-- Insert this line above script imports  -->
+<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+
+<script type="text/javascript" rel="script" src="<c:url value="/js/jquery-2.2.3.min.js"/>"></script>
+<script type="text/javascript" rel="script" src="<c:url value="/js/jquery.cookie.js"/>"></script>
+<script type="text/javascript" rel="script" src="<c:url value="/plugin/amstockchart/amcharts.js"/>"></script>
+<script type="text/javascript" rel="script" src="<c:url value="/plugin/amstockchart/serial.js"/>"></script>
+<script type="text/javascript" rel="script" src="<c:url value="/plugin/amcharts/radar.js"/>"></script>
+<script type="text/javascript" rel="script" src="<c:url value="/plugin/amstockchart/amstock.js"/>"></script>
+<script type="text/javascript" rel="script" src="<c:url value="/plugin/amstockchart/themes/dark.js"/>"></script>
+<script type="text/javascript" rel="script" src="<c:url value="/plugin/gsap/src/uncompressed/TweenMax.js"/>"></script>
+<script type="text/javascript" rel="script" src="<c:url value="/plugin/gsap/src/uncompressed/plugins/ScrollToPlugin.js"/>"></script>
+<script type="text/javascript" rel="script" src="<c:url value="/plugin/scrollmagic/scrollmagic/minified/ScrollMagic.min.js"/>"></script>
+<script type="text/javascript" rel="script" src="<c:url value="/plugin/scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap.js"/>"></script>
+<script type="text/javascript" rel="script" src="<c:url value="/js/index.js"/>"></script>
+<script type="text/javascript" rel="script" src="<c:url value="/js/header.js"/>"></script>
+
+<!-- Insert this line after script imports -->
+<script>if (window.module) module = window.module;</script>
 </html>
