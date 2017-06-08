@@ -1,8 +1,13 @@
-window.onload = function() {
-    initialHeader();
+// window.onload = function() {
+//     initialHeader();
+//     operationListener();
+//     showBenchLink();
+// };
+
+(function() {
     operationListener();
     showBenchLink();
-};
+})();
 
 function showBenchLink(){
     $('#bench_title ul').bind('mouseover',function(){
@@ -110,7 +115,7 @@ function updateDynamicData(data) {
     $("#dynamic_neutral_num").html(data.neutral_num);
 }
 
-window.setInterval(requestDynamicData, 5000);
+// window.setInterval(requestDynamicData, 5000);
 
 /***********************
  *
@@ -121,8 +126,8 @@ var intradayChart;
 
 AmCharts.ready(function() {
     AmCharts.theme = AmCharts.themes.dark;
-    initDynamicData();
-    initDynamicChart();
+    // initDynamicData();
+    // initDynamicChart();
 });
 
 function initDynamicData() {

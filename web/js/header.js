@@ -1,9 +1,14 @@
 var mq700 = window.matchMedia('(max-width:700px)');
+
+(function() {
+    initialHeader();
+})();
+
 function initialHeader(){
     toggleSearch();
     inputListener();
     menu();
-    login();
+    // login();
 }
 
 function menu(){
@@ -23,7 +28,7 @@ function toggleSearch(){
             $(".input-wrapper").hide();
             $("#search_outer").hide();
              if(mq700.matches){
-                $(".logo").html('<img src="resources/img/title.png">')
+                $(".logo").html('<img src="/img/title.png">')
             }
         }else{
             $(this).addClass("search-close");
@@ -32,7 +37,7 @@ function toggleSearch(){
             $("#search_input").focus();
             search("");
             if(mq700.matches){
-                $(".logo").html('<img src="resources/img/title_s.png">')
+                $(".logo").html('<img src="/img/title_s.png">')
             }
         }
     });

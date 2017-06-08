@@ -11,7 +11,7 @@ import java.net.URL;
 /**
  * Created by Hermit on 2017/6/1.
  */
-public class CommentJson {
+public class XueqiuCommentJson {
 
     public static final String DEFAULT_DOMAIN = "https://xueqiu.com/statuses/search.json";
     public static final int DEFAULT_COUNT = 10;
@@ -22,7 +22,7 @@ public class CommentJson {
     public static final int DEFAULT_PAGE = 1;
 
     public static void main(String[] args) {
-        String result = new CommentJson().getJSONData("SH600000");
+        String result = new XueqiuCommentJson().getJSONData("SH600000");
         System.out.println(result);
     }
 
@@ -43,11 +43,7 @@ public class CommentJson {
             conn.addRequestProperty("Content-type", "text/json");
             conn.addRequestProperty("Accept-Charset", "utf-8");
             conn.addRequestProperty("contentType", "utf-8");
-            conn.addRequestProperty("Cookie", "aliyungf_tc=AQAAAANWekozxAoAXlGi03PxdX8MiuMr; s=ga14oxx775; xq_a_token=8" +
-                    "76f2519b10cea9dc131b87db2e5318e5d4ea64f; xq_r_token=709abdc1ccb40ac956166989385ffd603ad6ab6f; u=331" +
-                    "496285545742; __utma=1.216155465.1496285546.1496285546.1496288461.2; __utmc=1; __utmz=1.1496285" +
-                    "546.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); Hm_lvt_1db88642e346389874251b5a1eded6e3" +
-                    "=1496285546; Hm_lpvt_1db88642e346389874251b5a1eded6e3=1496308327");
+            conn.addRequestProperty("Cookie", "u=171496314516601; s=fe12lk2eir; aliyungf_tc=AQAAAO8c1Fg2jAkAW1Gi0+WS6UpVfTE+; xq_a_token=876f2519b10cea9dc131b87db2e5318e5d4ea64f; xq_r_token=709abdc1ccb40ac956166989385ffd603ad6ab6f; __utmt=1; Hm_lvt_1db88642e346389874251b5a1eded6e3=1496314518,1496839466; Hm_lpvt_1db88642e346389874251b5a1eded6e3=1496839545; __utma=1.1747867414.1496314528.1496314528.1496839466.2; __utmb=1.4.9.1496839466; __utmc=1; __utmz=1.1496314528.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)");
             conn.addRequestProperty("Host", "xueqiu.com");
             conn.addRequestProperty("Pragma", "no-cache");
             conn.addRequestProperty("Upgrade-Insecure-Requests", "1");
@@ -65,6 +61,8 @@ public class CommentJson {
 
             br.close();
             result = sbuilder.toString();
+
+            conn.disconnect();
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -82,6 +80,6 @@ public class CommentJson {
                 + "&hl=" + DEFAULT_HL
                 + "&source=" + DEFAULT_SOURCE
                 + "&sort=" + DEFAULT_SORT
-                + "&page=1" + DEFAULT_PAGE;
+                + "&page=" + DEFAULT_PAGE;
     }
 }
