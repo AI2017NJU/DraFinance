@@ -12,6 +12,7 @@ public class DayK {
     private double close;
     private double dealAmount;
     private double dealValue;
+    private String date;
 
     @Override
     public String toString() {
@@ -24,7 +25,16 @@ public class DayK {
                 ", close=" + close +
                 ", dealAmount=" + dealAmount +
                 ", dealValue=" + dealValue +
+                ", date='" + date + '\'' +
                 '}';
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public int getId() {

@@ -27,7 +27,7 @@ def get_insert_data(url, symbol):
 
 
 def get_stock():
-    cursor.execute('select symbol from stockInfo where symbol < "sh000025"')
+    cursor.execute('select symbol from stockInfo')
     symbols = list(cursor.fetchall())
 
     url = 'http://hq.sinajs.cn/list=%s'
