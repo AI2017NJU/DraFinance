@@ -58,6 +58,9 @@ public class StockDataController {
 
         model.addAttribute("intraday", Realtime.getRealTicks(ID.toLowerCase()));
 
+        List<Comment> xueqiuCommentList = xueqiuCommentService.getCurrentComments(ID);
+        model.addAttribute("xueqiuCommentList", xueqiuCommentList);
+
         return "stock";
     }
 

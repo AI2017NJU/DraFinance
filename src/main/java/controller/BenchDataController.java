@@ -48,6 +48,9 @@ public class BenchDataController {
 
         model.addAttribute("intraday", Realtime.getRealTicks(ID.toLowerCase()));
 
+        List<Comment> xueqiuCommentList = xueqiuCommentService.getCurrentComments(ID);
+        model.addAttribute("xueqiuCommentList", xueqiuCommentList);
+
         return "bench";
     }
 

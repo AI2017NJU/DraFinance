@@ -13,4 +13,8 @@ public class StockHelper {
         }
         return false;
     }
+
+    public static String xueqiuCodeReflect(String ID) {
+        return ID;
+    }
 }

@@ -58,6 +58,8 @@
 
 </head>
 <body>
+<img id="stock_title_background" src="<c:url value="/img/background/stock_title_1.png"/>">
+
 <jsp:include page="header.jsp" flush="true"/>
 <div class="main-content">
     <div id="info" class="info">
@@ -140,7 +142,7 @@
             <span>·</span>
             <p id="show_company" class="nav-item">公司资讯</p>
             <span>·</span>
-            <p id="show_evaluate" class="nav-item">分析评估</p>
+            <p id="show_evaluate" class="nav-item">最新评论</p>
             <span class="side">·</span>
         </div>
     </div>
@@ -531,6 +533,21 @@
     <%--</div>--%>
 
     <div id="evaluate" class="stock_content" style="display: none">
+
+        <div class="stock_content_title"><img src="<c:url value="/img/logo_s.png"/>"><p>来自雪球网的评论</p></div>
+
+        <br>
+
+        <div class="comments">
+            <c:forEach var="item" items="${xueqiuCommentList}">
+                <div class="comment-media">
+                    <h3><a class="title">${item.title}</a>&nbsp;&nbsp;<span class="auther">作者: <a href="${item.userUrl}">${item.username}</a></span></h3>
+                    <div class="description">${item.description}...<span class="expand-all">展开</span></div>
+                    <div class="text" style="display: none">${item.text}<br><span class="collapse-all">收起</span></div>
+                </div>
+            </c:forEach>
+        </div>
+
         <%--<div id="grade_wrapper" class="stock_content_single">--%>
         <%--<div class="stock_content_title"><img src="<c:url value="/img/logo_s.png"/>"><p>股票评分</p></div>--%>
         <%--<div id="grade_graph">--%>

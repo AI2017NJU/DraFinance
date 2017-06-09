@@ -85,7 +85,7 @@
             <span>·</span>
             <p id="show_dynamic" class="nav-item">实时数据</p>
             <span>·</span>
-            <p id="show_upDown" class="nav-item">涨跌分布</p>
+            <p id="show_upDown" class="nav-item">最新评论</p>
             <span>·</span>
         </div>
     </div>
@@ -205,11 +205,24 @@
     </div>
 
     <div id="area" class="stock_content" style="display: none">
-        <div id="range_wrapper" class="basic_graph_wrapper_k">
-            <p class="stock_content_title"><img src="<c:url value="/img/logo_s.png"/>">涨跌幅范围</p>
-            <div id="range_graph" style="height: 1200px">
+        <%--<div id="range_wrapper" class="basic_graph_wrapper_k">--%>
+            <%--<p class="stock_content_title"><img src="<c:url value="/img/logo_s.png"/>">涨跌幅范围</p>--%>
+            <%--<div id="range_graph" style="height: 1200px">--%>
 
-            </div>
+            <%--</div>--%>
+        <%--</div>--%>
+        <div class="stock_content_title"><img src="<c:url value="/img/logo_s.png"/>"><p>来自雪球网的评论</p></div>
+
+        <br>
+
+        <div class="comments">
+            <c:forEach var="item" items="${xueqiuCommentList}">
+                <div class="comment-media">
+                    <h3><a class="title">${item.title}</a>&nbsp;&nbsp;<span class="auther">作者: <a href="${item.userUrl}">${item.username}</a></span></h3>
+                    <div class="description">${item.description}...<span class="expand-all">展开</span></div>
+                    <div class="text" style="display: none">${item.text}<br><span class="collapse-all">收起</span></div>
+                </div>
+            </c:forEach>
         </div>
     </div>
 

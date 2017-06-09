@@ -2,9 +2,14 @@ package service.impl;
 
 import bot.core.XueqiuCommentJson;
 import bot.core.XueqiuCommentParser;
+import model.Comment;
 import service.CommentService;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import tools.StockHelper;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Hermit on 2017/6/7.
@@ -21,10 +26,11 @@ public class XueqiuCommentImpl implements CommentService {
     }
 
     @Override
-    public JSONArray getCurrentComments(String ID) {
+    public List<Comment> getCurrentComments(String ID) {
+        ID = StockHelper.xueqiuCodeReflect(ID);
         String htmlData = crawler.getJSONData(ID);
         JSONArray jsonList = parser.getCommentList(htmlData);
-        JSONArray result = new JSONArray();
+        List<Comment> commentList = new ArrayList<>();
 
         for (int i=0;i<jsonList.size();i++) {
             JSONObject item = jsonList.getJSONObject(i);
@@ -36,17 +42,17 @@ public class XueqiuCommentImpl implements CommentService {
             String username = user.getString("screen_name");
             String userUrl = DEFAULT_URL + user.getString("profile");
 
-            JSONObject newItem = new JSONObject();
-            newItem.put("title", title);
-            newItem.put("target", target);
-            newItem.put("description", description);
-            newItem.put("text", text);
-            newItem.put("username", username);
-            newItem.put("userUrl", userUrl);
+            Comment comment = new Comment();
+            comment.setTitle(title);
+            comment.setTarget(target);
+            comment.setDescription(description);
+            comment.setText(text);
+            comment.setUsername(username);
+            comment.setUserUrl(userUrl);
 
-            result.add(newItem);
+            commentList.add(comment);
         }
 
-        return result;
+        return commentList;
     }
 }

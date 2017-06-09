@@ -542,6 +542,45 @@
     font-size: 15px;
 }
 
+.comments {
+    padding: 0 20px;
+}
+
+.comment-media {
+    padding: 10px 0 20px 0;
+    border-bottom: 1px #0b2a44 solid;
+}
+
+.comment-media p {
+    text-indent: 1em
+}
+
+.comment-media h3 {
+    margin-bottom: 8px;
+}
+
+.comment-media h3 .title {
+    font-size: 18px;
+    color:#ffde00;
+}
+
+.comment-media h3 a:hover {
+    color:#ffff00;
+}
+
+.comment-media .expand-all, .comment-media .collapse-all {
+    padding-left: 10px;
+    color:#ffde00;
+    cursor: pointer;
+}
+
+.comment-media .text img {
+    padding: 10px 0;
+}
+
+.comment-media .expand-all:hover, .comment-media .collapse-all:hover {
+    color:#ffff00;
+}
 
 @media all and (max-width: 1200px) {
     .main-content{

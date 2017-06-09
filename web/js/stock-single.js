@@ -24,6 +24,11 @@ var secondSmallNavList = [
     '<p id="nav-sec-small-hide">↓↓↓</p><a href="#company_intro" class="targeted">公司简介</a><a href="#news_news">新闻公告</a><a href="#news_paper">研究报告</a><a href="#company_profit">盈利能力</a>'
     ];
 
+var expand_all_list = document.querySelectorAll(".comment-media .expand-all");
+var collapse_all_list = document.querySelectorAll(".comment-media .collapse-all");
+var text_all_list = document.querySelectorAll(".comment-media .text");
+var description_all_list = document.querySelectorAll(".comment-media .description");
+
 (function() {
     navList = document.querySelectorAll(".nav-item");
     navContents = document.querySelectorAll(".stock_content");
@@ -176,7 +181,32 @@ function navListener(){
      }).on("click","#nav-sec-small-show",function(){
         $(this).hide();
         $(".nav-sec-small-item").show();
-     })
+     });
+
+     $(".comment-media .collapse-all").on("click", function() {
+         var index = -1;
+         var i;
+         for (i=0;i<collapse_all_list.length;i++) {
+             if (this == collapse_all_list[i]) {
+                 index = i;
+                 break;
+             }
+         }
+         $(text_all_list[index]).hide();
+         $(description_all_list[index]).show();
+     });
+     $(".comment-media .expand-all").on("click", function() {
+         var index = -1;
+         var i;
+         for (i=0;i<expand_all_list.length;i++) {
+             if (this == expand_all_list[i]) {
+                 index = i;
+                 break;
+             }
+         }
+         $(description_all_list[index]).hide();
+         $(text_all_list[index]).show();
+     });
 }
 
 function operationListener() {
@@ -218,7 +248,7 @@ Date.prototype.Format = function(fmt)
     return fmt;
 };
 
-// window.setInterval(requestDynamicData, 5000);
+window.setInterval(requestDynamicData, 12000);
 
 /***************************************************
  * 动态更新数据
