@@ -1,7 +1,14 @@
 package service.impl;
 
+import dao.DayKDAO;
+import dao.StockInfoDAO;
+import model.DayK;
+import model.StockInfo;
 import org.springframework.stereotype.Service;
 import service.StockDataService;
+
+import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created by Hermit on 2017/6/7.
@@ -9,5 +16,23 @@ import service.StockDataService;
 @Service("StockDataService")
 public class StockDataServiceImpl implements StockDataService {
 
+    @Resource
+    private DayKDAO dayKDAO;
+    @Resource
+    private StockInfoDAO stockInfoDAO;
 
+    @Override
+    public List<DayK> getDayKData(String ID) {
+        return dayKDAO.findDayKList(ID);
+    }
+
+    @Override
+    public StockInfo getStockInfo(String ID) {
+        return stockInfoDAO.findStockInfoBySymbol(ID);
+    }
+
+    @Override
+    public List<StockInfo> getAllStocks() {
+        return stockInfoDAO.findStockInfoList();
+    }
 }

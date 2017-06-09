@@ -231,7 +231,7 @@ function requestDynamicData() {
 
     $.ajax({
         type: 'GET',
-        url: stock_id + "/realtime",
+        url: '/stock/'+ stock_id + "/realtime",
         dataType: 'json',
         success: function(data) {
             updateDynamicData(data.currentData);
@@ -417,14 +417,14 @@ var forecastChart;
 AmCharts.ready(function() {
 
     AmCharts.theme = AmCharts.themes.dark;
-    // initValueData();
+    initValueData();
     initDynamicData();
     // initFutureData();
     // initGradeData();
     // initRelativeHistoryData();
     //
-    // initDataSet();
-    // initValueChart();
+    initDataSet();
+    initValueChart();
     // initMacdChart();
     // initRsiChart();
     // initKdjChart();
@@ -464,61 +464,61 @@ function initValueData() {
     chartData = jsonData;
 
     for(var i=0;i<chartData.length;i++){
-        if(chartData[i].volume==0){
+        if(chartData[i].dealValue==0){
             chartData[i]["colorField"] = "rgba(0,0,0,0.4)";
             chartData[i]["lineColorField"] = "rgba(0,0,0,0.4)";
         }
     }
 
-    for(i=0;i<specialPredict.length;i++){
-        tabChartData.push(specialPredict[i].tabTablesData);
-        tabChartData[i]["kdjIns"] =  specialPredict[i].kdjIns;
-        tabChartData[i]["rsiIns"] = specialPredict[i].rsiIns;
-        tabChartData[i]["bollIns"] = specialPredict[i].bollIns;
-
-        if(tabChartData[i].kdjIns!=""){
-            tabChartData[i]["eventClass"] = "kdj_event";
-        }
-        if(tabChartData[i].rsiIns!=""){
-            if(tabChartData[i].eventClass==undefined){
-                tabChartData[i]["eventClass"] = "rsi_event";
-            }else{
-                tabChartData[i].eventClass = tabChartData[i].eventClass + " rsi_event";
-            }
-        }
-        if(tabChartData[i].bollIns!=""){
-            if(tabChartData[i].eventClass==undefined){
-                tabChartData[i]["eventClass"] = "boll_event";
-            }else{
-                tabChartData[i].eventClass = tabChartData[i].eventClass + " boll_event";
-            }
-        }
-
-        if(i>=specialPredict.length-3){
-            tabChartData2.push(specialPredict[i].tabTablesData);
-        }
-
-        if(i==specialPredict.length-1){
-            var kdj_ins = specialPredict[i].kdjIns;
-            var rsi_ins = specialPredict[i].rsiIns;
-            var boll_ins = specialPredict[i].bollIns;
-            if(kdj_ins==""){
-                $("#special_graph_kdj_ins").html("Tips: 今日暂无明显事件");
-            }else{
-                $("#special_graph_kdj_ins").html("Tips: "+kdj_ins);
-            }
-            if(rsi_ins==""){
-                $("#special_graph_rsi_ins").html("Tips: 今日暂无明显事件");
-            }else{
-                $("#special_graph_rsi_ins").html("Tips: "+rsi_ins);
-            }
-            if(boll_ins==""){
-                $("#special_graph_boll_ins").html("Tips: 今日暂无明显事件");
-            }else{
-                $("#special_graph_boll_ins").html("Tips: "+boll_ins);
-            }
-        }
-    }
+    // for(i=0;i<specialPredict.length;i++){
+    //     tabChartData.push(specialPredict[i].tabTablesData);
+    //     tabChartData[i]["kdjIns"] =  specialPredict[i].kdjIns;
+    //     tabChartData[i]["rsiIns"] = specialPredict[i].rsiIns;
+    //     tabChartData[i]["bollIns"] = specialPredict[i].bollIns;
+    //
+    //     if(tabChartData[i].kdjIns!=""){
+    //         tabChartData[i]["eventClass"] = "kdj_event";
+    //     }
+    //     if(tabChartData[i].rsiIns!=""){
+    //         if(tabChartData[i].eventClass==undefined){
+    //             tabChartData[i]["eventClass"] = "rsi_event";
+    //         }else{
+    //             tabChartData[i].eventClass = tabChartData[i].eventClass + " rsi_event";
+    //         }
+    //     }
+    //     if(tabChartData[i].bollIns!=""){
+    //         if(tabChartData[i].eventClass==undefined){
+    //             tabChartData[i]["eventClass"] = "boll_event";
+    //         }else{
+    //             tabChartData[i].eventClass = tabChartData[i].eventClass + " boll_event";
+    //         }
+    //     }
+    //
+    //     if(i>=specialPredict.length-3){
+    //         tabChartData2.push(specialPredict[i].tabTablesData);
+    //     }
+    //
+    //     if(i==specialPredict.length-1){
+    //         var kdj_ins = specialPredict[i].kdjIns;
+    //         var rsi_ins = specialPredict[i].rsiIns;
+    //         var boll_ins = specialPredict[i].bollIns;
+    //         if(kdj_ins==""){
+    //             $("#special_graph_kdj_ins").html("Tips: 今日暂无明显事件");
+    //         }else{
+    //             $("#special_graph_kdj_ins").html("Tips: "+kdj_ins);
+    //         }
+    //         if(rsi_ins==""){
+    //             $("#special_graph_rsi_ins").html("Tips: 今日暂无明显事件");
+    //         }else{
+    //             $("#special_graph_rsi_ins").html("Tips: "+rsi_ins);
+    //         }
+    //         if(boll_ins==""){
+    //             $("#special_graph_boll_ins").html("Tips: 今日暂无明显事件");
+    //         }else{
+    //             $("#special_graph_boll_ins").html("Tips: "+boll_ins);
+    //         }
+    //     }
+    // }
 }
 
 function initDynamicData() {
@@ -570,11 +570,11 @@ function initDataSet() {
         fromField: "ma20",
         toField: "ma20"
     }, {
-        fromField: "volume",
-        toField: "volume"
+        fromField: "dealAmount",
+        toField: "dealAmount"
     }, {
-        fromField: "amount",
-        toField: "total"
+        fromField: "dealValue",
+        toField: "dealValue"
     }, {
         fromField: "macd",
         toField: "macd"
@@ -657,22 +657,22 @@ function initValueChart() {
     valueGraph.lineColorField = "lineColorField";
     valuePanel.addStockGraph(valueGraph);
 
-    var ma5Graph = new AmCharts.StockGraph();
-    ma5Graph.title = "MA 5";
-    ma5Graph.type = "line";
-    ma5Graph.valueField = "ma5";
-    ma5Graph.fillColors = "#ffffcc";
-    ma5Graph.lineColor = "#ffffCC";
-    ma5Graph.balloonText = "五日均线: <b>[[value]]</b>";
-    ma5Graph.useDataSetColors = false;
-    valuePanel.addStockGraph(ma5Graph);
-
-    var ma20Graph = new AmCharts.StockGraph();
-    ma20Graph.title = "MA 20";
-    ma20Graph.type = "line";
-    ma20Graph.valueField = "ma20";
-    ma20Graph.balloonText = "二十日均线: <b>[[value]]</b>";
-    valuePanel.addStockGraph(ma20Graph);
+    // var ma5Graph = new AmCharts.StockGraph();
+    // ma5Graph.title = "MA 5";
+    // ma5Graph.type = "line";
+    // ma5Graph.valueField = "ma5";
+    // ma5Graph.fillColors = "#ffffcc";
+    // ma5Graph.lineColor = "#ffffCC";
+    // ma5Graph.balloonText = "五日均线: <b>[[value]]</b>";
+    // ma5Graph.useDataSetColors = false;
+    // valuePanel.addStockGraph(ma5Graph);
+    //
+    // var ma20Graph = new AmCharts.StockGraph();
+    // ma20Graph.title = "MA 20";
+    // ma20Graph.type = "line";
+    // ma20Graph.valueField = "ma20";
+    // ma20Graph.balloonText = "二十日均线: <b>[[value]]</b>";
+    // valuePanel.addStockGraph(ma20Graph);
 
     var valueLegend = new AmCharts.StockLegend();
     valueLegend.position = "top";
@@ -700,7 +700,7 @@ function initValueChart() {
     volumeGraph.title = "Volume";
     volumeGraph.type = "column";
     volumeGraph.fillAlphas = 1;
-    volumeGraph.valueField = "volume";
+    volumeGraph.valueField = "dealAmount";
     volumeGraph.fillColors = "#607d98";
     volumeGraph.lineColor = "#607d98";
     volumeGraph.valueAxis = volumeAxis;
@@ -710,7 +710,7 @@ function initValueChart() {
     var totalGraph = new AmCharts.StockGraph();
     totalGraph.title = "Total";
     totalGraph.type = "line";
-    totalGraph.valueField = "total";
+    totalGraph.valueField = "dealValue";
     totalGraph.valueAxis = totalAxis;
     totalGraph.balloonText = "成交金额: <b>[[value]]</b>";
     totalGraph.useDataSetColors = false;

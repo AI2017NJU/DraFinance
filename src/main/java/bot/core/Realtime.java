@@ -36,11 +36,14 @@ public class Realtime {
 
 //            System.out.println(getRealTicks("sh600000").toString());
 
-            List<Report> reports = getRealReport("sh600000");
-            for (Report r: reports) {
-                System.out.println(r.title + " " + r.source);
-            }
+//            List<Report> reports = getRealReport("sz");
+//            for (Report r: reports) {
+//                System.out.println(r.title + " " + r.source);
+//            }
 //            List<News> news = getRealNews("sh600000");
+
+            BenchCurrent benchCurrent = getBenchCurrent("sz399901");
+
         } catch (Exception e) {
             e.printStackTrace();
         }

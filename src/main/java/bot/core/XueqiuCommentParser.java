@@ -11,7 +11,7 @@ public class XueqiuCommentParser {
 
     public static void main(String[] args) {
         XueqiuCommentJson json = new XueqiuCommentJson();
-        String html = json.getJSONData("SH600000");
+        String html = json.getJSONData("SH000001");
         XueqiuCommentParser parser = new XueqiuCommentParser();
         JSONArray list = parser.getCommentList(html);
         for (int i=0;i<list.size();i++) {

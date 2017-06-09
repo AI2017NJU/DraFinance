@@ -91,10 +91,10 @@ function requestDynamicData() {
 
     $.ajax({
         type: 'GET',
-        url: "bench/active.do?id=399001",
+        url: "/bench/SH000001/realtime",
         dataType: 'json',
         success: function(data) {
-            updateDynamicData(data.data);
+            updateDynamicData(data.currentData);
         },
         error: function() {
             //alert("current futureData error");
@@ -126,8 +126,9 @@ var intradayChart;
 
 AmCharts.ready(function() {
     AmCharts.theme = AmCharts.themes.dark;
-    // initDynamicData();
-    // initDynamicChart();
+    initDynamicData();
+    initDynamicChart();
+    requestDynamicData();
 });
 
 function initDynamicData() {

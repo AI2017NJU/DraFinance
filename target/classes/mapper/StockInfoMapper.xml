@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="dao.StockInfoDAO">
+    <select id="findStockInfoBySymbol" resultType="model.StockInfo">
+        select symbol, name from stockInfo where symbol = #{symbol}
+    </select>
+
+    <select id="findStockInfoByName" resultType="model.StockInfo">
+        select symbol, name from stockInfo where name = #{name}
+    </select>
+
+    <select id="findStockInfoList" resultType="model.StockInfo">
+        select symbol, name from stockInfo
+    </select>
+
+</mapper>

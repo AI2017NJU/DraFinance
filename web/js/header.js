@@ -186,10 +186,10 @@ function search(search){
     var tempId;
     var tempName;
     for(var i = 0;i < stockList.length && resultNum < 10;i++){
-        tempId = stockList[i].id+"";
+        tempId = stockList[i].symbol+"";
         tempName = stockList[i].name+"";
         if(tempId.indexOf(search) != -1 || tempName.indexOf(search) != -1){
-            searchResult +='<a target="_blank" href="stock.do?id='+tempId+'"><h6><span>'+tempName+'</span>'+tempId+'</h6></a>';
+            searchResult +='<a target="_blank" href="/stock/'+tempId+'"><h6><span>'+tempName+'</span>'+tempId+'</h6></a>';
             resultNum ++;
         }
     }

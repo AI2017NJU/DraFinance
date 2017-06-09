@@ -13,7 +13,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <title>${ID}(${ID})-Ascending</title>
+    <title>${stockInfo.name}(${stockInfo.symbol})-Ascending</title>
 
     <link rel="icon" type="image/png" sizes="192x192"  href="<c:url value="/img/favicon/android-icon-192x192.png"/>">
     <link rel="icon" type="image/png" sizes="32x32" href="<c:url value="/img/favicon/favicon-32x32.png"/>">
@@ -64,7 +64,7 @@
         <div class="basic_info">
             <img src="<c:url value="/img/industry_icon/33.png"/>">
             <div>
-                <h2>${stockInfo.name}浦发银行<span>(${stockInfo.stockid}SH6000000)</span></h2>
+                <h2>${stockInfo.name}<span>(${stockInfo.symbol})</span></h2>
 
                 <%--<div>--%>
                     <%--<p>行业类型：${stockInfo.industry}</p>--%>
@@ -134,13 +134,13 @@
             <span class="side">·</span>
             <p id="show_basic" class="nav-item active">基本图表</p>
             <span>·</span>
-            <p id="show_evaluate" class="nav-item">分析评估</p>
+            <p id="show_dynamic" class="nav-item">实时分析</p>
             <span>·</span>
             <p id="show_forecast" class="nav-item">走势预测</p>
             <span>·</span>
-            <p id="show_dynamic" class="nav-item">实时分析</p>
-            <span>·</span>
             <p id="show_company" class="nav-item">公司资讯</p>
+            <span>·</span>
+            <p id="show_evaluate" class="nav-item">分析评估</p>
             <span class="side">·</span>
         </div>
     </div>
@@ -158,21 +158,21 @@
 
 
 
-    <div id="nav-sec-small" class="nav-sec">
-        <%--<div class="nav-sec-small-operation">--%>
-        <%--<a class="toTop" href="#"> <img src="resources/img/top.png"/></a>--%>
-        <%--<div id="nav-sec-small-show" class="nav-sec-small-toggle"></div>--%>
-        <div id="nav-sec-small-show" class="nav-sec-small-show">↑↑↑</div>
+    <%--<div id="nav-sec-small" class="nav-sec">--%>
+        <%--&lt;%&ndash;<div class="nav-sec-small-operation">&ndash;%&gt;--%>
+        <%--&lt;%&ndash;<a class="toTop" href="#"> <img src="resources/img/top.png"/></a>&ndash;%&gt;--%>
+        <%--&lt;%&ndash;<div id="nav-sec-small-show" class="nav-sec-small-toggle"></div>&ndash;%&gt;--%>
+        <%--<div id="nav-sec-small-show" class="nav-sec-small-show">↑↑↑</div>--%>
+        <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
+        <%--<div class="nav-sec-small-item" style="display: none">--%>
+            <%--<p id="nav-sec-small-hide">↓↓↓</p>--%>
+            <%--<a href="#k_wrapper" class="targeted">K线图</a>--%>
+            <%--&lt;%&ndash;<a href="#macd_wrapper">MACD</a>&ndash;%&gt;--%>
+            <%--&lt;%&ndash;<a href="#rsi_wrapper">RSI</a>&ndash;%&gt;--%>
+            <%--&lt;%&ndash;<a href="#kdj_wrapper">KDJ</a>&ndash;%&gt;--%>
+            <%--&lt;%&ndash;<a href="#boll_wrapper">BOLL</a>&ndash;%&gt;--%>
         <%--</div>--%>
-        <div class="nav-sec-small-item" style="display: none">
-            <p id="nav-sec-small-hide">↓↓↓</p>
-            <a href="#k_wrapper" class="targeted">K线图</a>
-            <%--<a href="#macd_wrapper">MACD</a>--%>
-            <%--<a href="#rsi_wrapper">RSI</a>--%>
-            <%--<a href="#kdj_wrapper">KDJ</a>--%>
-            <%--<a href="#boll_wrapper">BOLL</a>--%>
-        </div>
-    </div>
+    <%--</div>--%>
 
 
     <%--<div id="basic" class="stock_content">--%>
@@ -217,57 +217,111 @@
         <%--</div>--%>
     </div>
 
-    <div id="evaluate" class="stock_content" style="display: none">
-        <div id="grade_wrapper" class="stock_content_single">
-            <div class="stock_content_title"><img src="<c:url value="/img/logo_s.png"/>"><p>股票评分</p></div>
-            <div id="grade_graph">
-                <div id="grade_radar">
+    <div id="dynamic" class="stock_content" style="display: none">
+        <%--<div id="dynamic" class="stock_content" style="display: none;">--%>
+        <div id="dynamic_trade_wrapper" class="row_wrapper">
+            <div class="column_wrapper dynamic_graph_wrapper">
+                <p class="stock_content_title"><img src="<c:url value="/img/logo_s.png"/>">实时交易</p>
+                <div id="dynamic_graph">
 
                 </div>
+            </div>
 
-                <div id="grade_zx">
+            <div class="column_wrapper dynamic_number_wrapper">
+                <p class="stock_content_title"><img src="<c:url value="/img/logo_s.png"/>">论股堂</p>
+                <div id="dynamic_number">
+                    <p id="dynamic_out1" class="dynamic_five_level_item">卖一：<span>暂无数据</span></p>
+                    <p id="dynamic_in1" class="dynamic_five_level_item">买一：<span>暂无数据</span></p>
+                    <p id="dynamic_out2" class="dynamic_five_level_item">卖二：<span>暂无数据</span></p>
+                    <p id="dynamic_in2" class="dynamic_five_level_item">买二：<span>暂无数据</span></p>
+                    <p id="dynamic_out3" class="dynamic_five_level_item">卖三：<span>暂无数据</span></p>
+                    <p id="dynamic_in3" class="dynamic_five_level_item">买三：<span>暂无数据</span></p>
+                    <p id="dynamic_out4" class="dynamic_five_level_item">卖四：<span>暂无数据</span></p>
+                    <p id="dynamic_in4" class="dynamic_five_level_item">买四：<span>暂无数据</span></p>
+                    <p id="dynamic_out5" class="dynamic_five_level_item">卖五：<span>暂无数据</span></p>
+                    <p id="dynamic_in5" class="dynamic_five_level_item">买五：<span>暂无数据</span></p>
 
+                    <hr/>
+
+                    <p id="dynamic_inner_count" class="dynamic_number_item">内盘：<span>暂无数据</span></p>
+                    <p id="dynamic_outer_count" class="dynamic_number_item">外盘：<span>暂无数据</span></p>
+                    <p id="dynamic_quantity_ratio" class="dynamic_number_item">量比：<span>暂无数据</span></p>
+                    <p id="dynamic_committee" class="dynamic_number_item">委比：<span>暂无数据</span></p>
+                    <p id="dynamic_volume" class="dynamic_number_item">成交量：暂无数据</p>
+                    <p id="dynamic_amount" class="dynamic_number_item">成交额：<span>暂无数据</span></p>
+                    <p id="dynamic_up_stop" class="dynamic_number_item">涨停：<span>暂无数据</span></p>
+                    <p id="dynamic_down_stop" class="dynamic_number_item">跌停：<span>暂无数据</span></p>
+                    <p id="dynamic_value_per_stock" class="dynamic_number_item">每股净资产：<span>暂无数据</span></p>
+                    <p id="dynamic_profit_per" class="dynamic_number_item">每股收益：<span>暂无数据</span></p>
+                    <p id="dynamic_total_volume" class="dynamic_number_item">总股本：<span>暂无数据</span></p>
+                    <p id="dynamic_total_amount" class="dynamic_number_item">总市值：<span>暂无数据</span></p>
+                    <p id="dynamic_available_stock" class="dynamic_number_item">流通股本：<span>暂无数据</span></p>
+                    <p id="dynamic_avail_amount" class="dynamic_number_item">流通市值：<span>暂无数据</span></p>
                 </div>
             </div>
         </div>
 
-        <div id="bench_relative_wrapper" class="stock_content_single">
-            <p class="stock_content_title"><img src="<c:url value="/img/logo_s.png"/>">大盘相关性分析</p>
-            <div id="bench_relative">
-                <div class="relative_wrapper relative_total">
-                    <div class="relative_single_wrapper">
-                        <p>综合相关性：<span>${relative.corrcoef}</span></p>
-                        <p>${relative.description_coef}</p>
-                    </div>
-                    <div class="relative_single_wrapper">
-                        <p>Beta系数：<span>${relative.beta}</span></p>
-                        <p>${relative.description_beta}</p>
-                    </div>
+        <div id="text_instruction" class="stock_content_single">
+            <p class="stock_content_title"><img src="<c:url value="/img/logo_s.png"/>">实时数值分析</p>
+            <div class="text_instruction_item">
+                <div class="text_instruction_title">
+                    <span class="text_instruction_type">市净率</span>
+                    <span id="dynamic_pb" class="text_instruction_value">1.09</span>
                 </div>
-                <div class="relative_wrapper relative_single">
-                    <div class="relative_single_wrapper">
-                        <p>开盘价相关性： </p><span>${relative.open_corrcoef}</span>
-                        <div id="relative_graph_open" class="relative_graph">
+                <div id="dynamic_pb_instruction" class="text_instruction_content">
 
-                        </div>
-                    </div>
-                    <div class="relative_single_wrapper">
-                        <p>成交量相关性： </p><span>${relative.volume_corrcoef}</span>
-                        <div id="relative_graph_volume" class="relative_graph">
-
-                        </div>
-                    </div>
-                    <div class="relative_single_wrapper">
-                        <p>涨跌幅相关性： </p><span>${relative.devia_corrcoef}</span>
-                        <div id="relative_graph_upDown" class="relative_graph">
-
-                        </div>
-                    </div>
                 </div>
             </div>
+
+            <div class="text_instruction_item">
+                <div class="text_instruction_title">
+                    <span class="text_instruction_type">委比</span>
+                    <span id="dynamic__committee" class="text_instruction_value">43.28</span>
+                </div>
+                <div id="dynamic_committee_instruction" class="text_instruction_content"></div>
+            </div>
+
+            <div class="text_instruction_item">
+                <div class="text_instruction_title">
+                    <span class="text_instruction_type">涨跌幅</span>
+                    <span id="dynamic_updown" class="text_instruction_value">0.58</span>
+                </div>
+                <div id="dynamic_updown_instruction" class="text_instruction_content"></div>
+            </div>
+
+            <div class="text_instruction_item">
+                <div class="text_instruction_title">
+                    <span class="text_instruction_type">市盈率</span>
+                    <span id="dynamic_pe" class="text_instruction_value">6.16</span>
+                </div>
+                <div id="dynamic_pe_instruction" class="text_instruction_content"></div>
+            </div>
+
+            <div class="text_instruction_item">
+                <div class="text_instruction_title">
+                    <span class="text_instruction_type">内外盘</span>
+                    <span id="dynamic_inout" class="text_instruction_value">92.73</span>
+                </div>
+                <div id="dynamic_inout_instruction" class="text_instruction_content"></div>
+            </div>
+
+            <div class="text_instruction_item">
+                <div class="text_instruction_title">
+                    <span class="text_instruction_type">量比</span>
+                    <span id="dynamic__quantity_ratio" class="text_instruction_value">0.76</span>
+                </div>
+                <div id="dynamic_quantity_ratio_instruction" class="text_instruction_content"></div>
+            </div>
+
+            <div class="text_instruction_item">
+                <div class="text_instruction_title">
+                    <span class="text_instruction_type">换手率</span>
+                    <span id="dynamic_turnover" class="text_instruction_value">0.06</span>
+                </div>
+                <div id="dynamic_turnover_instruction" class="text_instruction_content"></div>
+            </div>
+
         </div>
-
-
     </div>
 
     <div id="forecast" class="stock_content" style="display: none;">
@@ -399,113 +453,6 @@
         <%--</div>--%>
     </div>
 
-    <div id="dynamic" class="stock_content" style="display: none">
-        <%--<div id="dynamic" class="stock_content" style="display: none;">--%>
-        <div id="dynamic_trade_wrapper" class="row_wrapper">
-            <div class="column_wrapper dynamic_graph_wrapper">
-                <p class="stock_content_title"><img src="<c:url value="/img/logo_s.png"/>">实时交易</p>
-                <div id="dynamic_graph">
-
-                </div>
-            </div>
-
-            <div class="column_wrapper dynamic_number_wrapper">
-                <p class="stock_content_title"><img src="<c:url value="/img/logo_s.png"/>">论股堂</p>
-                <div id="dynamic_number">
-                    <p id="dynamic_out1" class="dynamic_five_level_item">卖一：<span>暂无数据</span></p>
-                    <p id="dynamic_in1" class="dynamic_five_level_item">买一：<span>暂无数据</span></p>
-                    <p id="dynamic_out2" class="dynamic_five_level_item">卖二：<span>暂无数据</span></p>
-                    <p id="dynamic_in2" class="dynamic_five_level_item">买二：<span>暂无数据</span></p>
-                    <p id="dynamic_out3" class="dynamic_five_level_item">卖三：<span>暂无数据</span></p>
-                    <p id="dynamic_in3" class="dynamic_five_level_item">买三：<span>暂无数据</span></p>
-                    <p id="dynamic_out4" class="dynamic_five_level_item">卖四：<span>暂无数据</span></p>
-                    <p id="dynamic_in4" class="dynamic_five_level_item">买四：<span>暂无数据</span></p>
-                    <p id="dynamic_out5" class="dynamic_five_level_item">卖五：<span>暂无数据</span></p>
-                    <p id="dynamic_in5" class="dynamic_five_level_item">买五：<span>暂无数据</span></p>
-
-                    <hr/>
-
-                    <p id="dynamic_inner_count" class="dynamic_number_item">内盘：<span>暂无数据</span></p>
-                    <p id="dynamic_outer_count" class="dynamic_number_item">外盘：<span>暂无数据</span></p>
-                    <p id="dynamic_quantity_ratio" class="dynamic_number_item">量比：<span>暂无数据</span></p>
-                    <p id="dynamic_committee" class="dynamic_number_item">委比：<span>暂无数据</span></p>
-                    <p id="dynamic_volume" class="dynamic_number_item">成交量：暂无数据</p>
-                    <p id="dynamic_amount" class="dynamic_number_item">成交额：<span>暂无数据</span></p>
-                    <p id="dynamic_up_stop" class="dynamic_number_item">涨停：<span>暂无数据</span></p>
-                    <p id="dynamic_down_stop" class="dynamic_number_item">跌停：<span>暂无数据</span></p>
-                    <p id="dynamic_value_per_stock" class="dynamic_number_item">每股净资产：<span>暂无数据</span></p>
-                    <p id="dynamic_profit_per" class="dynamic_number_item">每股收益：<span>暂无数据</span></p>
-                    <p id="dynamic_total_volume" class="dynamic_number_item">总股本：<span>暂无数据</span></p>
-                    <p id="dynamic_total_amount" class="dynamic_number_item">总市值：<span>暂无数据</span></p>
-                    <p id="dynamic_available_stock" class="dynamic_number_item">流通股本：<span>暂无数据</span></p>
-                    <p id="dynamic_avail_amount" class="dynamic_number_item">流通市值：<span>暂无数据</span></p>
-                </div>
-            </div>
-        </div>
-
-        <div id="text_instruction" class="stock_content_single">
-            <p class="stock_content_title"><img src="<c:url value="/img/logo_s.png"/>">实时数值分析</p>
-            <div class="text_instruction_item">
-                <div class="text_instruction_title">
-                    <span class="text_instruction_type">市净率</span>
-                    <span id="dynamic_pb" class="text_instruction_value">1.09</span>
-                </div>
-                <div id="dynamic_pb_instruction" class="text_instruction_content">
-
-                </div>
-            </div>
-
-            <div class="text_instruction_item">
-                <div class="text_instruction_title">
-                    <span class="text_instruction_type">委比</span>
-                    <span id="dynamic__committee" class="text_instruction_value">43.28</span>
-                </div>
-                <div id="dynamic_committee_instruction" class="text_instruction_content"></div>
-            </div>
-
-            <div class="text_instruction_item">
-                <div class="text_instruction_title">
-                    <span class="text_instruction_type">涨跌幅</span>
-                    <span id="dynamic_updown" class="text_instruction_value">0.58</span>
-                </div>
-                <div id="dynamic_updown_instruction" class="text_instruction_content"></div>
-            </div>
-
-            <div class="text_instruction_item">
-                <div class="text_instruction_title">
-                    <span class="text_instruction_type">市盈率</span>
-                    <span id="dynamic_pe" class="text_instruction_value">6.16</span>
-                </div>
-                <div id="dynamic_pe_instruction" class="text_instruction_content"></div>
-            </div>
-
-            <div class="text_instruction_item">
-                <div class="text_instruction_title">
-                    <span class="text_instruction_type">内外盘</span>
-                    <span id="dynamic_inout" class="text_instruction_value">92.73</span>
-                </div>
-                <div id="dynamic_inout_instruction" class="text_instruction_content"></div>
-            </div>
-
-            <div class="text_instruction_item">
-                <div class="text_instruction_title">
-                    <span class="text_instruction_type">量比</span>
-                    <span id="dynamic__quantity_ratio" class="text_instruction_value">0.76</span>
-                </div>
-                <div id="dynamic_quantity_ratio_instruction" class="text_instruction_content"></div>
-            </div>
-
-            <div class="text_instruction_item">
-                <div class="text_instruction_title">
-                    <span class="text_instruction_type">换手率</span>
-                    <span id="dynamic_turnover" class="text_instruction_value">0.06</span>
-                </div>
-                <div id="dynamic_turnover_instruction" class="text_instruction_content"></div>
-            </div>
-
-        </div>
-    </div>
-
     <div id="company" class="stock_content" style="display: none;">
         <%--<p id="company_intro" class="stock_content_title"><img src="<c:url value="/img/logo_s.png"/>">公司简介</p>--%>
         <%--<h1>上市日期：${stockInfo.listDate}</h1>--%>
@@ -583,6 +530,59 @@
 
     <%--</div>--%>
 
+    <div id="evaluate" class="stock_content" style="display: none">
+        <%--<div id="grade_wrapper" class="stock_content_single">--%>
+        <%--<div class="stock_content_title"><img src="<c:url value="/img/logo_s.png"/>"><p>股票评分</p></div>--%>
+        <%--<div id="grade_graph">--%>
+        <%--<div id="grade_radar">--%>
+
+        <%--</div>--%>
+
+        <%--<div id="grade_zx">--%>
+
+        <%--</div>--%>
+        <%--</div>--%>
+        <%--</div>--%>
+
+        <%--<div id="bench_relative_wrapper" class="stock_content_single">--%>
+        <%--<p class="stock_content_title"><img src="<c:url value="/img/logo_s.png"/>">大盘相关性分析</p>--%>
+        <%--<div id="bench_relative">--%>
+        <%--<div class="relative_wrapper relative_total">--%>
+        <%--<div class="relative_single_wrapper">--%>
+        <%--<p>综合相关性：<span>${relative.corrcoef}</span></p>--%>
+        <%--<p>${relative.description_coef}</p>--%>
+        <%--</div>--%>
+        <%--<div class="relative_single_wrapper">--%>
+        <%--<p>Beta系数：<span>${relative.beta}</span></p>--%>
+        <%--<p>${relative.description_beta}</p>--%>
+        <%--</div>--%>
+        <%--</div>--%>
+        <%--<div class="relative_wrapper relative_single">--%>
+        <%--<div class="relative_single_wrapper">--%>
+        <%--<p>开盘价相关性： </p><span>${relative.open_corrcoef}</span>--%>
+        <%--<div id="relative_graph_open" class="relative_graph">--%>
+
+        <%--</div>--%>
+        <%--</div>--%>
+        <%--<div class="relative_single_wrapper">--%>
+        <%--<p>成交量相关性： </p><span>${relative.volume_corrcoef}</span>--%>
+        <%--<div id="relative_graph_volume" class="relative_graph">--%>
+
+        <%--</div>--%>
+        <%--</div>--%>
+        <%--<div class="relative_single_wrapper">--%>
+        <%--<p>涨跌幅相关性： </p><span>${relative.devia_corrcoef}</span>--%>
+        <%--<div id="relative_graph_upDown" class="relative_graph">--%>
+
+        <%--</div>--%>
+        <%--</div>--%>
+        <%--</div>--%>
+        <%--</div>--%>
+        <%--</div>--%>
+
+
+    </div>
+
 </div>
 <jsp:include page="footer.jsp" flush="true"/>
 </body>
@@ -591,7 +591,9 @@
 <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
 
 <script>
-    var stock_id = '${ID}';
+    var stock_id = '${stockInfo != null ? stockInfo.symbol : ''}';
+    var stockList = ${stockList != null ? stockList : null};
+    var jsonData = ${dayKList != null ? dayKList : null};
     var tmp_dynamic = ${intraday != null ? intraday : null};
 </script>
 

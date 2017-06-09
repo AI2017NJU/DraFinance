@@ -24,13 +24,6 @@
     <link rel="stylesheet" href="<c:url value="/css/common.css" />"/>
     <link rel="stylesheet" href="<c:url value="/css/index.css" />"/>
 
-    <%--<script>--%>
-        <%--var stockList = ${stockList};--%>
-        <%--var intraday = ${intraday};--%>
-
-        <%--&lt;%&ndash;console.log(${industryRank});&ndash;%&gt;--%>
-    <%--</script>--%>
-
 </head>
 <body>
 <jsp:include page="header.jsp" flush="true"/>
@@ -183,22 +176,31 @@
     <div class="index-content index-content-row">
         <div class="news_type">
             <p class="stock_content_title stock_content_title_dark"><img src="<c:url value="/img/logo_s.png"/>">财经要闻</p>
+            <br>
             <c:forEach items="${financeNews}" var="finance" varStatus="s" end="10">
-                <a href="${finance.url}" target="_blank">${finance.title}</a>
+                <c:if test="${finance.title != ''}">
+                    <a href="${finance.url}" target="_blank">${finance.title}</a>
+                </c:if>
             </c:forEach>
         </div>
 
         <div class="news_type">
             <p class="stock_content_title stock_content_title_dark"><img src="<c:url value="/img/logo_s.png"/>">证券要闻</p>
+            <br>
             <c:forEach items="${stockNews}" var="stock" varStatus="s" end="10">
-                <a href="${stock.url}" target="_blank">${stock.title}</a>
+                <c:if test="${stock.title != ''}">
+                    <a href="${stock.url}" target="_blank">${stock.title}</a>
+                </c:if>
             </c:forEach>
         </div>
 
         <div class="news_type">
             <p class="stock_content_title stock_content_title_dark"><img src="<c:url value="/img/logo_s.png"/>">公司要闻</p>
+            <br>
             <c:forEach items="${companyNews}" var="company" varStatus="s" end="10">
-                <a href="${company.url}" target="_blank">${company.title}</a>
+                <c:if test="${company.title != ''}">
+                    <a href="${company.url}" target="_blank">${company.title}</a>
+                </c:if>
             </c:forEach>
         </div>
     </div>
@@ -239,6 +241,11 @@
     <jsp:include page="footer.jsp" flush="true"/>
 </div>
 </body>
+<script>
+    var stockList = ${stockList};
+    var intraday = ${intraday};
+</script>
+
 <!-- Insert this line above script imports  -->
 <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
 

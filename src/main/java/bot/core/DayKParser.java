@@ -40,21 +40,21 @@ public class DayKParser {
         while(!stockBlock.isEmpty()) {
             DayK dayK = new DayK();
             dayK.setSymbol(stockBlock.select("td:nth-child(1)").text());
-            dayK.setName(stockBlock.select("td:nth-child(2)").text());
+//            dayK.setName(stockBlock.select("td:nth-child(2)").text());
 
             String price = stockBlock.select("td:nth-child(3)").text();
             if(match(price, doubleP)) {
-                dayK.setPrice(Double.parseDouble(price));
+//                dayK.setPrice(Double.parseDouble(price));
             }
 
             String deviation = stockBlock.select("td:nth-child(4)").text();
             if(match(deviation, doubleP)) {
-                dayK.setDeviation(Double.parseDouble(deviation));
+//                dayK.setDeviation(Double.parseDouble(deviation));
             }
 
             String devRatio = stockBlock.select("td:nth-child(5)").text();
             if(match(devRatio, deviationR)) {
-                dayK.setDevRatio(Double.parseDouble(devRatio.substring(0, devRatio.length()-1)));
+//                dayK.setDevRatio(Double.parseDouble(devRatio.substring(0, devRatio.length()-1)));
             }
 
             String range = stockBlock.select("td:nth-child(6)").text();
@@ -65,19 +65,19 @@ public class DayKParser {
 
             String rangeFT = stockBlock.select("td:nth-child(7)").text();
             if(match(rangeFT, doubleRange)) {
-                dayK.setLowFT(Double.parseDouble(rangeFT.split(" - ")[0]));
-                dayK.setHighFT(Double.parseDouble(rangeFT.split(" - ")[1]));
+//                dayK.setLowFT(Double.parseDouble(rangeFT.split(" - ")[0]));
+//                dayK.setHighFT(Double.parseDouble(rangeFT.split(" - ")[1]));
             }
 
             String totalValue = stockBlock.select("td:nth-child(8)").text();
             if(match(totalValue, bigChineseValue)) {
-                dayK.setTotalValue(Double.parseDouble(totalValue.substring(0, totalValue.length()-1)));
+//                dayK.setTotalValue(Double.parseDouble(totalValue.substring(0, totalValue.length()-1)));
             }
 
 
             String pe = stockBlock.select("td:nth-child(9)").text();
             if(match(pe, doubleP)) {
-                dayK.setPe(Double.parseDouble(pe));
+//                dayK.setPe(Double.parseDouble(pe));
             }
 
             String dealAmount = stockBlock.select("td:nth-child(10)").text();
