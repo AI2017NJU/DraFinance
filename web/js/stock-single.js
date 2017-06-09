@@ -494,6 +494,13 @@ function initValueData() {
     chartData = jsonData;
 
     for(var i=0;i<chartData.length;i++){
+        if(chartData[i].open < chartData[i].close) {
+            chartData[i]["revenueColor"] = "#990033";
+            chartData[i]["lineRevenueColor"] = "#990033";
+        } else {
+            chartData[i]["revenueColor"] = "rgba(0,0,0,0)";
+            chartData[i]["lineRevenueColor"] = "#bbbbbb";
+        }
         if(chartData[i].dealValue==0){
             chartData[i]["colorField"] = "rgba(0,0,0,0.4)";
             chartData[i]["lineColorField"] = "rgba(0,0,0,0.4)";
@@ -734,6 +741,8 @@ function initValueChart() {
     volumeGraph.fillColors = "#607d98";
     volumeGraph.lineColor = "#607d98";
     volumeGraph.valueAxis = volumeAxis;
+    volumeGraph.colorField = "revenueColor";
+    volumeGraph.lineColorField = "lineRevenueColor";
     volumeGraph.balloonText = "成交量: <b>[[value]]</b>";
     volumeGraph.useDataSetColors = false;
 

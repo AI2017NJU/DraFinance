@@ -6,10 +6,12 @@ import com.alibaba.fastjson.JSON;
 import model.Hotspot;
 import model.News;
 import model.StockInfo;
+import model.StockRank;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import service.RankService;
 import service.StockDataService;
 
 import javax.annotation.Resource;
@@ -24,6 +26,8 @@ public class HomeController {
 
     @Resource
     private StockDataService stockDataService;
+    @Resource
+    private RankService rankService;
 
     public static final String BENCH_CODE = "sh000001";
 
@@ -46,6 +50,15 @@ public class HomeController {
 
         List<Hotspot> hotspots = TotalNews.getHotspot();
         model.addAttribute("hotspots", hotspots);
+
+        List<StockRank> deviaRankList = rankService.getDeviaUpRank();
+        model.addAttribute("deviaRankList", deviaRankList);
+
+        List<StockRank> devia5RankList = rankService.getDeviaUp5MinutesRank();
+        model.addAttribute("devia5RankList", devia5RankList);
+
+        List<StockRank> turnoverList = rankService.getTurnoverRank();
+        model.addAttribute("turnoverList", turnoverList);
 
         return "index";
     }

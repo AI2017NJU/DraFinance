@@ -68,10 +68,10 @@
             <div>
                 <h2>${stockInfo.name}<span>(${stockInfo.symbol})</span></h2>
 
-                <%--<div>--%>
-                    <%--<p>行业类型：${stockInfo.industry}</p>--%>
+                <div>
+                    <p>行业类型：${industry.name}</p>
                     <%--<p>行业排名：${grade.rankString}/${grade.countString}</p>--%>
-                <%--</div>--%>
+                </div>
                 <div>
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
@@ -456,16 +456,20 @@
     </div>
 
     <div id="company" class="stock_content" style="display: none;">
-        <%--<p id="company_intro" class="stock_content_title"><img src="<c:url value="/img/logo_s.png"/>">公司简介</p>--%>
+        <p id="company_intro" class="stock_content_title"><img src="<c:url value="/img/logo_s.png"/>">公司简介</p>
         <%--<h1>上市日期：${stockInfo.listDate}</h1>--%>
-        <%--<h1>公司状态：${stockInfo.status}</h1>--%>
-        <%--<h1>公司描述：${stockInfo.description}</h1>--%>
+        <h1>所属行业：${industry.name}</h1>
+        <h1>公司描述：${industry.description}</h1>
+
+        <br>
 
         <div id="news" class="stock_content_single">
             <p id="news_news" class="stock_content_title"><img src="<c:url value="/img/logo_s.png"/>">新闻公告</p>
             <c:forEach items="${newsList}" var="news_item" varStatus="s" end="10">
-                <a href="${news_item.url}" target="_blank" class="news_paper_item"><p>${news_item.title}</p><span>${news_item.date}</span></a>
+                <a href="${news_item.url}" target="_blank" class="news_paper_item"><p>${news_item.title}</p><span>${news_item.date.substring(0, 10)}</span></a>
             </c:forEach>
+
+            <br>
 
             <p id="news_paper" class="stock_content_title"><img src="<c:url value="/img/logo_s.png"/>">研究报告</p>
             <c:forEach items="${reportList}" var="report" varStatus="s" end="10">

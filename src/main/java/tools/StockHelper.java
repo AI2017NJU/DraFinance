@@ -17,4 +17,8 @@ public class StockHelper {
     public static String xueqiuCodeReflect(String ID) {
         return ID;
     }
+
+    public static String baiduCodeReflect(String ID) {
+        return ID.toLowerCase();
+    }
 }

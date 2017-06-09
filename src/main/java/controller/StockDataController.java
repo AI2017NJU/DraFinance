@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import service.CommentService;
+import service.IndustryService;
 import service.InstructionTextService;
 import service.StockDataService;
 import service.impl.XueqiuCommentImpl;
@@ -31,6 +32,8 @@ public class StockDataController {
     private StockDataService stockDataService;
     @Resource
     private InstructionTextService instructionTextService;
+    @Resource
+    private IndustryService industryService;
 
     private CommentService xueqiuCommentService = new XueqiuCommentImpl();
 
@@ -60,6 +63,9 @@ public class StockDataController {
 
         List<Comment> xueqiuCommentList = xueqiuCommentService.getCurrentComments(ID);
         model.addAttribute("xueqiuCommentList", xueqiuCommentList);
+
+        Industry industry = industryService.getIndustry(ID);
+        model.addAttribute("industry", industry);
 
         return "stock";
     }

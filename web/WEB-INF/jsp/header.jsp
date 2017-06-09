@@ -6,7 +6,7 @@
 <html lang="en">
 <div id="header">
     <div class="header-wrapper">
-        <div class="logo"><a href="index.do" target="_blank"><img src="<c:url value="/img/title.png"/>"></a></div>
+        <div class="logo"><a href="<c:url value="/"/>" target="_blank"><img src="<c:url value="/img/title.png"/>"></a></div>
         <div class="input-wrapper" style="display: none">
             <div class="search-icon"></div>
             <input id="search_input" type="text" placeholder="输入股票id或名字">
@@ -33,16 +33,16 @@
             </div>
         </div>
     </div>
-    <div id="menu_outer" class="full" style="display: none">
-        <div class="menu_wrapper">
-            <ul>
-                <li class="menu-item"><a  href="recommand.do" target="_blank"> 推荐</a></li>
-                <li class="menu-item"><a href="industry.do" target="_blank"> 行业</a></li>
-                <li class="menu-item"><a href="compare.do" target="_blank"> 对比</a></li>
-                <li class="menu-item"><a href="favor.do" target="_blank">自选</a></li>
-                <li class="menu-item"><a class="login">登录</a></li>
-            </ul>
-        </div>
-    </div>
+    <%--<div id="menu_outer" class="full" style="display: none">--%>
+        <%--<div class="menu_wrapper">--%>
+            <%--<ul>--%>
+                <%--<li class="menu-item"><a  href="recommand.do" target="_blank"> 推荐</a></li>--%>
+                <%--<li class="menu-item"><a href="industry.do" target="_blank"> 行业</a></li>--%>
+                <%--<li class="menu-item"><a href="compare.do" target="_blank"> 对比</a></li>--%>
+                <%--<li class="menu-item"><a href="favor.do" target="_blank">自选</a></li>--%>
+                <%--<li class="menu-item"><a class="login">登录</a></li>--%>
+            <%--</ul>--%>
+        <%--</div>--%>
+    <%--</div>--%>
 
 </div>

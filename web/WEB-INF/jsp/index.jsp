@@ -78,42 +78,39 @@
     </div>
 </div>
 
-<%--<div id="rank_wrapper" class="halfBlock">--%>
-    <%--<div class="index-content index-content-row">--%>
-        <%--<div class="rank_type">--%>
-            <%--<p class="stock_content_title stock_content_title_dark"><img src="<c:url value="/img/logo_s.png"/>">个股涨幅榜</p>--%>
-            <%--<table>--%>
-                <%--<tr><th>排名</th><th>名称</th><th>最新价</th><th>涨幅	</th><th>换手率</th></tr>--%>
-                <%--<c:forEach items="${stockRank}" var="stock" varStatus="s">--%>
-                    <%--<tr><td>${s.index+1}</td><td>${stock.stockname}</td><td>${stock.price}</td><td>${stock.deviation}%</td><td>${stock.turnover}</td></tr>--%>
-                <%--</c:forEach>--%>
-            <%--</table>--%>
-        <%--</div>--%>
+<div id="rank_wrapper" class="halfBlock">
+    <div class="index-content index-content-row">
+        <div class="rank_type">
+            <p class="stock_content_title stock_content_title_dark"><img src="<c:url value="/img/logo_s.png"/>">个股涨幅榜</p>
+            <table>
+                <tr><th>排名</th><th>名称</th><th>最新价</th><th>涨幅	</th></tr>
+                <c:forEach items="${deviaRankList}" var="stock" varStatus="s">
+                    <tr><td>${s.index+1}</td><td><a href="/stock/${stock.symbol}">${stock.name}</a></td><td>${stock.lastest_price}</td><td>${stock.devia_per}%</td></tr>
+                </c:forEach>
+            </table>
+        </div>
 
-        <%--<div class="rank_type">--%>
-            <%--<p class="stock_content_title stock_content_title_dark"><img src="<c:url value="/img/logo_s.png"/>">行业涨幅榜</p>--%>
-            <%--<table>--%>
-                <%--<tr><th>排名</th><th>名称</th><th>涨幅</th><th>领涨股</th><th>涨幅</th></tr>--%>
-                <%--<c:forEach items="${industryRank}" var="industry" varStatus="s">--%>
-                    <%--<tr><td>${s.index+1}</td><td>${industry.industryname}</td><td>${industry.industrydevia}%</td><td>${industry.stockname}</td><td>${industry.stockdevia}%</td></tr>--%>
-                <%--</c:forEach>--%>
-            <%--</table>--%>
-        <%--</div>--%>
+        <div class="rank_type">
+            <p class="stock_content_title stock_content_title_dark"><img src="<c:url value="/img/logo_s.png"/>">个股5分钟涨幅榜</p>
+            <table>
+                <tr><th>排名</th><th>名称</th><th>最新价</th><th>涨幅</th></tr>
+                <c:forEach items="${devia5RankList}" var="stock" varStatus="s">
+                    <tr><td>${s.index+1}</td><td><a href="/stock/${stock.symbol}">${stock.name}</a></td><td>${stock.lastest_price}%</td><td>${stock.devia_per}%</td></tr>
+                </c:forEach>
+            </table>
+        </div>
 
-        <%--<div class="rank_type">--%>
-            <%--<p class="stock_content_title stock_content_title_dark"><img src="<c:url value="/img/logo_s.png"/>">明日涨停预测</p>--%>
-            <%--<table id="stop_recommend">--%>
-                <%--<tr><th>股票</th><th>id</th></tr>--%>
-                <%--<c:forEach items="${stopRecommend}" var="stop" varStatus="s" end="9">--%>
-                    <%--<tr class="stop_recommand_stock">--%>
-                        <%--<td><a href="stock.do?id=${stop.id}" target="_blank">${stop.name}</a></td>--%>
-                        <%--<td><a href="stock.do?id=${stop.id}" target="_blank">${stop.id}</a></td>--%>
-                    <%--</tr>--%>
-                <%--</c:forEach>--%>
-            <%--</table>--%>
-        <%--</div>--%>
-    <%--</div>--%>
-<%--</div>--%>
+        <div class="rank_type">
+            <p class="stock_content_title stock_content_title_dark"><img src="<c:url value="/img/logo_s.png"/>">换手率排行榜</p>
+            <table>
+                <tr><th>排名</th><th>名称</th><th>最新价</th><th>涨幅</th></tr>
+                <c:forEach items="${turnoverList}" var="stock" varStatus="s">
+                    <tr><td>${s.index+1}</td><td><a href="/stock/${stock.symbol}">${stock.name}</a></td><td>${stock.lastest_price}%</td><td>${stock.devia_per}%</td></tr>
+                </c:forEach>
+            </table>
+        </div>
+    </div>
+</div>
 
 <div id="hot" class="fullBlock">
     <div class="index-content">
