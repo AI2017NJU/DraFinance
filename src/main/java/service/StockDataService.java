@@ -1,6 +1,7 @@
 package service;
 
 import model.DayK;
+import model.Mash;
 import model.StockInfo;
 
 import java.util.List;
@@ -15,4 +16,6 @@ public interface StockDataService {
     StockInfo getStockInfo(String ID);
 
     List<StockInfo> getAllStocks();
+
+    List<Mash> getQuotaData(String ID);
 }

@@ -9,10 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import service.CommentService;
-import service.IndustryService;
-import service.InstructionTextService;
-import service.StockDataService;
+import service.*;
 import service.impl.XueqiuCommentImpl;
 import tools.StockHelper;
 
@@ -34,6 +31,8 @@ public class StockDataController {
     private InstructionTextService instructionTextService;
     @Resource
     private IndustryService industryService;
+    @Resource
+    private MashEventService mashEventService;
 
     private CommentService xueqiuCommentService = new XueqiuCommentImpl();
 
@@ -66,6 +65,12 @@ public class StockDataController {
 
         Industry industry = industryService.getIndustry(ID);
         model.addAttribute("industry", industry);
+
+        List<Mash> mashList = stockDataService.getQuotaData(ID);
+        model.addAttribute("mashList", JSON.toJSON(mashList));
+
+        List<MashEvent> mashEventList = mashEventService.getMashEvents(dayKList, mashList);
+        model.addAttribute("mashEventList", JSON.toJSON(mashEventList));
 
         return "stock";
     }

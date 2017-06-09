@@ -455,9 +455,9 @@ AmCharts.ready(function() {
     //
     initDataSet();
     initValueChart();
-    // initMacdChart();
-    // initRsiChart();
-    // initKdjChart();
+    initMacdChart();
+    initRsiChart();
+    initKdjChart();
     // initBollChart();
     //
     // initGradeChart();
@@ -493,69 +493,83 @@ function initRelativeHistoryData() {
 function initValueData() {
     chartData = jsonData;
 
-    for(var i=0;i<chartData.length;i++){
-        if(chartData[i].open < chartData[i].close) {
+    var i;
+    for(i=0;i<chartData.length;i++) {
+        if (chartData[i].open < chartData[i].close) {
             chartData[i]["revenueColor"] = "#990033";
             chartData[i]["lineRevenueColor"] = "#990033";
         } else {
             chartData[i]["revenueColor"] = "rgba(0,0,0,0)";
             chartData[i]["lineRevenueColor"] = "#bbbbbb";
         }
-        if(chartData[i].dealValue==0){
+        if (chartData[i].dealValue == 0) {
             chartData[i]["colorField"] = "rgba(0,0,0,0.4)";
             chartData[i]["lineColorField"] = "rgba(0,0,0,0.4)";
         }
+        if(i >= chartData.length - mashList.length) {
+            chartData[i]["ma5"] = mashList[i + mashList.length - chartData.length].ma5Price;
+            chartData[i]["ma20"] = mashList[i + mashList.length - chartData.length].ma20Price;
+        } else {
+            chartData[i]["ma5"] = 0;
+            chartData[i]["ma20"] = 0;
+        }
     }
 
-    // for(i=0;i<specialPredict.length;i++){
-    //     tabChartData.push(specialPredict[i].tabTablesData);
-    //     tabChartData[i]["kdjIns"] =  specialPredict[i].kdjIns;
-    //     tabChartData[i]["rsiIns"] = specialPredict[i].rsiIns;
-    //     tabChartData[i]["bollIns"] = specialPredict[i].bollIns;
-    //
-    //     if(tabChartData[i].kdjIns!=""){
-    //         tabChartData[i]["eventClass"] = "kdj_event";
-    //     }
-    //     if(tabChartData[i].rsiIns!=""){
-    //         if(tabChartData[i].eventClass==undefined){
-    //             tabChartData[i]["eventClass"] = "rsi_event";
-    //         }else{
-    //             tabChartData[i].eventClass = tabChartData[i].eventClass + " rsi_event";
-    //         }
-    //     }
-    //     if(tabChartData[i].bollIns!=""){
-    //         if(tabChartData[i].eventClass==undefined){
-    //             tabChartData[i]["eventClass"] = "boll_event";
-    //         }else{
-    //             tabChartData[i].eventClass = tabChartData[i].eventClass + " boll_event";
-    //         }
-    //     }
-    //
-    //     if(i>=specialPredict.length-3){
-    //         tabChartData2.push(specialPredict[i].tabTablesData);
-    //     }
-    //
-    //     if(i==specialPredict.length-1){
-    //         var kdj_ins = specialPredict[i].kdjIns;
-    //         var rsi_ins = specialPredict[i].rsiIns;
-    //         var boll_ins = specialPredict[i].bollIns;
-    //         if(kdj_ins==""){
-    //             $("#special_graph_kdj_ins").html("Tips: 今日暂无明显事件");
-    //         }else{
-    //             $("#special_graph_kdj_ins").html("Tips: "+kdj_ins);
-    //         }
-    //         if(rsi_ins==""){
-    //             $("#special_graph_rsi_ins").html("Tips: 今日暂无明显事件");
-    //         }else{
-    //             $("#special_graph_rsi_ins").html("Tips: "+rsi_ins);
-    //         }
-    //         if(boll_ins==""){
-    //             $("#special_graph_boll_ins").html("Tips: 今日暂无明显事件");
-    //         }else{
-    //             $("#special_graph_boll_ins").html("Tips: "+boll_ins);
-    //         }
-    //     }
-    // }
+    if (mashEventList.length > 30) {
+        i = mashEventList.length - 30;
+    } else {
+        i = 0;
+    }
+
+    for(;i<mashEventList.length;i++){
+        tabChartData.push(mashEventList[i].mash);
+        tabChartData[i]["kdjIns"] =  mashEventList[i].kdjIns;
+        tabChartData[i]["rsiIns"] = mashEventList[i].rsiIns;
+        // tabChartData[i]["bollIns"] = mashEventList[i].bollIns;
+
+        if(tabChartData[i].kdjIns!=""){
+            tabChartData[i]["eventClass"] = "kdj_event";
+        }
+        if(tabChartData[i].rsiIns!=""){
+            if(tabChartData[i].eventClass==undefined){
+                tabChartData[i]["eventClass"] = "rsi_event";
+            }else{
+                tabChartData[i].eventClass = tabChartData[i].eventClass + " rsi_event";
+            }
+        }
+        // if(tabChartData[i].bollIns!=""){
+        //     if(tabChartData[i].eventClass==undefined){
+        //         tabChartData[i]["eventClass"] = "boll_event";
+        //     }else{
+        //         tabChartData[i].eventClass = tabChartData[i].eventClass + " boll_event";
+        //     }
+        // }
+
+        if(i>=mashEventList.length-3){
+            tabChartData2.push(mashEventList[i].mash);
+        }
+
+        if(i==mashEventList.length-1){
+            var kdj_ins = mashEventList[i].kdjIns;
+            var rsi_ins = mashEventList[i].rsiIns;
+            // var boll_ins = specialPredict[i].bollIns;
+            if(kdj_ins==""){
+                $("#special_graph_kdj_ins").html("Tips: 今日暂无明显事件");
+            }else{
+                $("#special_graph_kdj_ins").html("Tips: "+kdj_ins);
+            }
+            if(rsi_ins==""){
+                $("#special_graph_rsi_ins").html("Tips: 今日暂无明显事件");
+            }else{
+                $("#special_graph_rsi_ins").html("Tips: "+rsi_ins);
+            }
+            // if(boll_ins==""){
+            //     $("#special_graph_boll_ins").html("Tips: 今日暂无明显事件");
+            // }else{
+            //     $("#special_graph_boll_ins").html("Tips: "+boll_ins);
+            // }
+        }
+    }
 }
 
 function initDynamicData() {
@@ -694,22 +708,22 @@ function initValueChart() {
     valueGraph.lineColorField = "lineColorField";
     valuePanel.addStockGraph(valueGraph);
 
-    // var ma5Graph = new AmCharts.StockGraph();
-    // ma5Graph.title = "MA 5";
-    // ma5Graph.type = "line";
-    // ma5Graph.valueField = "ma5";
-    // ma5Graph.fillColors = "#ffffcc";
-    // ma5Graph.lineColor = "#ffffCC";
-    // ma5Graph.balloonText = "五日均线: <b>[[value]]</b>";
-    // ma5Graph.useDataSetColors = false;
-    // valuePanel.addStockGraph(ma5Graph);
-    //
-    // var ma20Graph = new AmCharts.StockGraph();
-    // ma20Graph.title = "MA 20";
-    // ma20Graph.type = "line";
-    // ma20Graph.valueField = "ma20";
-    // ma20Graph.balloonText = "二十日均线: <b>[[value]]</b>";
-    // valuePanel.addStockGraph(ma20Graph);
+    var ma5Graph = new AmCharts.StockGraph();
+    ma5Graph.title = "MA 5";
+    ma5Graph.type = "line";
+    ma5Graph.valueField = "ma5";
+    ma5Graph.fillColors = "#ffffcc";
+    ma5Graph.lineColor = "#ffffCC";
+    ma5Graph.balloonText = "五日均线: <b>[[value]]</b>";
+    ma5Graph.useDataSetColors = false;
+    valuePanel.addStockGraph(ma5Graph);
+
+    var ma20Graph = new AmCharts.StockGraph();
+    ma20Graph.title = "MA 20";
+    ma20Graph.type = "line";
+    ma20Graph.valueField = "ma20";
+    ma20Graph.balloonText = "二十日均线: <b>[[value]]</b>";
+    valuePanel.addStockGraph(ma20Graph);
 
     var valueLegend = new AmCharts.StockLegend();
     valueLegend.position = "top";
@@ -844,21 +858,21 @@ function initMacdChart() {
     var diffGraph = new AmCharts.AmGraph();
     diffGraph.title = "DIFF";
     diffGraph.type = "line";
-    diffGraph.valueField = "dif";
+    diffGraph.valueField = "diff";
     diffGraph.lineColor = "#669999";
     diffGraph.useDataSetColors = false;
     diffGraph.balloonText = "DIFF: <b>[[value]]</b>";
     diffGraph.classNameField = "eventClass";
     macdChart.addGraph(diffGraph);
 
-    var atrGraph = new AmCharts.AmChart();
-    atrGraph.title = "ATR";
-    atrGraph.type = "line";
-    atrGraph.valueField = "atr";
-    atrGraph.lineColor = "#990033";
-    atrGraph.useDataSetColors = false;
-    atrGraph.balloonText = "ATR: <b>[[value]]</b>";
-    macdChart.addGraph(atrGraph);
+    // var atrGraph = new AmCharts.AmChart();
+    // atrGraph.title = "ATR";
+    // atrGraph.type = "line";
+    // atrGraph.valueField = "atr";
+    // atrGraph.lineColor = "#990033";
+    // atrGraph.useDataSetColors = false;
+    // atrGraph.balloonText = "ATR: <b>[[value]]</b>";
+    // macdChart.addGraph(atrGraph);
 
     var deaGraph = new AmCharts.AmChart();
     deaGraph.title = "DEA";
@@ -925,21 +939,21 @@ function initRsiChart() {
     }];
 
     var rsi6Graph = new AmCharts.AmGraph();
-    rsi6Graph.title = "RSI 6";
+    rsi6Graph.title = "RSI 1";
     rsi6Graph.type = "line";
-    rsi6Graph.valueField = "rsi6";
+    rsi6Graph.valueField = "rsi1";
     rsi6Graph.lineColor = "#669999";
     rsi6Graph.useDataSetColors = false;
-    rsi6Graph.balloonText = "RSI 6: <b>[[value]]</b>";
+    rsi6Graph.balloonText = "RSI 1: <b>[[value]]</b>";
     rsiChart.addGraph(rsi6Graph);
 
     var rsi12Graph = new AmCharts.AmGraph();
-    rsi12Graph.title = "RSI 12"
+    rsi12Graph.title = "RSI 2"
     rsi12Graph.type = "line";
-    rsi12Graph.valueField = "rsi12";
+    rsi12Graph.valueField = "rsi2";
     rsi12Graph.lineColor = "#cccc99";
     rsi12Graph.useDataSetColors = false;
-    rsi12Graph.balloonText = "RSI 12: <b>[[value]]</b>";
+    rsi12Graph.balloonText = "RSI 2: <b>[[value]]</b>";
     rsi12Graph.bullet = "round";
     rsi12Graph.bulletSize = 0;
     rsi12Graph.bulletAlpha = 0;
@@ -947,12 +961,12 @@ function initRsiChart() {
     rsiChart.addGraph(rsi12Graph);
 
     var rsi24Graph = new AmCharts.AmGraph();
-    rsi24Graph.title = "RSI 24";
+    rsi24Graph.title = "RSI 3";
     rsi24Graph.type = "line";
-    rsi24Graph.valueField = "rsi24";
+    rsi24Graph.valueField = "rsi3";
     rsi24Graph.lineColor = "#990033";
     rsi24Graph.useDataSetColors = false;
-    rsi24Graph.balloonText = "RSI 24: <b>[[value]]</b>";
+    rsi24Graph.balloonText = "RSI 3: <b>[[value]]</b>";
     rsiChart.addGraph(rsi24Graph);
 
     var cursor = new AmCharts.ChartCursor();
@@ -1012,21 +1026,21 @@ function initKdjChart() {
     }];
 
     var KGraph = new AmCharts.AmGraph();
-    KGraph.title = "Slow K";
+    KGraph.title = "K";
     KGraph.type = "line";
-    KGraph.valueField = "slowK";
+    KGraph.valueField = "k";
     KGraph.lineColor = "#669999";
     KGraph.useDataSetColors = false;
-    KGraph.balloonText = "slowK: <b>[[value]]</b>";
+    KGraph.balloonText = "K: <b>[[value]]</b>";
     kdjChart.addGraph(KGraph);
 
     var DGraph = new AmCharts.AmGraph();
-    DGraph.title = "Slow D";
+    DGraph.title = "D";
     DGraph.type = "line";
-    DGraph.valueField = "slowD";
+    DGraph.valueField = "d";
     DGraph.lineColor = "#ffffcc";
     DGraph.useDataSetColors = false;
-    DGraph.balloonText = "slowD: <b>[[value]]</b>";
+    DGraph.balloonText = "D: <b>[[value]]</b>";
     DGraph.bulletAlpha = 0;
     DGraph.bulletSize = 0;
     DGraph.bullet = "round";
@@ -1034,12 +1048,12 @@ function initKdjChart() {
     kdjChart.addGraph(DGraph);
 
     var JGraph = new AmCharts.AmGraph();
-    JGraph.title = "Slow J";
+    JGraph.title = "J";
     JGraph.type = "line";
-    JGraph.valueField = "slowJ";
+    JGraph.valueField = "j";
     JGraph.lineColor = "#990033";
     JGraph.useDataSetColors = false;
-    JGraph.balloonText = "slowJ: <b>[[value]]</b>";
+    JGraph.balloonText = "J: <b>[[value]]</b>";
     kdjChart.addGraph(JGraph);
 
     var cursor = new AmCharts.ChartCursor();

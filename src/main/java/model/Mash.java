@@ -47,6 +47,8 @@ public class Mash {
                 '}';
     }
 
+    public Mash() {}
+
     public int getId() {
         return id;
     }

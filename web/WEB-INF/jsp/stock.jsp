@@ -186,29 +186,29 @@
             </div>
         </div>
 
-        <%--<div id="macd_wrapper" class="basic_graph_wrapper_other">--%>
-            <%--<p class="stock_content_title"><img src="<c:url value="/img/logo_s.png"/>">MACD(指数平滑异同平均线)</p>--%>
-            <%--<div id="macd_graph" class="graph_basic_other">--%>
+        <div id="macd_wrapper" class="basic_graph_wrapper_other">
+            <p class="stock_content_title"><img src="<c:url value="/img/logo_s.png"/>">MACD(指数平滑异同平均线)</p>
+            <div id="macd_graph" class="graph_basic_other">
 
-            <%--</div>--%>
-            <%--<p></p>--%>
-        <%--</div>--%>
+            </div>
+            <p></p>
+        </div>
 
-        <%--<div id="rsi_wrapper" class="basic_graph_wrapper_other">--%>
-            <%--<p class="stock_content_title"><img src="<c:url value="/img/logo_s.png"/>">RSI(相对强弱指标)</p>--%>
-            <%--<div id="rsi_graph" class="graph_basic_other">--%>
+        <div id="rsi_wrapper" class="basic_graph_wrapper_other">
+            <p class="stock_content_title"><img src="<c:url value="/img/logo_s.png"/>">RSI(相对强弱指标)</p>
+            <div id="rsi_graph" class="graph_basic_other">
 
-            <%--</div>--%>
-            <%--<p id="rsi_ins">Tips:</p>--%>
-        <%--</div>--%>
+            </div>
+            <p id="rsi_ins">Tips:</p>
+        </div>
 
-        <%--<div id="kdj_wrapper" class="basic_graph_wrapper_other">--%>
-            <%--<p class="stock_content_title"><img src="<c:url value="/img/logo_s.png"/>">KDJ(随机指标)</p>--%>
-            <%--<div id="kdj_graph" class="graph_basic_other">--%>
+        <div id="kdj_wrapper" class="basic_graph_wrapper_other">
+            <p class="stock_content_title"><img src="<c:url value="/img/logo_s.png"/>">KDJ(随机指标)</p>
+            <div id="kdj_graph" class="graph_basic_other">
 
-            <%--</div>--%>
-            <%--<p id="kdj_ins">Tips:</p>--%>
-        <%--</div>--%>
+            </div>
+            <p id="kdj_ins">Tips:</p>
+        </div>
 
         <%--<div id="boll_wrapper" class="basic_graph_wrapper_other">--%>
             <%--<p class="stock_content_title"><img src="<c:url value="/img/logo_s.png"/>">BOLL(布林线)</p>--%>
@@ -616,6 +616,10 @@
     var stockList = ${stockList != null ? stockList : null};
     var jsonData = ${dayKList != null ? dayKList : null};
     var tmp_dynamic = ${intraday != null ? intraday : null};
+    var mashList = ${mashList != null ? mashList : null};
+    var mashEventList = ${mashEventList != null ? mashEventList : null};
+//    console.log(jsonData);
+//    console.log(mashEventList);
 </script>
 
 <script type="text/javascript" rel="script" src="<c:url value="/js/jquery-2.2.3.min.js"/>"></script>

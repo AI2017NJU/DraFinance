@@ -1,8 +1,10 @@
 package service.impl;
 
 import dao.DayKDAO;
+import dao.MashDAO;
 import dao.StockInfoDAO;
 import model.DayK;
+import model.Mash;
 import model.StockInfo;
 import org.springframework.stereotype.Service;
 import service.StockDataService;
@@ -20,6 +22,8 @@ public class StockDataServiceImpl implements StockDataService {
     private DayKDAO dayKDAO;
     @Resource
     private StockInfoDAO stockInfoDAO;
+    @Resource
+    private MashDAO mashDAO;
 
     @Override
     public List<DayK> getDayKData(String ID) {
@@ -34,5 +38,10 @@ public class StockDataServiceImpl implements StockDataService {
     @Override
     public List<StockInfo> getAllStocks() {
         return stockInfoDAO.findStockInfoList();
+    }
+
+    @Override
+    public List<Mash> getQuotaData(String ID) {
+        return mashDAO.findBySymbol(ID);
     }
 }
