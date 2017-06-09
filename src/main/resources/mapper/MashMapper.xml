@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="dao.MashDAO">
+    <select id="findBySymbol" resultType="model.Mash">
+        select id, symbol, dataTime as `date`, ma5_volume as ma5Volume, ma5_price as ma5Price,
+          ma10_volume as ma10Volume, ma10_price as ma10Price,
+          ma20_volume as ma20Volume, ma20_price as ma20Price,
+          diff, dea, macd,
+          k, d, j,
+          rsi1, rsi2, rsi3 from mashData where symbol = #{symbol}
+    </select>
+
+    <select id="findBySymbolAndRange" resultType="model.Mash">
+         select id, symbol, dataTime as `date`, ma5_volume as ma5Volume, ma5_price as ma5Price,
+          ma10_volume as ma10Volume, ma10_price as ma10Price,
+          ma20_volume as ma20Volume, ma20_price as ma20Price,
+          diff, dea, macd,
+          k, d, j,
+          rsi1, rsi2, rsi3 from mashData
+          where symbol = #{symbol} and dataTime BETWEEN #{startDate} and #{endDate}
+    </select>
+
+    <select id="findBySymbolAndDate" resultType="model.Mash">
+        select id, symbol, dataTime as `date`, ma5_volume as ma5Volume, ma5_price as ma5Price,
+          ma10_volume as ma10Volume, ma10_price as ma10Price,
+          ma20_volume as ma20Volume, ma20_price as ma20Price,
+          diff, dea, macd,
+          k, d, j,
+          rsi1, rsi2, rsi3 from mashData
+          where symbol = #{symbol} and dataTime = #{date}
+    </select>
+
+</mapper>
