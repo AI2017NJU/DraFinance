@@ -149,17 +149,17 @@
                 </a>
                 <div class="hot_item_stocks">
                     <div class="hot_item_stock">
-                        <h1><a href="/stock/<%= StockHelper.codeReflect(request.getParameter("stockID1"))%>">${hotspot.stockName1} <span>${hotspot.stockID1}</span></a></h1>
+                        <h1><a href="/stock/${hotspot.stockID1}">${hotspot.stockName1} <span>${hotspot.stockID1}</span></a></h1>
                         <h1 class="narrow">${hotspot.stockPrice1}</h1>
                         <h1 class="narrow">${hotspot.devia1}</h1>
                     </div>
                     <div class="hot_item_stock">
-                        <h1>${hotspot.stockName2} <span>${hotspot.stockID2}</span></h1>
+                        <h1><a href="/stock/${hotspot.stockID2}">${hotspot.stockName2} <span>${hotspot.stockID2}</span></a></h1>
                         <h1 class="narrow">${hotspot.stockPrice2}</h1>
                         <h1 class="narrow">${hotspot.devia2}</h1>
                     </div>
                     <div class="hot_item_stock">
-                        <h1>${hotspot.stockName3} <span>${hotspot.stockID3}</span></h1>
+                        <h1><a href="/stock/${hotspot.stockID3}">${hotspot.stockName3} <span>${hotspot.stockID3}</span></a></h1>
                         <h1 class="narrow">${hotspot.stockPrice3}</h1>
                         <h1 class="narrow">${hotspot.devia3}</h1>
                     </div>

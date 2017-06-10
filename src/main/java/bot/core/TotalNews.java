@@ -182,13 +182,13 @@ public class TotalNews {
             LocalDate today = LocalDate.now();
             while(result.size() != 4) {
                 String basUrl = "http://gupiao.baidu.com/concept/?searchdate=" + today;
-                System.out.println(basUrl);
+//                System.out.println(basUrl);
                 Document doc = Jsoup.connect(basUrl).get();
                 Element infoList = doc.select("#list-body").first();
                 int cursor = 2;
                 while(true) {
                     Elements info = infoList.select(String.format("div:nth-child(%d)", cursor));
-                    System.out.println(info.text());
+//                    System.out.println(info.text());
                     if(info.isEmpty() || info.select("a > div.concept-header.column1 > h2").text().trim().equals("")) {
                         break;
                     }
