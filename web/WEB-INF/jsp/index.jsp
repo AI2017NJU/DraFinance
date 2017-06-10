@@ -1,4 +1,4 @@
-<%--
+<%@ page import="tools.StockHelper" %><%--
   Created by IntelliJ IDEA.
   User: Hermit
   Date: 2017/6/7
@@ -149,7 +149,7 @@
                 </a>
                 <div class="hot_item_stocks">
                     <div class="hot_item_stock">
-                        <h1>${hotspot.stockName1} <span>${hotspot.stockID1}</span></h1>
+                        <h1><a href="/stock/<%= StockHelper.codeReflect(request.getParameter("stockID1"))%>">${hotspot.stockName1} <span>${hotspot.stockID1}</span></a></h1>
                         <h1 class="narrow">${hotspot.stockPrice1}</h1>
                         <h1 class="narrow">${hotspot.devia1}</h1>
                     </div>

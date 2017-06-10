@@ -70,7 +70,7 @@
 
                 <div>
                     <p>行业类型：${industry.name}</p>
-                    <%--<p>行业排名：${grade.rankString}/${grade.countString}</p>--%>
+                    <p>行业排名：${stockInIndustry.rank}/${stockInIndustry.all}</p>
                 </div>
                 <div>
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>

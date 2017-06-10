@@ -21,4 +21,5 @@ public class StockHelper {
     public static String baiduCodeReflect(String ID) {
         return ID.toLowerCase();
     }
+
 }

@@ -27,6 +27,8 @@
 
 </head>
 <body>
+<img id="stock_title_background" src="<c:url value="/img/background/stock_title_1.png"/>">
+
 <jsp:include page="header.jsp"/>
 <div class="main-content">
     <div id="info" class="info">

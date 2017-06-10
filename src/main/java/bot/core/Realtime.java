@@ -2,10 +2,7 @@ package bot.core;
 
 import com.alibaba.fastjson.JSON;
 import com.sun.org.apache.regexp.internal.RE;
-import model.BenchCurrent;
-import model.News;
-import model.Report;
-import model.StockCurrent;
+import model.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.jsoup.Jsoup;
@@ -42,11 +39,28 @@ public class Realtime {
 //            }
 //            List<News> news = getRealNews("sh600000");
 
-            BenchCurrent benchCurrent = getBenchCurrent("sz399901");
+//            BenchCurrent benchCurrent = getBenchCurrent("sz399901");
+
+            getStockInIndustry("sz002678");
 
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static StockInIndustry getStockInIndustry(String id) throws Exception {
+        StockInIndustry stockInIndustry = new StockInIndustry();
+        stockInIndustry.setID(id);
+
+        Document doc = Jsoup.connect("http://quote.eastmoney.com/" + id + ".html").get();
+
+        Element rank = doc.select("body > div:nth-child(15) > div.fr.w790 > div:nth-child(2) > div.w578 > div.cwzb > table > tbody > tr:nth-child(3) > td:nth-child(2)").get(0);
+        String[] s = rank.text().split("\\|");
+
+        stockInIndustry.setRank(Integer.parseInt(s[0]));
+        stockInIndustry.setAll(Integer.parseInt(s[1]));
+
+        return stockInIndustry;
     }
 
     public static StockCurrent getStockRealtime(String id) throws Exception{

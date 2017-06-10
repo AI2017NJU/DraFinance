@@ -6,5 +6,5 @@
 <html lang="en">
 <div id="footer">
     <p>Designed & Developed by Christine, Finominon, Hermit, Stone (c) Dracarys</p>
-    <p>NJU, China, 2016</p>
+    <p>NJU, China, 2017</p>
 </div>

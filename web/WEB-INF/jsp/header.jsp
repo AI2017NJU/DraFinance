@@ -15,6 +15,7 @@
         <ul class="menu">
             <li id="search_toggle" class="search-icon">
             </li>
+            <li class="menu-item">搜索</li>
             <%--<li class="menu-item"><a href="recommand.do" target="_blank">推荐</a></li>--%>
             <%--<li class="menu-item"><a href="industry.do" target="_blank"> 行业</a></li>--%>
             <%--<li class="menu-item"><a href="compare.do" target="_blank"> 对比</a></li>--%>

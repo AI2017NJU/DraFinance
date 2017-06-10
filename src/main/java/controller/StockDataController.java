@@ -72,6 +72,9 @@ public class StockDataController {
         List<MashEvent> mashEventList = mashEventService.getMashEvents(dayKList, mashList);
         model.addAttribute("mashEventList", JSON.toJSON(mashEventList));
 
+        StockInIndustry stockInIndustry = Realtime.getStockInIndustry(ID.toLowerCase());
+        model.addAttribute("stockInIndustry", stockInIndustry);
+
         return "stock";
     }
 

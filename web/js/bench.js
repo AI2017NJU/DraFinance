@@ -304,6 +304,13 @@ function initValueData() {
             allinfo[i]["colorField"] = "rgba(0,0,0,0.4)";
             allinfo[i]["lineColorField"] = "rgba(0,0,0,0.4)";
         }
+        if (allinfo[i].open < allinfo[i].close) {
+            allinfo[i]["revenueColor"] = "#990033";
+            allinfo[i]["lineRevenueColor"] = "#990033";
+        } else {
+            allinfo[i]["revenueColor"] = "rgba(0,0,0,0)";
+            allinfo[i]["lineRevenueColor"] = "#bbbbbb";
+        }
     }
 
     // for(i=allinfo.length-10;i<allinfo.length;i++){
@@ -489,6 +496,8 @@ function initValueChart() {
     volumeGraph.valueField = "dealAmount";
     volumeGraph.fillColors = "#607d98";
     volumeGraph.lineColor = "#607d98";
+    volumeGraph.colorField = "revenueColor";
+    volumeGraph.lineColorField = "lineRevenueColor";
     volumeGraph.valueAxis = volumeAxis;
     volumeGraph.balloonText = "成交量: <b>[[value]]</b>";
     volumeGraph.useDataSetColors = false;
