@@ -2,9 +2,12 @@ import random
 
 import MySQLdb
 import requests
+import time
 
 db = MySQLdb.connect(host="139.199.90.26", user="root", passwd="root", db="finance", charset="utf8")
 cursor = db.cursor()
+
+now = time.strftime('%Y%m%d', time.localtime(time.time()))
 
 # urls=["http://www.tianyancha.com/search/%E7%BB%9F%E8%AE%A1.json?&pn="+str(i) for i in range(38,51)]
 url = "https://gupiao.baidu.com/api/stocks/stockdaybar?" \
@@ -53,34 +56,37 @@ def get_data(url, symbol):
         return 0
 
     for meta in data:
-        print meta
-        date = str(meta["date"])[0: 4] + "-" + str(meta["date"])[4: 6] + "-" + str(meta["date"])[6:]
-        mash = [symbol, date,
-                meta["ma5"]["volume"], meta["ma5"]["avgPrice"],
-                meta["ma10"]["volume"], meta["ma10"]["avgPrice"],
-                meta["ma20"]["volume"], meta["ma20"]["avgPrice"],
-                meta["macd"]["diff"], meta["macd"]["dea"], meta["macd"]["macd"],
-                meta["kdj"]["k"], meta["kdj"]["d"], meta["kdj"]["j"],
-                meta["rsi"]["rsi1"], meta["rsi"]["rsi2"], meta["rsi"]["rsi3"]]
-        insert = "insert ignore into mashData " \
-                 "(symbol, dataTime, ma5_volume, ma5_price, ma10_volume, ma10_price, ma20_volume, " \
-                 "ma20_price, diff, dea, macd, k, d, j, rsi1, rsi2, rsi3) " \
-                 "values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
-        cursor.execute(insert, tuple(mash))
-        db.commit()
+        # print meta
+        if now == meta["date"]:
+            date = str(meta["date"])[0: 4] + "-" + str(meta["date"])[4: 6] + "-" + str(meta["date"])[6:]
+            mash = [symbol, date,
+                    meta["ma5"]["volume"], meta["ma5"]["avgPrice"],
+                    meta["ma10"]["volume"], meta["ma10"]["avgPrice"],
+                    meta["ma20"]["volume"], meta["ma20"]["avgPrice"],
+                    meta["macd"]["diff"], meta["macd"]["dea"], meta["macd"]["macd"],
+                    meta["kdj"]["k"], meta["kdj"]["d"], meta["kdj"]["j"],
+                    meta["rsi"]["rsi1"], meta["rsi"]["rsi2"], meta["rsi"]["rsi3"]]
+            insert = "insert ignore into mashData " \
+                     "(symbol, dataTime, ma5_volume, ma5_price, ma10_volume, ma10_price, ma20_volume, " \
+                     "ma20_price, diff, dea, macd, k, d, j, rsi1, rsi2, rsi3) " \
+                     "values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+            cursor.execute(insert, tuple(mash))
+            db.commit()
+            break
 
     return 1
 
 
-# def get_stock():
-#     cursor.execute('select symbol from stockInfo')
-#     symbols = list(cursor.fetchall())
-#
-#     for symbolPair in symbols:
-#         symbol = symbolPair[0]
-#         print '###### stock %s starts scraping ######' % symbol
-#         get_data(url % symbol.lower(), symbol)
+def get_stock():
+    cursor.execute('select symbol from stockInfo')
+    symbols = list(cursor.fetchall())
 
-# get_stock()
-get_data(url % "sz399998", "SZ399998")
+    for symbolPair in symbols:
+        symbol = symbolPair[0]
+        print '###### stock %s starts scraping ######' % symbol
+        get_data(url % symbol.lower(), symbol)
+
+get_stock()
+# print now
+# get_data(url % "sz399998", "SZ399998")
 cursor.close()
