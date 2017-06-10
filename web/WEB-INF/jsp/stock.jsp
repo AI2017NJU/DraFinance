@@ -616,8 +616,10 @@
     var stockList = ${stockList != null ? stockList : null};
     var jsonData = ${dayKList != null ? dayKList : null};
     var tmp_dynamic = ${intraday != null ? intraday : null};
-    var mashList = ${mashList != null ? mashList : null};
-    var mashEventList = ${mashEventList != null ? mashEventList : null};
+    var mashList = [];
+    <c:if test="${not empty mashList}">mashList = ${mashList};</c:if>
+    var mashEventList = [];
+    <c:if test="${not empty mashEventList}">mashEventList = ${mashEventList};</c:if>
 //    console.log(jsonData);
 //    console.log(mashEventList);
 </script>

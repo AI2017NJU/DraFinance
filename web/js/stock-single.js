@@ -447,21 +447,26 @@ var forecastChart;
 AmCharts.ready(function() {
 
     AmCharts.theme = AmCharts.themes.dark;
-    initValueData();
+
     initDynamicData();
-    // initFutureData();
-    // initGradeData();
-    // initRelativeHistoryData();
-    //
+    initDynamicChart();
+
+
+    initValueData();
     initDataSet();
     initValueChart();
     initMacdChart();
     initRsiChart();
     initKdjChart();
+
+    // initFutureData();
+    // initGradeData();
+    // initRelativeHistoryData();
+    //
+
     // initBollChart();
     //
     // initGradeChart();
-    initDynamicChart();
     // initBpForecastChart();
     // initForecastChart();
     // initGradeHistoryChart();
@@ -491,6 +496,7 @@ function initRelativeHistoryData() {
 }
 
 function initValueData() {
+    if (jsonData == undefined) return;
     chartData = jsonData;
 
     var i;
