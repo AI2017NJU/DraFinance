@@ -8,6 +8,7 @@ import model.News;
 import model.StockRank;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.BufferedReader;
@@ -179,81 +180,55 @@ public class TotalNews {
         List<Hotspot> result = new ArrayList<Hotspot>();
         try {
             LocalDate today = LocalDate.now();
-            String url = "http://gupiao.baidu.com/concept/?searchdate=" + today;
-            Document doc = Jsoup.connect(url).get();
+            while(result.size() != 4) {
+                String basUrl = "http://gupiao.baidu.com/concept/?searchdate=" + today;
+                System.out.println(basUrl);
+                Document doc = Jsoup.connect(basUrl).get();
+                Element infoList = doc.select("#list-body").first();
+                int cursor = 2;
+                while(true) {
+                    Elements info = infoList.select(String.format("div:nth-child(%d)", cursor));
+                    System.out.println(info.text());
+                    if(info.isEmpty() || info.select("a > div.concept-header.column1 > h2").text().trim().equals("")) {
+                        break;
+                    }
 
-            Elements ele = doc.select("#list-body > div:nth-child(2) > a > div.concept-header.column1");
-            while(ele.text().equals("")) {
+                    String keyword = info.select("a > div.concept-header.column1 > h2").text().trim();
+                    String date = info.select("a > div.concept-header.column1 > p:nth-child(3)").text().trim();
+                    String description = info.select("#a > div.concept-header.column1 > p:nth-child(4)").text().trim();
+                    String drivingEvent = info.select("> a > div.concept-event.column3").text().trim();
+                    String url = "http://gupiao.baidu.com" + info.select("a").attr("href");
+                    String stockName1 = info.select("ul > li:nth-child(1) > " +
+                            "div:nth-child(1) > a > div:nth-child(1)").text().trim();
+                    String stockName2 = info.select("ul > li:nth-child(2) > " +
+                            "div:nth-child(1) > a > div:nth-child(1)").text().trim();
+                    String stockName3 = info.select("ul > li:nth-child(3) > " +
+                            "div:nth-child(1) > a > div:nth-child(1)").text().trim();;
+                    String stockID1 = info.select("ul > li:nth-child(1) > " +
+                            "div:nth-child(1) > a > div.code").text().trim();
+                    String stockID2 = info.select("ul > li:nth-child(2) > " +
+                            "div:nth-child(1) > a > div.code").text().trim();
+                    String stockID3 = info.select("ul > li:nth-child(3) > " +
+                            "div:nth-child(1) > a > div.code").text().trim();;
+                    String stockPrice1 = info.select("ul > li:nth-child(1) > div:nth-child(2)").text().trim();
+                    String stockPrice2 = info.select("ul > li:nth-child(2) > div:nth-child(2)").text().trim();
+                    String stockPrice3 = info.select("ul > li:nth-child(3) > div:nth-child(2)").text().trim();
+                    String devia1 = info.select("ul > li:nth-child(1) > div:nth-child(3)").text().trim();
+                    String devia2 = info.select("ul > li:nth-child(2) > div:nth-child(3)").text().trim();
+                    String devia3 = info.select("ul > li:nth-child(3) > div:nth-child(3)").text().trim();
+
+                    result.add(new Hotspot(keyword, date, description, drivingEvent, url,
+                            stockName1, stockName2, stockName3, stockID1, stockID2, stockID3,
+                            stockPrice1, stockPrice2, stockPrice3, devia1, devia2, devia3));
+
+                    if (result.size() == 4) {
+                        break;
+                    }
+
+                    cursor ++;
+                }
                 today = today.plusDays(-1);
-                url = "http://gupiao.baidu.com/concept/?searchdate=" + today;
-                doc = Jsoup.connect(url).get();
-                ele = doc.select("#list-body > div:nth-child(2) > a > div.concept-header.column1");
             }
-            //#list-body > div:nth-child(2) > a > div.concept-header.column1 > p:nth-child(3)
-//            System.out.println(doc.select("#list-body > div:nth-child(2) > a").attr("href"))
-            String stockName1 = "";
-            String stockName2 = "";
-            String stockName3 = "";
-            String stockID1 = "";
-            String stockID2 = "";
-            String stockID3 = "";
-            String stockPrice1 = "";
-            String stockPrice2 = "";
-            String stockPrice3 = "";
-            String devia1 = "";
-            String devia2 = "";
-            String devia3 = "";
-
-            stockName1 = doc.select("#list-body > div:nth-child(2) > ul > li:nth-child(1) > div:nth-child(1) > a > div:nth-child(1)").text();
-            stockID1 = doc.select("#list-body > div:nth-child(2) > ul > li:nth-child(1) > div:nth-child(1) > a > div.code").text();
-            stockName2 = (doc.select("#list-body > div:nth-child(2) > ul > li:nth-child(2) > div:nth-child(1) > a > div:nth-child(1)").text());
-            stockID2 = doc.select("#list-body > div:nth-child(2) > ul > li:nth-child(2) > div:nth-child(1) > a > div.code").text();
-            stockName3 = (doc.select("#list-body > div:nth-child(2) > ul > li:nth-child(3) > div:nth-child(1) > a > div:nth-child(1)").text());
-            stockID3 =  doc.select("#list-body > div:nth-child(2) > ul > li:nth-child(3) > div:nth-child(1) > a > div.code").text();
-//#list-body > div:nth-child(2) > ul > li:nth-child(1) > div.column2.s-up
-            stockPrice1 = (doc.select("#list-body > div:nth-child(2) > ul > li:nth-child(1) > div:nth-child(2)").text());
-            stockPrice2 = (doc.select("#list-body > div:nth-child(2) > ul > li:nth-child(2) > div:nth-child(2)").text());
-            stockPrice3 = (doc.select("#list-body > div:nth-child(2) > ul > li:nth-child(3) > div:nth-child(2)").text());
-
-            devia1 = doc.select("#list-body > div:nth-child(2) > ul > li:nth-child(1) > div:nth-child(3)").text();
-            devia2 = doc.select("#list-body > div:nth-child(2) > ul > li:nth-child(2) > div:nth-child(3)").text();
-            devia3 = doc.select("#list-body > div:nth-child(2) > ul > li:nth-child(3) > div:nth-child(3)").text();
-
-            Hotspot hotspot1 = new Hotspot(ele.select("h2").text(), ele.select("p:nth-child(3)").text(),
-                    ele.select("p:nth-child(4)").text(),
-                    doc.select("#list-body > div:nth-child(2) > a > div.concept-event.column3").text(),
-                    "http://gupiao.baidu.com" + doc.select("#list-body > div:nth-child(2) > a").attr("href"),
-                    stockName1, stockName2, stockName3, stockID1, stockID2, stockID3, stockPrice1, stockPrice2, stockPrice3, devia1, devia2, devia3);
-//            System.out.println(hotspot1.hotStockName.get(0) + " " + hotspot1.hotStockName.get(1) + " " + hotspot1.hotStockName.get(2));
-            result.add(hotspot1);
-
-// #list-body > div:nth-child(8) > a > div.concept-header.column1
-            for (int i=3;i<=8;i++) {
-                ele = doc.select("#list-body > div:nth-child("+String.valueOf(i)+") > a > div.concept-header.column1");
-                stockName1 = (doc.select("#list-body > div:nth-child("+String.valueOf(i)+") > ul > li:nth-child(1) > div:nth-child(1) > a > div:nth-child(1)").text());
-                stockID1 = doc.select("#list-body > div:nth-child("+String.valueOf(i)+") > ul > li:nth-child(1) > div:nth-child(1) > a > div.code").text();
-                stockName2 = (doc.select("#list-body > div:nth-child("+String.valueOf(i)+") > ul > li:nth-child(2) > div:nth-child(1) > a > div:nth-child(1)").text());
-                stockID2 =  doc.select("#list-body > div:nth-child("+String.valueOf(i)+") > ul > li:nth-child(2) > div:nth-child(1) > a > div.code").text();
-                stockName3 = (doc.select("#list-body > div:nth-child("+String.valueOf(i)+") > ul > li:nth-child(3) > div:nth-child(1) > a > div:nth-child(1)").text());
-                stockID3 = doc.select("#list-body > div:nth-child("+String.valueOf(i)+") > ul > li:nth-child(3) > div:nth-child(1) > a > div.code").text();
-
-                stockPrice1 = (doc.select("#list-body > div:nth-child("+String.valueOf(i)+") > ul > li:nth-child(1) > div:nth-child(2)").text());
-                stockPrice2 = (doc.select("#list-body > div:nth-child("+String.valueOf(i)+") > ul > li:nth-child(2) > div:nth-child(2)").text());
-                stockPrice3 = (doc.select("#list-body > div:nth-child("+String.valueOf(i)+") > ul > li:nth-child(3) > div:nth-child(2)").text());
-
-                devia1 = doc.select("#list-body > div:nth-child("+String.valueOf(i)+") > ul > li:nth-child(1) > div:nth-child(3)").text();
-                devia2 = doc.select("#list-body > div:nth-child("+String.valueOf(i)+") > ul > li:nth-child(2) > div:nth-child(3)").text();
-                devia3 = doc.select("#list-body > div:nth-child("+String.valueOf(i)+") > ul > li:nth-child(3) > div:nth-child(3)").text();
-
-                hotspot1 = new Hotspot(ele.select("h2").text(), ele.select("p:nth-child(3)").text(),
-                        ele.select("p:nth-child(4)").text(),
-                        doc.select("#list-body > div:nth-child("+String.valueOf(i)+") > a > div.concept-event.column3").text(),
-                        "http://gupiao.baidu.com" + doc.select("#list-body > div:nth-child("+String.valueOf(i)+") > a").attr("href"),
-                        stockName1, stockName2, stockName3, stockID1, stockID2, stockID3, stockPrice1, stockPrice2, stockPrice3, devia1, devia2, devia3);
-                result.add(hotspot1);
-
-            }
-
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -336,5 +311,9 @@ public class TotalNews {
         }
 
         return dataarray;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(getHotspot());
     }
 }
