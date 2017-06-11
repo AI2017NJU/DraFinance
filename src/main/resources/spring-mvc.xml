@@ -38,6 +38,9 @@
         <property name="suffix" value=".jsp" />
     </bean>
 
+    <!-- 定义异常处理页面 -->
+    <bean id="exceptionResolver" class="controller.ExceptionHandler"/>
+
     <!-- 定义静态文件目录 -->
     <mvc:resources mapping="/css/**" location="/css/"/>
     <mvc:resources mapping="/js/**" location="/js/"/>

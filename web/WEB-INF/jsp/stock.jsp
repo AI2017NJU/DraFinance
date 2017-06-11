@@ -614,6 +614,7 @@
 <script>
     var stock_id = '${stockInfo != null ? stockInfo.symbol : ''}';
     var stockList = ${stockList != null ? stockList : null};
+//    console.log(stockList);
     var jsonData = ${dayKList != null ? dayKList : null};
     var tmp_dynamic = ${intraday != null ? intraday : null};
     var mashList = [];
