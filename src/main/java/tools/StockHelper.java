@@ -22,4 +22,7 @@ public class StockHelper {
         return ID.toLowerCase();
     }
 
+    public static String gubaCodeReflect(String ID) {
+        return ID.substring(2, ID.length());
+    }
 }
