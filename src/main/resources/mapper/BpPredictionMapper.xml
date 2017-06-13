@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="dao.BpPredictionDAO">
+    <select id="findBySymbol" resultType="model.BpPrediction">
+        select id, symbol, dataTime as `date`,
+        price_middle as priceMiddle, price_high as priceHigh, price_low as priceLow,
+        actualPrice where symbol = #{symbol} and usntable = 1 order by `date` asc;
+    </select>
+</mapper>

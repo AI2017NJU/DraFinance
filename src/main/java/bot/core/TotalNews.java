@@ -203,13 +203,13 @@ public class TotalNews {
                     String stockName2 = info.select("ul > li:nth-child(2) > " +
                             "div:nth-child(1) > a > div:nth-child(1)").text().trim();
                     String stockName3 = info.select("ul > li:nth-child(3) > " +
-                            "div:nth-child(1) > a > div:nth-child(1)").text().trim();;
+                            "div:nth-child(1) > a > div:nth-child(1)").text().trim();
                     String stockID1 = info.select("ul > li:nth-child(1) > " +
                             "div:nth-child(1) > a > div.code").text().trim();
                     String stockID2 = info.select("ul > li:nth-child(2) > " +
                             "div:nth-child(1) > a > div.code").text().trim();
                     String stockID3 = info.select("ul > li:nth-child(3) > " +
-                            "div:nth-child(1) > a > div.code").text().trim();;
+                            "div:nth-child(1) > a > div.code").text().trim();
                     String stockPrice1 = info.select("ul > li:nth-child(1) > div:nth-child(2)").text().trim();
                     String stockPrice2 = info.select("ul > li:nth-child(2) > div:nth-child(2)").text().trim();
                     String stockPrice3 = info.select("ul > li:nth-child(3) > div:nth-child(2)").text().trim();
