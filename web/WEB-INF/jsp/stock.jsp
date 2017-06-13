@@ -552,6 +552,23 @@
             </c:forEach>
         </div>
 
+        <br>
+        <br>
+
+        <div class="stock_content_title"><img src="<c:url value="/img/logo_s.png"/>"><p>来自股吧的评论</p></div>
+
+        <br>
+
+        <div class="comments">
+            <c:forEach var="item" items="${gubaCommentList}">
+                <div class="comment-media">
+                    <h3><a class="title">${item.title}</a>&nbsp;&nbsp;<span class="auther">作者: ${item.username}</span></h3>
+                    <div class="description">${item.description}...<span class="expand-all">展开</span></div>
+                    <div class="text" style="display: none">${item.text}<br><span class="collapse-all">收起</span></div>
+                </div>
+            </c:forEach>
+        </div>
+
         <%--<div id="grade_wrapper" class="stock_content_single">--%>
         <%--<div class="stock_content_title"><img src="<c:url value="/img/logo_s.png"/>"><p>股票评分</p></div>--%>
         <%--<div id="grade_graph">--%>
@@ -614,6 +631,7 @@
 <script>
     var stock_id = '${stockInfo != null ? stockInfo.symbol : ''}';
     var stockList = ${stockList != null ? stockList : null};
+//    console.log(stockList);
     var jsonData = ${dayKList != null ? dayKList : null};
     var tmp_dynamic = ${intraday != null ? intraday : null};
     var mashList = [];

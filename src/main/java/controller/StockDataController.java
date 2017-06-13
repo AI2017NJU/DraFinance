@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import service.*;
+import service.impl.GubaCommentImpl;
 import service.impl.XueqiuCommentImpl;
 import tools.StockHelper;
 
@@ -35,6 +36,7 @@ public class StockDataController {
     private MashEventService mashEventService;
 
     private CommentService xueqiuCommentService = new XueqiuCommentImpl();
+    private CommentService gubaCommentSerivce = new GubaCommentImpl();
 
     @RequestMapping(value = "/stock/{ID}", method = RequestMethod.GET)
     public String toStock(@PathVariable("ID") String ID, Model model) throws Exception {
@@ -62,6 +64,9 @@ public class StockDataController {
 
         List<Comment> xueqiuCommentList = xueqiuCommentService.getCurrentComments(ID);
         model.addAttribute("xueqiuCommentList", xueqiuCommentList);
+
+        List<Comment> gubaCommentList = gubaCommentSerivce.getCurrentComments(ID);
+        model.addAttribute("gubaCommentList", xueqiuCommentList);
 
         Industry industry = industryService.getIndustry(ID);
         model.addAttribute("industry", industry);
