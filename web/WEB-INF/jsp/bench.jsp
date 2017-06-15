@@ -163,15 +163,15 @@
     <div id="forecast" class="stock_content" style="display: none;">
         <div id="forecast_one" class="stock_content_single">
             <p class="stock_content_title"><img src="<c:url value="/img/logo_s.png"/>">走势预测<span>(未来十五天收盘价)</span></p>
-            <h3>SVM模型预测</h3>
-            <div id="forecast_graph">
+            <%--<h3>SVM模型预测</h3>--%>
+            <%--<div id="forecast_graph">--%>
 
-            </div>
+            <%--</div>--%>
 
-            <br>
+            <%--<br>--%>
 
             <h3>BP神经网络模型预测</h3>
-            <div id="bp_forecast_graph">
+            <div id="bp_forecast_graph" style="height: 400px">
 
             </div>
         </div>
@@ -236,6 +236,7 @@
     var stockid = '${stockInfo != null ? stockInfo.symbol : ''}';
     var allinfo = ${dayKList != null ? dayKList : null};
     var intraday = ${intraday != null ? intraday : null};
+    var bpPrediction = ${bpPredictionList};
 </script>
 
 <!-- Insert this line above script imports  -->

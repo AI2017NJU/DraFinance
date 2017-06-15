@@ -12,6 +12,8 @@ public class BpPrediction {
     private double priceLow;
     private double actualPrice;
 
+    public BpPrediction() {}
+
     @Override
     public String toString() {
         return "BpPrediction{" +

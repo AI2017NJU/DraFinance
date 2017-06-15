@@ -1,5 +1,6 @@
 package service;
 
+import model.BpPrediction;
 import model.DayK;
 import model.Mash;
 import model.StockInfo;
@@ -18,4 +19,6 @@ public interface StockDataService {
     List<StockInfo> getAllStocks();
 
     List<Mash> getQuotaData(String ID);
+
+    List<BpPrediction> getBpPredictionData(String ID);
 }

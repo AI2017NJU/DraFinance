@@ -1,8 +1,10 @@
 package service.impl;
 
+import dao.BpPredictionDAO;
 import dao.DayKDAO;
 import dao.MashDAO;
 import dao.StockInfoDAO;
+import model.BpPrediction;
 import model.DayK;
 import model.Mash;
 import model.StockInfo;
@@ -24,6 +26,8 @@ public class StockDataServiceImpl implements StockDataService {
     private StockInfoDAO stockInfoDAO;
     @Resource
     private MashDAO mashDAO;
+    @Resource
+    private BpPredictionDAO bpPredictionDAO;
 
     @Override
     public List<DayK> getDayKData(String ID) {
@@ -43,5 +47,10 @@ public class StockDataServiceImpl implements StockDataService {
     @Override
     public List<Mash> getQuotaData(String ID) {
         return mashDAO.findBySymbol(ID);
+    }
+
+    @Override
+    public List<BpPrediction> getBpPredictionData(String ID) {
+        return bpPredictionDAO.findBySymbol(ID);
     }
 }

@@ -46,12 +46,17 @@ public class GubaCommentJson {
                 String href = e.attr("href");
 
                 Document d = Jsoup.connect("http://guba.eastmoney.com/" + href).get();
+
+//                System.out.println(d.toString());
+
                 Element title = d.getElementById("zwconttbt");
                 Element author = d.getElementById("zw_header");
                 Element text = d.getElementById("zw_body");
 
-                object.put("title", title.toString());
-                object.put("author", author.toString());
+                if (text == null) continue;
+
+                object.put("title", title != null ? title.toString() : "");
+                object.put("author", author != null ? author.toString() : "");
 
                 String description = "";
                 if (text.toString().length() > 100) {
