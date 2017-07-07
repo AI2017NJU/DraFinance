@@ -65,8 +65,8 @@ public class StockDataController {
         List<Comment> xueqiuCommentList = xueqiuCommentService.getCurrentComments(ID);
         model.addAttribute("xueqiuCommentList", xueqiuCommentList);
 
-        List<Comment> gubaCommentList = gubaCommentSerivce.getCurrentComments(ID);
-        model.addAttribute("gubaCommentList", xueqiuCommentList);
+//        List<Comment> gubaCommentList = gubaCommentSerivce.getCurrentComments(ID);
+//        model.addAttribute("gubaCommentList", xueqiuCommentList);
 
         Industry industry = industryService.getIndustry(ID);
         model.addAttribute("industry", industry);

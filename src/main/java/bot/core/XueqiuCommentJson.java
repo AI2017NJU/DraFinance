@@ -43,7 +43,7 @@ public class XueqiuCommentJson {
             conn.addRequestProperty("Content-type", "text/json");
             conn.addRequestProperty("Accept-Charset", "utf-8");
             conn.addRequestProperty("contentType", "utf-8");
-            conn.addRequestProperty("Cookie", "u=171496314516601; s=fe12lk2eir; webp=1; aliyungf_tc=AQAAAGTAjRpsLQcAW1Gi0/MMfPIwOxi1; xq_a_token=445b4b15f59fa37c8bd8133949f910e7297a52ef; xq_a_token.sig=5qsKG3NMR_Go5O8QjcKxalfFwhM; xq_r_token=132b2ba19b0053bc7f04401788b6e0d24f35d365; xq_r_token.sig=1w18Bj12xS0s6jGzDJnEQgA8IGo; device_id=6525b7abb38f09ec976375905cde23bc; __utmt=1; Hm_lvt_1db88642e346389874251b5a1eded6e3=1496839466,1496992608,1497092810,1497323678; Hm_lpvt_1db88642e346389874251b5a1eded6e3=1497323692; __utma=1.1747867414.1496314528.1496994586.1497323682.5; __utmb=1.2.10.1497323682; __utmc=1; __utmz=1.1496314528.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)");
+            conn.addRequestProperty("Cookie", "aliyungf_tc=AQAAAGj7/UPErgoAR6ji3efmP07/2yU9; xq_a_token=0a52c567442f1fdd8b09c27e0abb26438e274a7e; xq_a_token.sig=dR_XY4cJjuYM6ujKxH735NKcOpw; xq_r_token=43c6fed2d6b5cc8bc38cc9694c6c1cf121d38471; xq_r_token.sig=8d4jOYdZXEWqSBXOB9N5KuMMZq8; u=281499430234078; device_id=fd8ab109db1c34dee086363bc422fdb0; s=fa16x934lm; __utmt=1; Hm_lvt_1db88642e346389874251b5a1eded6e3=1499430235; Hm_lpvt_1db88642e346389874251b5a1eded6e3=1499430269; __utma=1.1938545482.1499430253.1499430253.1499430253.1; __utmb=1.2.10.1499430253; __utmc=1; __utmz=1.1499430253.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)");
             conn.addRequestProperty("Host", "xueqiu.com");
             conn.addRequestProperty("Pragma", "no-cache");
             conn.addRequestProperty("Upgrade-Insecure-Requests", "1");

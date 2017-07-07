@@ -45,19 +45,26 @@ def get_predict(trainX, trainY, testX):
 
 
 def predict(symbol):
-    cursor.execute('select `close`, `dataTime` from dayK where dataTime < "2017"  and `stockid` = "%s"' % symbol)
+    cursor.execute('select `close`, `dataTime` from dayK where dataTime < "2017-01-01"  and `symbol` = "%s" '
+                   'and `close` is not null' % symbol)
     raw = list(cursor.fetchall())
     base = []
     for each in raw:
         base.append(each[0])
     actual = []
     date = []
-    cursor.execute('select `close`, `dataTime` from dayK where dataTime >= "2017"  and `stockid` = "%s"' % symbol)
+    cursor.execute('select `close`, `dataTime` from dayK where dataTime >= "2017-01-01"  and `symbol` = "%s" '
+                   'and `close` is not null' % symbol)
     raw = list(cursor.fetchall())
 
     for each in raw:
         actual.append(each[0])
         date.append(each[1])
+
+    if len(date) < 10:
+        return
+    print base
+    print actual
 
     predict = []
     predict_upper = []
@@ -90,7 +97,7 @@ def predict(symbol):
             sum += every
         for i in range(0, len(testX)):
             testX[i] = float(testX[i]) / float(sum)
-        price = get_predict(trainX, trainY, testX)*sum
+        price = get_predict(trainX, [trainY], testX) * sum
         var = np.var(np.array(base)) / len(base)
         d = np.sqrt(var)
         predict.append(price)
@@ -98,7 +105,7 @@ def predict(symbol):
         predict_low.append(price-d)
         base.append(each)
 
-    time = date[-1]
+    time = str(date[-1])
     time = datetime.datetime.strptime(time, "%Y-%m-%d")
     time = time + datetime.timedelta(1)
     for x in range(0, 15):
@@ -126,7 +133,7 @@ def predict(symbol):
             sum += every
         for i in range(0, len(testX)):
             testX[i] = float(testX[i]) / float(sum)
-        price = get_predict(trainX, trainY, testX)*sum
+        price = get_predict(trainX, [trainY], testX)*sum
         var = np.var(np.array(base)) / len(base)
         d = np.sqrt(var)
         predict.append(price)
@@ -156,16 +163,30 @@ def predict(symbol):
     # # plt.xlim(200, 300)
     # plt.show()
     data = []
+    print len(date)
+    print len(predict)
     for x in range(0, len(date)):
-        if date[x] <= now:
-            data.append([id, date[x], predict[x], predict_upper[x], predict_low[x], 0])
+        if str(date[x]) <= now:
+            data.append([symbol, str(date[x]), predict[x], predict_upper[x], predict_low[x], 0])
         else:
-            data.append([id, date[x], predict[x], predict_upper[x], predict_low[x], 1])
-        # cursor.execute('update `forecast` set `price_middle` = %s, `price_high` = %s, `price_low` = %s '
-        # ' where `stockid` = "%s" and `date` = "%s"' % (predict[x], predict_upper[x], predict_low[x], id, date[x]))
-    insert_cmd = 'insert into `bp` (`symbol`, `dataTime`, `price_middle`, `price_high`, `price_low`, `unstable`) ' \
+            data.append([symbol, str(date[x]), predict[x], predict_upper[x], predict_low[x], 1])
+    insert_cmd = 'replace into `bp` (`symbol`, `dataTime`, `price_middle`, `price_high`, `price_low`, `unstable`) ' \
                  ' VALUES (%s, %s, %s, %s, %s,%s)'
 
     cursor.executemany(insert_cmd, tuple(data))
     db.commit()
-    db.close()
+
+#
+# def get_stock():
+#     cursor.execute('select symbol from stockInfo')
+#     symbols = list(cursor.fetchall())
+#
+#     for symbolPair in symbols:
+#         symbol = symbolPair[0]
+#         print '###### stock %s starts scraping ######' % symbol
+#         predict(symbol)
+#
+# get_stock()
+predict("SZ000155")
+cursor.close()
+
