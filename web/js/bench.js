@@ -295,7 +295,7 @@ AmCharts.ready(function () {
     initDynamicChart();
     // initForecastChart();
     // initRangeChart();
-    // initBpForecastChart();
+    initBpForecastChart();
 });
 
 function initValueData() {
@@ -1275,7 +1275,7 @@ function initBpForecastChart() {
     //future图表的全局设置
     bpForecastChart.addClassNames = true;
     bpForecastChart.title = "Future";
-    bpForecastChart.dataProvider = bpForecastData;
+    bpForecastChart.dataProvider = bpPrediction;
     bpForecastChart.categoryField = "date";
     bpForecastChart.dataDateFormat = "YYYY-MM-DD";
 
@@ -1314,7 +1314,7 @@ function initBpForecastChart() {
     maxGraph.valueAxis = futureAxis;
     maxGraph.title = "最大预估";
     maxGraph.type = "line";
-    maxGraph.valueField = "price_high";
+    maxGraph.valueField = "priceHigh";
     maxGraph.balloonText = "最大预估: <b>[[value]]</b>";
     bpForecastChart.addGraph(maxGraph);
 
@@ -1324,7 +1324,7 @@ function initBpForecastChart() {
     minGraph.valueAxis = futureAxis;
     minGraph.fillAlphas = 0.2;
     minGraph.fillToGraph = "maxGraph";
-    minGraph.valueField = "price_low";
+    minGraph.valueField = "priceLow";
     minGraph.balloonText = "最小预估: <b>[[value]]</b>";
     bpForecastChart.addGraph(minGraph);
 
@@ -1336,7 +1336,7 @@ function initBpForecastChart() {
     pointGraph.bulletSize = 8;
     pointGraph.bulletBorderThickness = 1;
     pointGraph.lineAlpha = 0;
-    pointGraph.valueField = "price_middle";
+    pointGraph.valueField = "priceMiddle";
     pointGraph.balloonText = "中值: <b>[[value]]</b>";
     bpForecastChart.addGraph(pointGraph);
 

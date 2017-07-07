@@ -51,6 +51,9 @@ public class BenchDataController {
         List<Comment> xueqiuCommentList = xueqiuCommentService.getCurrentComments(ID);
         model.addAttribute("xueqiuCommentList", xueqiuCommentList);
 
+        List<BpPrediction> bpPredictionList = stockDataService.getBpPredictionData(ID);
+        model.addAttribute("bpPredictionList", JSON.toJSON(bpPredictionList));
+
         return "bench";
     }
 

@@ -6,6 +6,6 @@
     <select id="findBySymbol" resultType="model.BpPrediction">
         select id, symbol, dataTime as `date`,
         price_middle as priceMiddle, price_high as priceHigh, price_low as priceLow,
-        actualPrice where symbol = #{symbol} and usntable = 1 order by `date` asc;
+        actualPrice from bp where symbol = #{symbol} and unstable = 1 order by `date` asc;
     </select>
 </mapper>

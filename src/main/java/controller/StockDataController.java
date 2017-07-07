@@ -80,6 +80,9 @@ public class StockDataController {
         StockInIndustry stockInIndustry = Realtime.getStockInIndustry(ID.toLowerCase());
         model.addAttribute("stockInIndustry", stockInIndustry);
 
+        List<BpPrediction> bpPredictionList = stockDataService.getBpPredictionData(ID);
+        model.addAttribute("bpPredictionList", JSON.toJSON(bpPredictionList));
+
         return "stock";
     }
 
