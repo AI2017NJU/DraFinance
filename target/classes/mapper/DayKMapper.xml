@@ -17,4 +17,8 @@
         select `id`, symbol, high, low, `open`, `close`, dealAmount, dealValue, `dataTime` as `date` from dayK
         where symbol = #{symbol} order by dataTime asc limit 0, 365
     </select>
+
+    <select id="findDayK" resultType="model.DayK">
+        select * from dayK where symbol = #{symbol} and dataTime = #{date}
+    </select>
 </mapper>

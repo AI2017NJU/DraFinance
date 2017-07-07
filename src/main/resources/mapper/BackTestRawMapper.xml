@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="dao.BackTestRawDAO">
+    <select id="find" resultType="model.BackTestRaw">
+        select dayK.symbol as symbol,
+        dayK.high as high,
+        dayK.low as low,
+        dayK.open as `open`,
+        dayK.close as `close`,
+        dayK.dealAmount as dealAmount,
+        dayK.dataTime as `date`
+        mashData.ma20_price as ma20
+        from dayK, mashData
+        where dayK.symbol = #{symbol}
+        and mashData.symbol = #{symbol}
+        and dayK.dataTime = #{date}
+        and mashData.dataTime = #{date}
+        order by `date` ASC
+    </select>
+
+    <select id="findNameRange" resultType="model.BackTestRaw">
+        select dayK.symbol as symbol,
+        dayK.high as high,
+        dayK.low as low,
+        dayK.open as `open`,
+        dayK.close as `close`,
+        dayK.dealAmount as dealAmount,
+        dayK.dataTime as `date`
+        mashData.ma20_price as ma20
+        from dayK, mashData
+        where dayK.symbol BETWEEN #{startSymbol} and #{endSymbol}
+        and mashData.symbol = dayK.symbol
+        and dayK.dataTime = #{date}
+        and mashData.dataTime = #{date}
+        order by `date` ASC
+    </select>
+
+    <select id="findTimeRange" resultType="model.BackTestRaw">
+        select dayK.symbol as symbol,
+        dayK.high as high,
+        dayK.low as low,
+        dayK.open as `open`,
+        dayK.close as `close`,
+        dayK.dealAmount as dealAmount,
+        dayK.dataTime as `date`
+        mashData.ma20_price as ma20
+        from dayK, mashData
+        where dayK.symbol = #{symbol}
+        and mashData.symbol = dayK.symbol
+        and dayK.dataTime BETWEEN #{startDate} amd #{endDate}
+        and mashData.dataTime = dayK.dataTime
+        order by `date` ASC
+    </select>
+</mapper>

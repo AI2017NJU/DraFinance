@@ -38,11 +38,9 @@
         <property name="suffix" value=".jsp" />
     </bean>
 
-<<<<<<< HEAD
+
     <!-- 定义异常处理页面 -->
-=======
-     <!--定义异常处理页面 -->
->>>>>>> 224e04d43d3678e150987ece83510ca259a66e03
+
     <!--<bean id="exceptionResolver" class="controller.ExceptionHandler"/>-->
 
     <!-- 定义静态文件目录 -->

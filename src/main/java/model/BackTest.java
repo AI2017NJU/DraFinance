@@ -9,6 +9,11 @@ public class BackTest {
     private double balance;
     private String date;
 
+    public BackTest(double balance, String date) {
+        this.balance = balance;
+        this.date = date;
+    }
+
     public double getBalance() {
         return balance;
     }

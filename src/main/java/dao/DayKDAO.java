@@ -14,4 +14,6 @@ public interface DayKDAO {
                                          @Param("startDate") String startDate,
                                          @Param("endDate") String endDate);
     List<DayK> findDayKListYear(String symbol);
+    DayK findDayK(@Param("symbol") String symbol,
+                  @Param("date") String date);
 }
