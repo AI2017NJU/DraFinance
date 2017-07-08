@@ -8,10 +8,21 @@ import java.util.List;
 public class BackTest {
     private double balance;
     private String date;
+    private double value;
 
-    public BackTest(double balance, String date) {
+    @Override
+    public String toString() {
+        return "BackTest{" +
+                "balance=" + balance +
+                ", date='" + date + '\'' +
+                ", value=" + value +
+                '}';
+    }
+
+    public BackTest(double balance, double value, String date) {
         this.balance = balance;
         this.date = date;
+        this.value = value;
     }
 
     public BackTest() {}
@@ -33,4 +44,11 @@ public class BackTest {
     }
 
 
+    public double getValue() {
+        return value;
+    }
+
+    public void setValue(double value) {
+        this.value = value;
+    }
 }

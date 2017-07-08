@@ -48,18 +48,21 @@ public class GapRunner implements GapRunnerService {
      * 要求时间是以递增顺序的
      */
     private List<BackTest> calculate(double balance, String startDate, String endDate,
-                                     Map<String, Set<BackTestRaw>> trade) {
+                                     Map<String, Set<BackTestRaw>> trade,
+                                     Map<String, List<BackTestRaw>> priceList) {
         // trade key is date; value is all backtest data matches in the criteria
 
         // ware key is symbol
-
 
         Map<String, Integer> ware = new HashMap<>();
         List<BackTest> result = new ArrayList<>();
         LocalDate start = LocalDate.parse(startDate, common);
         LocalDate end = LocalDate.parse(endDate, common);
 
+        double value = 0;
+
         while (start.isBefore(end)) {
+            value = balance;
             String date = start.format(common);
             if(trade.containsKey(date)) {
                 for(BackTestRaw backTestRaw: trade.get(date)) {
@@ -72,6 +75,7 @@ public class GapRunner implements GapRunnerService {
                         else {
                             ware.put(backTestRaw.getSymbol(), 1);
                         }
+
                     }
                     else if(backTestRaw.getState() == 2 && ware.get(backTestRaw.getSymbol()) != null
                             && ware.get(backTestRaw.getSymbol()) > 1) {
@@ -80,9 +84,24 @@ public class GapRunner implements GapRunnerService {
                     }
                 }
             }
-            result.add(new BackTest(balance, date));
+
+//            System.out.println("from calculate loop: " + date);
+            for(String symbol: priceList.keySet()) {
+                if(ware.keySet().contains(symbol)) {
+                    for(BackTestRaw backTestRaw: priceList.get(symbol)) {
+                        if(backTestRaw.getDate().equals(date)) {
+                            value += backTestRaw.getOpen() * ware.get(symbol);
+                            break;
+                        }
+                    }
+                }
+
+            }
+
+            result.add(new BackTest(balance, value, date));
             start = start.plusDays(1);
         }
+        System.out.println("from GapRunner.calculate: " + result);
         return result;
     }
 
@@ -124,8 +143,8 @@ public class GapRunner implements GapRunnerService {
                 }
             }
         }
-        System.out.println("from strategy.GapRunner: " + trade);
-        return calculate(balance, startDate, endDate, trade);
+        System.out.println("from strategy.GapRunner trade result: " + trade);
+        return calculate(balance, startDate, endDate, trade, data);
     }
 }
 
