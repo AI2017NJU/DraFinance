@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="dao.DayKDAO">
+    <select id="findDayKList" resultType="model.DayK">
+        select `id`, symbol, high, low, `open`, `close`, dealAmount, dealValue, `dataTime` as `date` from dayK
+        where symbol = #{symbol} order by dataTime asc
+    </select>
+
+    <select id="findDayKListWithTimeRange" resultType="model.DayK">
+        select `id`, symbol, high, low, `open`, `close`, dealAmount, dealValue, `dataTime` as `date` from dayK
+        where symbol = #{symbol} and `dataTime` BETWEEN #{startDate} and #{endDate} order by dataTime asc
+    </select>
+
+    <select id="findDayKListYear" resultType="model.DayK">
+        select `id`, symbol, high, low, `open`, `close`, dealAmount, dealValue, `dataTime` as `date` from dayK
+        where symbol = #{symbol} order by dataTime asc limit 0, 365
+    </select>
+
+    <select id="findDayK" resultType="model.DayK">
+        select * from dayK where symbol = #{symbol} and dataTime = #{date}
+    </select>
+</mapper>

@@ -16,4 +16,16 @@ public interface DayKDAO {
     List<DayK> findDayKListYear(String symbol);
     DayK findDayK(@Param("symbol") String symbol,
                   @Param("date") String date);
+
+    List<DayK> getPriceTrainData(@Param("year") String year,
+                                 @Param("stockId") String stockId);
+
+    List<DayK> getPricePreditData(@Param("time")String time,
+                                  @Param("stockId")String stockId);
+
+    List<DayK> getPricePreditData(@Param("stockId")String stockId);
+
+    List<String> getDates(@Param("stockId")String stockId);
+
+
 }

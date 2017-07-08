@@ -15,4 +15,9 @@ public interface MashDAO {
                                     @Param("endDate") String endDate);
     Mash findBySymbolAndDate(@Param("symbol") String symbol,
                              @Param("date") String date);
+
+    List<Mash> getPriceTrainData(@Param("year") String year,
+                                 @Param("stockId") String stockId);
+
+    List<Mash> getPricePreditData(@Param("stockId") String stockId);
 }
