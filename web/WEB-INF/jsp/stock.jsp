@@ -329,12 +329,12 @@
     <div id="forecast" class="stock_content" style="display: none;">
         <div id="forecast_one" class="stock_content_single">
             <p class="stock_content_title"><img src="<c:url value="/img/logo_s.png"/>">走势预测<span>(未来十五天收盘价)</span></p>
-            <%--<h3>SVM模型预测</h3>--%>
-            <%--<div id="forecast_graph">--%>
+            <h3>SVM模型预测</h3>
+            <div id="forecast_graph">
 
-            <%--</div>--%>
+            </div>
 
-            <%--<br>--%>
+            <br>
 
             <h3>BP神经网络模型预测</h3>
             <div id="bp_forecast_graph" style="height: 400px;">
@@ -342,117 +342,7 @@
             </div>
         </div>
 
-        <%--<div id="forecast_two" class="stock_content_single">--%>
-            <%--<p class="stock_content_title"><img src="<c:url value="/img/logo_s.png"/>">特殊预测</p>--%>
 
-            <%--<div class="forecast_special_wrapper">--%>
-                <%--<div id="special_graph_rsi" class="forecast_special_graph">--%>
-
-                <%--</div>--%>
-                <%--<p id="special_graph_rsi_ins"></p>--%>
-            <%--</div>--%>
-            <%--<div class="forecast_special_wrapper">--%>
-                <%--<div id="special_graph_kdj" class="forecast_special_graph">--%>
-
-                <%--</div>--%>
-                <%--<p id="special_graph_kdj_ins"></p>--%>
-            <%--</div>--%>
-            <%--<div class="forecast_special_wrapper">--%>
-                <%--<div id="special_graph_boll" class="forecast_special_graph">--%>
-
-                <%--</div>--%>
-                <%--<p id="special_graph_boll_ins"></p>--%>
-            <%--</div>--%>
-
-            <%--<c:if test="${detailStrategy.DawnStarBL==true}">--%>
-                <%--<div class="detail_strategy">--%>
-                    <%--<div id="detail_strategy_dawnStar" class="detail_strategy_graph">--%>
-
-                    <%--</div>--%>
-                    <%--<p class="tips">Tips: ${detailStrategy.DawnStarIns}<br>--%>
-                        <%--详细分析: ${detailStrategy.DawnStarDetail}<br>--%>
-                        <%--图形特点: ${detailStrategy.DawnStarGraph}--%>
-                    <%--</p>--%>
-                <%--</div>--%>
-            <%--</c:if>--%>
-            <%--<c:if test="${detailStrategy.DuskStarBL==true}">--%>
-                <%--<div class="detail_strategy">--%>
-                    <%--<div id="detail_strategy_duskStar" class="detail_strategy_graph">--%>
-
-                    <%--</div>--%>
-                    <%--<p class="tips"><b>Tips:</b> ${detailStrategy.DuskStarIns}<br><br>--%>
-                        <%--<b>详细分析:</b> ${detailStrategy.DuskStarDetail}<br><br>--%>
-                        <%--<b>图形特点:</b> ${detailStrategy.DuskStarGraph}--%>
-                    <%--</p>--%>
-                <%--</div>--%>
-            <%--</c:if>--%>
-            <%--<c:if test="${detailStrategy.ShutStarBL==true}">--%>
-                <%--<div class="detail_strategy">--%>
-                    <%--<div id="detail_strategy_shutStar" class="detail_strategy_graph">--%>
-
-                    <%--</div>--%>
-                    <%--<p class="tips"><b>Tips:</b> ${detailStrategy.ShutStarIns}<br><br>--%>
-                        <%--<b>详细分析:</b> ${detailStrategy.ShutStarDetail}<br><br>--%>
-                        <%--<b>图形特点:</b> ${detailStrategy.ShutStarGraph}--%>
-                    <%--</p>--%>
-                <%--</div>--%>
-            <%--</c:if>--%>
-            <%--<c:if test="${detailStrategy.HangOnBL==true}">--%>
-                <%--<div class="detail_strategy">--%>
-                    <%--<div id="detail_strategy_hangOn" class="detail_strategy_graph">--%>
-
-                    <%--</div>--%>
-                    <%--<p class="tips"><b>Tips:</b> ${detailStrategy.HangOnIns}<br><br>--%>
-                        <%--<b>详细分析:</b> ${detailStrategy.HangOnDetail}<br><br>--%>
-                        <%--<b>图形特点:</b> ${detailStrategy.HangOnGraph}--%>
-                    <%--</p>--%>
-                <%--</div>--%>
-            <%--</c:if>--%>
-            <%--<c:if test="${detailStrategy.PregnantBL==true}">--%>
-                <%--<div class="detail_strategy">--%>
-                    <%--<div id="detail_strategy_pregnant" class="detail_strategy_graph">--%>
-
-                    <%--</div>--%>
-                    <%--<p class="tips"><b>Tips:</b> ${detailStrategy.PregnantIns}<br><br>--%>
-                        <%--<b>详细分析:</b> ${detailStrategy.PregnantDetail}<br><br>--%>
-                        <%--<b>图形特点:</b> ${detailStrategy.PregnantGraph}--%>
-                    <%--</p>--%>
-                <%--</div>--%>
-            <%--</c:if>--%>
-            <%--<c:if test="${detailStrategy.DarkCloudeBL==true}">--%>
-                <%--<div class="detail_strategy">--%>
-                    <%--<div id="detail_strategy_darkCloud" class="detail_strategy_graph">--%>
-
-                    <%--</div>--%>
-                    <%--<p class="tips"><b>Tips:</b> ${detailStrategy.DarkCloudeIns}<br><br>--%>
-                        <%--<b>详细分析:</b> ${detailStrategy.DarkCloudeDetail}<br><br>--%>
-                        <%--<b>图形特点:</b> ${detailStrategy.DarkCloudeGraph}--%>
-                    <%--</p>--%>
-                <%--</div>--%>
-            <%--</c:if>--%>
-            <%--<c:if test="${detailStrategy.DawnLightBL==true}">--%>
-                <%--<div class="detail_strategy">--%>
-                    <%--<div id="detail_strategy_dawnLight" class="detail_strategy_graph">--%>
-
-                    <%--</div>--%>
-                    <%--<p class="tips"><b>Tips:</b> ${detailStrategy.DawnLightIns}<br><br>--%>
-                        <%--<b>详细分析:</b> ${detailStrategy.DawnLightDetail}<br><br>--%>
-                        <%--<b>图形特点:</b> ${detailStrategy.DawnLightGraph}--%>
-                    <%--</p>--%>
-                <%--</div>--%>
-            <%--</c:if>--%>
-            <%--<c:if test="${detailStrategy.RedSolderBL==true}">--%>
-                <%--<div class="detail_strategy">--%>
-                    <%--<div id="detail_strategy_redSolder" class="detail_strategy_graph">--%>
-
-                    <%--</div>--%>
-                    <%--<p class="tips"><b>Tips:</b> ${detailStrategy.RedSolderIns}<br><br>--%>
-                        <%--<b>详细分析:</b> ${detailStrategy.RedSolderDetail}<br><br>--%>
-                        <%--<b>图形特点:</b> ${detailStrategy.RedSolderGraph}--%>
-                    <%--</p>--%>
-                <%--</div>--%>
-            <%--</c:if>--%>
-        <%--</div>--%>
     </div>
 
     <div id="company" class="stock_content" style="display: none;">
@@ -640,8 +530,8 @@
     <c:if test="${not empty mashEventList}">mashEventList = ${mashEventList};</c:if>
     var bpPrediction = [];
     <c:if test="${not empty bpPredictionList}">bpPrediction = ${bpPredictionList}</c:if>
-//    console.log(jsonData);
-//    console.log(mashEventList);
+    var forecastData = [];
+    <c:if test="${not empty forecastData}">forecastData = ${forecastData}</c:if>
 </script>
 
 <script type="text/javascript" rel="script" src="<c:url value="/js/jquery-2.2.3.min.js"/>"></script>
