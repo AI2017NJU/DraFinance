@@ -10,7 +10,7 @@
         dayK.open as `open`,
         dayK.close as `close`,
         dayK.dealAmount as dealAmount,
-        dayK.dataTime as `date`
+        dayK.dataTime as `date`,
         mashData.ma20_price as ma20
         from dayK, mashData
         where dayK.symbol = #{symbol}
@@ -27,7 +27,7 @@
         dayK.open as `open`,
         dayK.close as `close`,
         dayK.dealAmount as dealAmount,
-        dayK.dataTime as `date`
+        dayK.dataTime as `date`,
         mashData.ma20_price as ma20
         from dayK, mashData
         where dayK.symbol BETWEEN #{startSymbol} and #{endSymbol}
@@ -44,12 +44,12 @@
         dayK.open as `open`,
         dayK.close as `close`,
         dayK.dealAmount as dealAmount,
-        dayK.dataTime as `date`
+        dayK.dataTime as `date`,
         mashData.ma20_price as ma20
         from dayK, mashData
         where dayK.symbol = #{symbol}
         and mashData.symbol = dayK.symbol
-        and dayK.dataTime BETWEEN #{startDate} amd #{endDate}
+        and dayK.dataTime BETWEEN #{startDate} and #{endDate}
         and mashData.dataTime = dayK.dataTime
         order by `date` ASC
     </select>

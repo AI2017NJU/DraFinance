@@ -1,6 +1,7 @@
-package strategy.stockList;
+package strategy.stockList.impl;
 
 import org.springframework.stereotype.Service;
+import strategy.stockList.StockPoolManagerService;
 
 import java.util.Arrays;
 import java.util.List;
@@ -8,8 +9,8 @@ import java.util.List;
 /**
  * Created by stonezhang on 2017/7/7.
  */
-@Service("StockPoolManager")
-public class StockPoolManager {
+@Service("StockPoolManagerService")
+public class StockPoolManager implements StockPoolManagerService {
     public List<String> getStockPool() {
         return Arrays.asList("SH600000",
                 "SH600004",

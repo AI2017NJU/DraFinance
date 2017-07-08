@@ -5,8 +5,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import strategy.gap.GapJudge;
-import strategy.runner.GapRunner;
+import strategy.runner.impl.GapRunner;
 
 /**
  * Created by stonezhang on 2017/7/7.
@@ -19,6 +18,6 @@ public class GapRunnerTest {
 
     @Test
     public void testRunner() {
-        gapRunner.runBacktest(10000, "2016-01-01", "2016-07-01");
+//        gapRunner.runBacktest(10000, "2016-01-01", "2016-07-01");
     }
 }
