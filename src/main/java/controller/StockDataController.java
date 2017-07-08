@@ -83,6 +83,10 @@ public class StockDataController {
         List<BpPrediction> bpPredictionList = stockDataService.getBpPredictionData(ID);
         model.addAttribute("bpPredictionList", JSON.toJSON(bpPredictionList));
 
+        //TODO
+        //SVM预测的数据List，PO三个属性price_high, price_low, price_middle
+        model.addAttribute("forecastData", JSON.toJSON(""));
+
         return "stock";
     }
 

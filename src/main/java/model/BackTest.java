@@ -14,6 +14,8 @@ public class BackTest {
         this.date = date;
     }
 
+    public BackTest() {}
+
     public double getBalance() {
         return balance;
     }
@@ -21,4 +23,14 @@ public class BackTest {
     public void setBalance(double balance) {
         this.balance = balance;
     }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+
 }

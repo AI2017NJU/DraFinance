@@ -14,6 +14,8 @@ public class BackTestRaw {
     private double ma20;
     private int state; // 0:未决定; 1: 买; 2:卖
 
+    public BackTestRaw() {}
+
     @Override
     public String toString() {
         return "BackTestRaw{" +

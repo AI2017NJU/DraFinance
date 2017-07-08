@@ -468,7 +468,7 @@ AmCharts.ready(function() {
     //
     // initGradeChart();
     initBpForecastChart();
-    // initForecastChart();
+    initForecastChart();
     // initGradeHistoryChart();
     // initRelativeHistoryChart();
     // initTabTableChart2();
