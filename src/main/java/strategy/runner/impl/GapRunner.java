@@ -90,7 +90,7 @@ public class GapRunner implements GapRunnerService {
                 if(ware.keySet().contains(symbol)) {
                     for(BackTestRaw backTestRaw: priceList.get(symbol)) {
                         if(backTestRaw.getDate().equals(date)) {
-                            value += backTestRaw.getOpen() * ware.get(symbol);
+                            value += backTestRaw.getOpen() * ware.get(symbol) * 100;
                             break;
                         }
                     }
@@ -102,6 +102,7 @@ public class GapRunner implements GapRunnerService {
             start = start.plusDays(1);
         }
         System.out.println("from GapRunner.calculate: " + result);
+        System.out.println("from GapRunner.calculate: " + ware);
         return result;
     }
 
