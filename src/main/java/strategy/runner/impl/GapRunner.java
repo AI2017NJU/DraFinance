@@ -98,11 +98,16 @@ public class GapRunner implements GapRunnerService {
 
             }
 
-            result.add(new BackTest(balance, value, date));
+            if(balance != value) {
+                result.add(new BackTest(balance, value, date));
+                System.out.println("from calculate: " + date + " value: " + value + " balance: " + balance +
+                        " with sell&buy: " + trade.containsKey(date));
+            }
+
             start = start.plusDays(1);
         }
-        System.out.println("from GapRunner.calculate: " + result);
-        System.out.println("from GapRunner.calculate: " + ware);
+//        System.out.println("from GapRunner.calculate: " + result);
+//        System.out.println("from GapRunner.calculate: " + ware);
         return result;
     }
 
