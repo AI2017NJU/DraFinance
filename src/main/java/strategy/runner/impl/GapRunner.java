@@ -19,6 +19,9 @@ import java.util.*;
 
 /**
  * Created by stonezhang on 2017/7/7.
+ * 可能的bug位置
+ * calculate函数的ware的维护
+ * runBacktest函数的trade的维护，特别是取出map里已经有的set然后向里面加元素的可行性，以及set和list之间的转换
  */
 @Service("GapRunnerService")
 public class GapRunner implements GapRunnerService {
