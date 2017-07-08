@@ -48,9 +48,11 @@ function handleRevenueChart(data) {
 
     var xAxis = [];
     var yAxis = [];
+    var yAxis2 = [];
 
     for (var i = 0; i < data.length; i++) {
         yAxis.push(data[i].balance);
+        yAxis2.push(data[i].value);
         xAxis.push(data[i].date);
     }
 
@@ -66,23 +68,29 @@ function handleRevenueChart(data) {
                 type: 'cross'
             }
         },
+        legend: {
+            data:['剩余金额','总金额'],
+            show: true
+        },
         grid: {
             top: 70,
             bottom: 50
         },
-        visualMap: {
-            top: 10,
-            right: 10,
-            pieces: [{
-                gt: 0,
-                lte: start_balance,
-                color: colors[0]
-            }, {
-                gt: start_balance,
-                // lte: 100,
-                color: colors[1]
-            }]
-        },
+        visualMap: [
+            {
+                top: 10,
+                right: 10,
+                pieces: [{
+                    gt: 0,
+                    lte: start_balance,
+                    color: colors[0]
+                }, {
+                    gt: start_balance,
+                    // lte: 100,
+                    color: colors[1]
+                }]
+            }
+        ],
         dataZoom: [{
             start: 60,
             end: 100
@@ -112,13 +120,14 @@ function handleRevenueChart(data) {
         ],
         yAxis: [
             {
-                title: '总金额',
-                type: 'value'
+                title: '剩余金额',
+                type: 'value',
+                min: 'dataMin'
             }
         ],
         series: [
             {
-                name:'总金额',
+                name:'剩余金额',
                 type:'line',
                 xAxisIndex: 0,
                 smooth: true,
@@ -128,7 +137,18 @@ function handleRevenueChart(data) {
                     data: [{
                         yAxis: start_balance
                     }]
+                },
+                lineStyle: {
+                    normal: {
+                        color: '#000000'
+                    }
                 }
+            }, {
+                name: '总金额',
+                type: 'line',
+                xAxisIndex: 0,
+                smooth: true,
+                data: yAxis2
             }
         ]
     };
