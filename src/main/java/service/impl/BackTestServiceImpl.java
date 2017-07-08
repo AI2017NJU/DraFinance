@@ -35,7 +35,7 @@ public class BackTestServiceImpl implements BackTestService {
     @Override
     public List<BackTest> getBacktestResult(double balance, String startDate, String endDate) {
         GapRunner gapRunner = new GapRunner();
-        return gapRunner.runBacktest(balance, pack(startDate, endDate));
+        return gapRunner.runBacktest(balance, startDate, endDate, pack(startDate, endDate));
     }
 
     /**

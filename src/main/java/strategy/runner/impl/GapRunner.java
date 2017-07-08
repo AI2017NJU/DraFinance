@@ -13,6 +13,7 @@ import strategy.runner.GapRunnerService;
 import strategy.stockList.StockPoolManagerService;
 import strategy.stockList.impl.StockPoolManager;
 
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
@@ -33,6 +34,9 @@ public class GapRunner implements GapRunnerService {
     @Autowired
     private SelloutJudgeService selloutJudgeService;
 
+    private DateTimeFormatter common = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+
     /**
      * @param balance
      * @param trade
@@ -40,34 +44,42 @@ public class GapRunner implements GapRunnerService {
      * 接受时间-可以买卖的股票数据list 的map，计算结果
      * 要求时间是以递增顺序的
      */
-    private List<BackTest> calculate(double balance, Map<String, Set<BackTestRaw>> trade) {
+    private List<BackTest> calculate(double balance, String startDate, String endDate,
+                                     Map<String, Set<BackTestRaw>> trade) {
         // trade key is date; value is all backtest data matches in the criteria
 
         // ware key is symbol
 
+
         Map<String, Integer> ware = new HashMap<>();
         List<BackTest> result = new ArrayList<>();
-        for(String date: trade.keySet()) {
-            for(BackTestRaw backTestRaw: trade.get(date)) {
-                if(backTestRaw.getState() == 1 && balance > 100 * backTestRaw.getOpen()) {
-                    // buy in
-                    balance -= 100 * backTestRaw.getOpen();
-                    if(ware.containsKey(backTestRaw.getSymbol())) {
-                        ware.put(backTestRaw.getSymbol(), ware.get(backTestRaw.getSymbol()) + 1);
+        LocalDate start = LocalDate.parse(startDate, common);
+        LocalDate end = LocalDate.parse(endDate, common);
+
+        while (start.isBefore(end)) {
+            String date = start.format(common);
+            if(trade.containsKey(date)) {
+                for(BackTestRaw backTestRaw: trade.get(date)) {
+                    if(backTestRaw.getState() == 1 && balance > 100 * backTestRaw.getOpen()) {
+                        // buy in
+                        balance -= 100 * backTestRaw.getOpen();
+                        if(ware.containsKey(backTestRaw.getSymbol())) {
+                            ware.put(backTestRaw.getSymbol(), ware.get(backTestRaw.getSymbol()) + 1);
+                        }
+                        else {
+                            ware.put(backTestRaw.getSymbol(), 1);
+                        }
                     }
-                    else {
-                        ware.put(backTestRaw.getSymbol(), 1);
+                    else if(backTestRaw.getState() == 2 && ware.get(backTestRaw.getSymbol()) != null
+                            && ware.get(backTestRaw.getSymbol()) > 1) {
+                        balance += 100 * backTestRaw.getOpen();
+                        ware.put(backTestRaw.getSymbol(), ware.get(backTestRaw.getSymbol()) - 1);
                     }
-                }
-                else if(backTestRaw.getState() == 2 && ware.get(backTestRaw.getSymbol()) != null
-                        && ware.get(backTestRaw.getSymbol()) > 1) {
-                    balance += 100 * backTestRaw.getOpen();
-                    ware.put(backTestRaw.getSymbol(), ware.get(backTestRaw.getSymbol()) - 1);
                 }
             }
             result.add(new BackTest(balance, date));
+            start = start.plusDays(1);
         }
-
         return result;
     }
 
@@ -77,7 +89,8 @@ public class GapRunner implements GapRunnerService {
      * @return
      *  将股票id-股票数据list的map转化为时间-可以买卖的股票数据list 的map
      */
-    public List<BackTest> runBacktest(double balance, Map<String, List<BackTestRaw>> data) {
+    public List<BackTest> runBacktest(double balance, String startDate, String endDate,
+                                      Map<String, List<BackTestRaw>> data) {
         BuyinJudge buyinJudge = new BuyinJudge();
         SelloutJudge selloutJudge = new SelloutJudge();
         System.out.println("from strategy.GapRunner: " + data);
@@ -109,7 +122,7 @@ public class GapRunner implements GapRunnerService {
             }
         }
         System.out.println("from strategy.GapRunner: " + trade);
-        return calculate(balance, trade);
+        return calculate(balance, startDate, endDate, trade);
     }
 }
 

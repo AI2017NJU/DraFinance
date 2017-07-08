@@ -10,5 +10,6 @@ import java.util.Map;
  * Created by stonezhang on 2017/7/8.
  */
 public interface GapRunnerService {
-    public List<BackTest> runBacktest(double balance, Map<String, List<BackTestRaw>> data);
+    public List<BackTest> runBacktest(double balance, String startDate, String endDate,
+                                      Map<String, List<BackTestRaw>> data);
 }
