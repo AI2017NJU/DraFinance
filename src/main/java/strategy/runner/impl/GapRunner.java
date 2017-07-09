@@ -62,7 +62,6 @@ public class GapRunner implements GapRunnerService {
         double value = 0;
 
         while (start.isBefore(end)) {
-            value = balance;
             String date = start.format(common);
             if(trade.containsKey(date)) {
                 for(BackTestRaw backTestRaw: trade.get(date)) {
@@ -84,7 +83,7 @@ public class GapRunner implements GapRunnerService {
                     }
                 }
             }
-
+            value = balance;
 //            System.out.println("from calculate loop: " + date);
             for(String symbol: priceList.keySet()) {
                 if(ware.keySet().contains(symbol)) {
