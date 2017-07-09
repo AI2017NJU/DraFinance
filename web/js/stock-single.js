@@ -1335,6 +1335,7 @@ function initBpForecastChart() {
     bpForecastChart.addClassNames = true;
     bpForecastChart.title = "Future";
     bpForecastChart.dataProvider = bpPrediction;
+    console.log(bpPrediction);
     bpForecastChart.categoryField = "date";
     bpForecastChart.dataDateFormat = "YYYY-MM-DD";
 
@@ -1413,6 +1414,9 @@ function initBpForecastChart() {
 
 function initForecastChart() {
     forecastChart = new AmCharts.AmSerialChart();
+    forecastData = [
+        {date:'2017-07-01',price_true:12, price_predict:13},
+        {date:'2017-07-02',price_true:14, price_predict:13}];
     forecastChart.dataProvider = forecastData;
     forecastChart.categoryField = "date";
     forecastChart.dataDateFormat = "YYYY-MM-DD";
@@ -1445,33 +1449,33 @@ function initForecastChart() {
         format: 'YYYY'
     }];
 
-    var maxGraph = new AmCharts.AmGraph();
-    maxGraph.id = "maxGraph";
-    maxGraph.title = "最大预估";
-    maxGraph.type = "line";
-    maxGraph.valueField = "price_high";
-    maxGraph.balloonText = "最大预估: <b>[[value]]</b>";
-    forecastChart.addGraph(maxGraph);
+    var trueGraph = new AmCharts.AmGraph();
+    trueGraph.id = "maxGraph";
+    trueGraph.title = "真实值";
+    trueGraph.type = "line";
+    trueGraph.valueField = "price_true";
+    trueGraph.balloonText = "真实值: <b>[[value]]</b>";
+    forecastChart.addGraph(trueGraph);
 
     var minGraph = new AmCharts.AmGraph();
-    minGraph.title = "最小预估";
+    minGraph.title = "预测值";
     minGraph.type = "line";
     minGraph.fillAlphas = 0.2;
     minGraph.fillToGraph = "maxGraph";
-    minGraph.valueField = "price_low";
-    minGraph.balloonText = "最小预估: <b>[[value]]</b>";
+    minGraph.valueField = "price_predict";
+    minGraph.balloonText = "预测值: <b>[[value]]</b>";
     forecastChart.addGraph(minGraph);
 
-    var pointGraph = new AmCharts.AmGraph();
-    pointGraph.title = "中值";
-    pointGraph.type = "line";
-    pointGraph.bullet = "round";
-    pointGraph.bulletSize = 8;
-    pointGraph.bulletBorderThickness = 1;
-    pointGraph.lineAlpha = 0;
-    pointGraph.valueField = "price_middle";
-    pointGraph.balloonText = "中值: <b>[[value]]</b>";
-    forecastChart.addGraph(pointGraph);
+    // var pointGraph = new AmCharts.AmGraph();
+    // pointGraph.title = "中值";
+    // pointGraph.type = "line";
+    // pointGraph.bullet = "round";
+    // pointGraph.bulletSize = 8;
+    // pointGraph.bulletBorderThickness = 1;
+    // pointGraph.lineAlpha = 0;
+    // pointGraph.valueField = "price_middle";
+    // pointGraph.balloonText = "中值: <b>[[value]]</b>";
+    // forecastChart.addGraph(pointGraph);
 
     var cursor = new AmCharts.ChartCursor();
     cursor.fullWidth = false;

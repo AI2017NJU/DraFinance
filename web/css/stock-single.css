@@ -896,6 +896,21 @@
     margin-top: 10px;
 }
 
+.svm_change_wrapper{
+    margin-top:10px;
+    margin-left:30px;
+    display: flex;
+    flex-direction: row;
+    /*justify-content: space-between;*/
+}
+.svm-item_wrapper{
+    margin-top: 10px;
+    width: 220px;
+}
+#forecast_graph{
+    /*margin-left:30px;*/
+}
+
 @media (max-width:700px) {
     .detail_strategy {
         display: block;
@@ -912,3 +927,4 @@
         margin: 10px 10px 10px 0;
     }
 }
+

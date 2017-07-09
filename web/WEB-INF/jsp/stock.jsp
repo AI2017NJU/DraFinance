@@ -328,15 +328,58 @@
 
     <div id="forecast" class="stock_content" style="display: none;">
         <div id="forecast_one" class="stock_content_single">
-            <p class="stock_content_title"><img src="<c:url value="/img/logo_s.png"/>">走势预测<span>(未来十五天收盘价)</span></p>
+            <p class="stock_content_title"><img src="<c:url value="/img/logo_s.png"/>">走势预测<span></span></p>
             <h3>SVM模型预测</h3>
+
+            <div>
+                <div class="svm_change_wrapper">
+                    <div class="svm-item_wrapper">
+                        <div  class="num-item">明日开盘预测：暂无数据</div>
+                    </div>
+                </div>
+
+                <div class="svm_change_wrapper">
+                    <div class="svm-item_wrapper">
+                        <div class="num-item">明日涨跌预测</div>
+                    </div>
+                </div>
+
+                <div class="svm_change_wrapper">
+                    <div class="svm-item_wrapper">
+                        <div class="num-item">MA5 预测：暂无数据</div>
+                    </div>
+                    <div class="svm-item_wrapper">
+                        <div class="num-item">MA10 预测：暂无数据</div>
+                    </div>
+                    <div class="svm-item_wrapper">
+                        <div class="num-item">MA20 预测：暂无数据</div>
+                    </div>
+                    <div class="svm-item_wrapper">
+                        <div class="num-item">MA51020 预测：暂无数据</div>
+                    </div>
+                </div>
+                <div class="svm_change_wrapper">
+                    <div class="svm-item_wrapper">
+                        <div class="num-item">MACD 预测：暂无数据</div>
+                    </div>
+                    <div class="svm-item_wrapper">
+                        <div class="num-item">KDJ 预测：暂无数据</div>
+                    </div>
+                    <div class="svm-item_wrapper">
+                        <div class="num-item">RSI 预测：暂无数据</div>
+                    </div>
+                    <div class="svm-item_wrapper">
+                    </div>
+                </div>
+            </div>
+
             <div id="forecast_graph">
 
             </div>
 
             <br>
 
-            <h3>BP神经网络模型预测</h3>
+            <h3>BP神经网络模型预测(未来十五天收盘价)</h3>
             <div id="bp_forecast_graph" style="height: 400px;">
 
             </div>
