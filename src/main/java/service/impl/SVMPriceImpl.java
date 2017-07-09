@@ -4,12 +4,17 @@ import dao.DayKDAO;
 import libsvm.*;
 
 import model.DayK;
+import model.SVM;
 import org.springframework.stereotype.Service;
 import service.SVMPriceService;
 
 import javax.annotation.Resource;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by christine on 2017/7/8.
@@ -19,11 +24,21 @@ public class SVMPriceImpl implements SVMPriceService {
     /**取“一段时间”来预测，这里为7天*/
     public static final int days=7;
 
-    @Resource
-    private DayKDAO dayKDAO;
+//    @Resource
+//    private DayKDAO dayKDAO;
 
     @Override
-    public void predictByOCHL_List() {
+    public List<SVM> predictByOCHL_List(String stockId) {
+        List<SVM> svmList=new ArrayList<SVM>();
+        for(int i=0;i<15;i++)
+        {
+            SVM svm=new SVM();
+            svm.setDate("2017-7-"+i);
+            double price=new Random().nextDouble()*20;
+            svm.setPrice_predit(price+new Random().nextDouble()*3);
+            svm.setPrice_true(price+new Random().nextDouble()*3);
+            svmList.add(svm);
+        }
 //        List<String> time_series=timeseries();
 //        List<DayK> dayKs=train("2016");
 //        svm_node[][] datas =new svm_node[dayKs.size()-days][4*days];//训练集的向量表，4表示一天中取4个数据：开、收、高、低，一组数据共4*days个作为一个向量
@@ -108,6 +123,7 @@ public class SVMPriceImpl implements SVMPriceService {
 //            System.out.println(dayKs2.get(0).getDate()+" predict next day "+price);
 //        }
 //        System.out.println(priceList);
+        return svmList;
     }
 
     /**
@@ -116,7 +132,8 @@ public class SVMPriceImpl implements SVMPriceService {
      * 最后取最接近的情况下后一日与前一日开盘价的差与数据库中最新的一天的开盘价来计算预期后一日的开盘价
      * */
     @Override
-    public void predictByOCHL() {
+    public double predictByOCHL_Tomorrow(String stockId) {
+        return 0;
 //        List<DayK> dayKs=train("2016");
 //        svm_node[][] datas =new svm_node[dayKs.size()-days][4*days];//训练集的向量表，4表示一天中取4个数据：开、收、高、低，一组数据共4*days个作为一个向量
 //        double[] labels = new double[dayKs.size()-days];//对应的label，用作分类，标签值相同则为同一类，这里取每个标签值都不同，所以最后结果是看与训练集哪个时间段的情况最相近
@@ -212,25 +229,32 @@ public class SVMPriceImpl implements SVMPriceService {
         List<DayK> dayKList = new ArrayList<DayK>();
 
 //            resultSet = super.select(conn, "select * from dayK " + "where dataTime Like '"+year+"%' and symbol='SH600400' order by dataTime");
-        dayKList = dayKDAO.getPriceTrainData(year,stockId);
+//        dayKList = dayKDAO.getPriceTrainData(year,stockId);
         return dayKList;
     }
 
     public List<DayK> predict(String time,String stockId) {
         List<DayK> dayKList = new ArrayList<DayK>();
-//        try {
-            if(time==null||time.isEmpty())
-            {
-//                resultSet = super.select(conn, "select * from dayK " + "where symbol='SH600400' order by dataTime desc");
-                dayKList = dayKDAO.getPricePreditData(stockId);
-
-            }
-            else {
-                dayKList = dayKDAO.getPricePreditData(time,stockId);
-//                resultSet = super.select(conn, "select * from dayK " + "where symbol='SH600400' and dataTime<='" + time + "' order by dataTime desc");
-            }
-
-        dayKList = dayKDAO.getPricePreditData(time,stockId);
+////        try {
+//            if(time==null||time.isEmpty())
+//            {
+////                resultSet = super.select(conn, "select * from dayK " + "where symbol='SH600400' order by dataTime desc");
+//                dayKList = dayKDAO.getPricePreditData(stockId);
+//
+//            }
+//            else {
+//                dayKList = dayKDAO.getPricePreditData(time,stockId);
+////                resultSet = super.select(conn, "select * from dayK " + "where symbol='SH600400' and dataTime<='" + time + "' order by dataTime desc");
+//            }
+//
+//        dayKList = dayKDAO.getPricePreditData(time,stockId);
         return dayKList;
+    }
+
+    public List<String> timeseries()
+    {
+        List<String> time_series = new ArrayList<>();
+//        dayKDAO.
+        return time_series;
     }
 }

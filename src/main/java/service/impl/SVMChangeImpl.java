@@ -28,7 +28,8 @@ public class SVMChangeImpl implements SVMChangeService{
     }
 
     @Override
-    public void predictByMa5Price() {
+    public int predictByMa5Price(String stock_id) {
+        return 0;
 //        SVMPriceService pricetest=new SVMPriceImpl();
 //
 //        List<Mash> Mashs=test.train("2016");
@@ -106,32 +107,32 @@ public class SVMChangeImpl implements SVMChangeService{
     }
 
     @Override
-    public void predictByMa10Price() {
-
+    public int predictByMa10Price(String stock_id) {
+        return 0;
     }
 
     @Override
-    public void predictByMa20Price() {
-
+    public int predictByMa20Price(String stock_id) {
+        return 0;
     }
 
     @Override
-    public void predictByMa51020Price() {
-
+    public int predictByMa51020Price(String stock_id) {
+        return 0;
     }
 
     @Override
-    public void predictByMacd() {
-
+    public int predictByMacd(String stock_id) {
+        return 0;
     }
 
     @Override
-    public void predictByKDJ() {
-
+    public int predictByKDJ(String stock_id) {
+        return 0;
     }
 
     @Override
-    public void predictByRsi() {
-
+    public int predictByRsi(String stock_id) {
+        return 0;
     }
 }
