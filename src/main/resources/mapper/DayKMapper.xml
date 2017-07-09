@@ -21,4 +21,24 @@
     <select id="findDayK" resultType="model.DayK">
         select * from dayK where symbol = #{symbol} and dataTime = #{date}
     </select>
+
+    <select id="getPriceTrainData" resultType="model.DayK">
+        select `id`, symbol, high, low, `open`, `close`, dealAmount, dealValue, `dataTime` as `date` from dayK
+        where dataTime Like CONCAT('',#{year},'%') and symbol = #{stockId} order by dataTime
+    </select>
+
+    <select id="getPricePreditData" resultType="model.DayK">
+        select `id`, symbol, high, low, `open`, `close`, dealAmount, dealValue, `dataTime` as `date` from dayK
+        where symbol=#{stockId} order by dataTime desc
+    </select>
+
+    <select id="getPricePreditDataList" resultType="model.DayK">
+        select `id`, symbol, high, low, `open`, `close`, dealAmount, dealValue, `dataTime` as `date` from dayK
+        where symbol = #{stockId} and dataTime &lt; #{time} order by dataTime desc
+    </select>
+
+    <select id="getDates" resultType="String">
+        select dataTime from dayK
+        where symbol=#{stockId} order by dataTime desc
+    </select>
 </mapper>

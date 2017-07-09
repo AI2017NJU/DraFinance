@@ -20,7 +20,7 @@ public interface DayKDAO {
     List<DayK> getPriceTrainData(@Param("year") String year,
                                  @Param("stockId") String stockId);
 
-    List<DayK> getPricePreditData(@Param("time")String time,
+    List<DayK> getPricePreditDataList(@Param("time")String time,
                                   @Param("stockId")String stockId);
 
     List<DayK> getPricePreditData(@Param("stockId")String stockId);

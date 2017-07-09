@@ -32,4 +32,24 @@
           where symbol = #{symbol} and dataTime = #{date}
     </select>
 
+    <select id="getPriceTrainData" resultType="model.Mash">
+        select id, symbol, dataTime as `date`, ma5_volume as ma5Volume, ma5_price as ma5Price,
+        ma10_volume as ma10Volume, ma10_price as ma10Price,
+        ma20_volume as ma20Volume, ma20_price as ma20Price,
+        diff, dea, macd,
+        k, d, j,
+        rsi1, rsi2, rsi3 from mashData
+        where dataTime Like CONCAT('',#{year},'%') and symbol = #{stockId} order by dataTime
+    </select>
+
+    <select id="getPricePreditData" resultType="model.Mash">
+        select id, symbol, dataTime as `date`, ma5_volume as ma5Volume, ma5_price as ma5Price,
+        ma10_volume as ma10Volume, ma10_price as ma10Price,
+        ma20_volume as ma20Volume, ma20_price as ma20Price,
+        diff, dea, macd,
+        k, d, j,
+        rsi1, rsi2, rsi3 from mashData
+        where symbol=#{stockId} order by dataTime desc
+    </select>
+
 </mapper>
