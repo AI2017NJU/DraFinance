@@ -4,14 +4,10 @@ import dao.DayKDAO;
 import libsvm.*;
 import model.DayK;
 import model.SVM;
-import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import service.SVMPriceService;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -114,7 +110,7 @@ public class SVMPriceImpl implements SVMPriceService {
 
             SVM svm=new SVM();
             svm.setDate(time_series.get(i));
-            svm.setPrice_predit(price);
+            svm.setPrice_predict(price);
             svm.setPrice_true(dayKDAO.findDayK(stockId,time_series.get(i)).getOpen());
             svmList.add(svm);
         }

@@ -334,7 +334,9 @@
             <div>
                 <div class="svm_change_wrapper">
                     <div class="svm-item_wrapper">
-                        <div  class="num-item">明日开盘预测：暂无数据</div>
+                        <div  class="num-item">明日开盘预测：
+                            <span id="svm_price">暂无数据</span>
+                        </div>
                     </div>
                 </div>
 
@@ -346,27 +348,41 @@
 
                 <div class="svm_change_wrapper">
                     <div class="svm-item_wrapper">
-                        <div class="num-item">MA5 预测：暂无数据</div>
+                        <div class="num-item">MA5 预测：
+                            <span id="svm_ma5">暂无数据</span>
+                        </div>
                     </div>
                     <div class="svm-item_wrapper">
-                        <div class="num-item">MA10 预测：暂无数据</div>
+                        <div class="num-item">MA10 预测：
+                            <span id="svm_ma10">暂无数据</span>
+                        </div>
                     </div>
                     <div class="svm-item_wrapper">
-                        <div class="num-item">MA20 预测：暂无数据</div>
+                        <div class="num-item">MA20 预测：
+                            <span id="svm_ma20">暂无数据</span>
+                        </div>
                     </div>
                     <div class="svm-item_wrapper">
-                        <div class="num-item">MA51020 预测：暂无数据</div>
+                        <div class="num-item">MA51020 预测：
+                            <span id="svm_ma51020">暂无数据</span>
+                        </div>
                     </div>
                 </div>
                 <div class="svm_change_wrapper">
                     <div class="svm-item_wrapper">
-                        <div class="num-item">MACD 预测：暂无数据</div>
+                        <div class="num-item">MACD 预测：
+                            <span id="svm_macd">暂无数据</span>
+                        </div>
                     </div>
                     <div class="svm-item_wrapper">
-                        <div class="num-item">KDJ 预测：暂无数据</div>
+                        <div class="num-item">KDJ 预测：
+                            <span id="svm_kdj">暂无数据</span>
+                        </div>
                     </div>
                     <div class="svm-item_wrapper">
-                        <div class="num-item">RSI 预测：暂无数据</div>
+                        <div class="num-item">RSI 预测：
+                            <span id="svm_rsi">暂无数据</span>
+                        </div>
                     </div>
                     <div class="svm-item_wrapper">
                     </div>

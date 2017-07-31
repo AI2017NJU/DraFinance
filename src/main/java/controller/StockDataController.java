@@ -16,6 +16,8 @@ import tools.StockHelper;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,6 +36,10 @@ public class StockDataController {
     private IndustryService industryService;
     @Resource
     private MashEventService mashEventService;
+    @Resource
+    private SVMChangeService svmChangeService;
+    @Resource
+    private SVMPriceService svmPriceService;
 
     private CommentService xueqiuCommentService = new XueqiuCommentImpl();
     private CommentService gubaCommentSerivce = new GubaCommentImpl();
@@ -83,9 +89,36 @@ public class StockDataController {
         List<BpPrediction> bpPredictionList = stockDataService.getBpPredictionData(ID);
         model.addAttribute("bpPredictionList", JSON.toJSON(bpPredictionList));
 
+
+
+        List<SVM> svmPredictionList = new ArrayList<>();
+        SVM svm1 = new SVM();
+        svm1.setDate("2017-06-30");
+        svm1.setPrice_predict(32);
+        svm1.setPrice_true(30);
+        SVM svm2 = new SVM();
+        svm2.setDate("2017-07-01");
+        svm2.setPrice_predict(31);
+        svm2.setPrice_true(28);
+        svmPredictionList.add(svm1);
+        svmPredictionList.add(svm2);
         //TODO
         //SVM预测的数据List，PO三个属性price_high, price_low, price_middle
-        model.addAttribute("forecastData", JSON.toJSON(""));
+        model.addAttribute("forecastData", JSON.toJSON(svmPredictionList));
+//        model.addAttribute()
+
+        SVMChange svmChange = new SVMChange();
+        svmChange.setMa5(1);
+        svmChange.setMa10(1);
+        svmChange.setMa20(0);
+        svmChange.setMa51020(1);
+        svmChange.setMacd(0);
+        svmChange.setKdj(0);
+        svmChange.setRsi(1);
+
+        model.addAttribute("svmChange",JSON.toJSON(svmChange));
+
+        model.addAttribute("predictPrice",22);
 
         return "stock";
     }
@@ -100,6 +133,49 @@ public class StockDataController {
 
         StockInsText insText = instructionTextService.getStockAnalysis(currentData);
         map.put("instruction", insText);
+
+        return map;
+    }
+
+    @RequestMapping(value = "/stock/{ID}/SVMChange", method = RequestMethod.GET)
+    @ResponseBody
+    public Map<String, Object> getSVMChange(@PathVariable("ID") String ID, HttpServletResponse response) throws Exception {
+        Map<String, Object> map = new HashMap<>();
+
+        SVMChange svmChange = new SVMChange();
+        svmChange.setMa5(svmChangeService.predictByMa5Price(ID));
+        svmChange.setMa10(svmChangeService.predictByMa10Price(ID));
+        svmChange.setMa20(svmChangeService.predictByMa20Price(ID));
+        svmChange.setMa51020(svmChangeService.predictByMa51020Price(ID));
+        svmChange.setMacd(svmChangeService.predictByMacd(ID));
+        svmChange.setKdj(svmChangeService.predictByKDJ(ID));
+        svmChange.setRsi(svmChangeService.predictByRsi(ID));
+
+        map.put("svmChange", svmChange);
+
+        return map;
+    }
+
+    @RequestMapping(value = "/stock/{ID}/SVMPrice", method = RequestMethod.GET)
+    @ResponseBody
+    public Map<String, Object> getSVMPrice(@PathVariable("ID") String ID, HttpServletResponse response) throws Exception {
+        Map<String, Object> map = new HashMap<>();
+
+        double price = svmPriceService.predictByOCHL_Tomorrow(ID);
+        String format_price = new DecimalFormat("#.00").format(price);
+        map.put("svmPrice", format_price);
+
+        return map;
+    }
+
+    @RequestMapping(value = "/stock/{ID}/SVMPriceList", method = RequestMethod.GET)
+    @ResponseBody
+    public Map<String, Object> getSVMPriceList(@PathVariable("ID") String ID, HttpServletResponse response) throws Exception {
+        Map<String, Object> map = new HashMap<>();
+
+        List<SVM> svmList = svmPriceService.predictByOCHL_List(ID);
+
+        map.put("svmPriceList", svmList);
 
         return map;
     }

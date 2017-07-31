@@ -6,7 +6,7 @@ package model;
 public class SVM {
     private String date;
     private double price_true;
-    private double price_predit;
+    private double price_predict;
 
     public String getDate() {
         return date;
@@ -24,11 +24,11 @@ public class SVM {
         this.price_true = price_true;
     }
 
-    public double getPrice_predit() {
-        return price_predit;
+    public double getPrice_predict() {
+        return price_predict;
     }
 
-    public void setPrice_predit(double price_predit) {
-        this.price_predit = price_predit;
+    public void setPrice_predict(double price_predict) {
+        this.price_predict = price_predict;
     }
 }

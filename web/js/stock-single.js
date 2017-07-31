@@ -469,6 +469,8 @@ AmCharts.ready(function() {
     // initGradeChart();
     initBpForecastChart();
     initForecastChart();
+    initSVMChange();
+    initSVMPrice();
     // initGradeHistoryChart();
     // initRelativeHistoryChart();
     // initTabTableChart2();
@@ -1412,81 +1414,119 @@ function initBpForecastChart() {
     bpForecastChart.write("bp_forecast_graph");
 }
 
+function initSVMChange(){
+    $.ajax({
+        type: 'GET',
+        url: '/stock/' + stock_id + "/SVMChange",
+        dataType: 'json',
+        success: function (data) {
+            var sc = data.svmChange;
+            document.querySelector('#svm_ma5').innerHTML = sc.ma5 ;
+            document.querySelector('#svm_ma10').innerHTML = sc.ma10;
+            document.querySelector('#svm_ma20').innerHTML = sc.ma20;
+            document.querySelector('#svm_macd').innerHTML = sc.macd;
+            document.querySelector('#svm_kdj').innerHTML = sc.kdj;
+            document.querySelector('#svm_rsi').innerHTML = sc.rsi;
+            document.querySelector('#svm_ma51020').innerHTML = sc.ma51020;
+        },
+        error:function () {
+
+        }
+    });
+}
+
+function initSVMPrice(){
+    $.ajax({
+        type: 'GET',
+        url: '/stock/' + stock_id + "/SVMPrice",
+        dataType: 'json',
+        success: function (data) {
+            document.querySelector('#svm_price').innerHTML = data.svmPrice;
+        },
+        error:function () {
+
+        }
+    });
+}
+
 function initForecastChart() {
-    forecastChart = new AmCharts.AmSerialChart();
-    forecastData = [
-        {date:'2017-07-01',price_true:12, price_predict:13},
-        {date:'2017-07-02',price_true:14, price_predict:13}];
-    forecastChart.dataProvider = forecastData;
-    forecastChart.categoryField = "date";
-    forecastChart.dataDateFormat = "YYYY-MM-DD";
+    $.ajax({
+        type: 'GET',
+        url: '/stock/'+ stock_id + "/SVMPriceList",
+        dataType: 'json',
+        success: function(data) {
+            // updateDynamicData(data.svmPriceList);
+            console.log(data);
+            forecastChart = new AmCharts.AmSerialChart();
+            forecastData = [
+                {date:'2017-07-01',price_true:12, price_predict:13},
+                {date:'2017-07-02',price_true:14, price_predict:13}];
+            forecastChart.dataProvider = data.svmPriceList;
+            forecastChart.categoryField = "date";
+            forecastChart.dataDateFormat = "YYYY-MM-DD";
 
-    var axis = new AmCharts.ValueAxis();
-    axis.title = "SVM模型预测";
-    axis.inside = true;
-    axis.color = "#a0aab3";
-    forecastChart.addValueAxis(axis);
+            var axis = new AmCharts.ValueAxis();
+            axis.title = "SVM模型预测";
+            axis.inside = true;
+            axis.color = "#a0aab3";
+            forecastChart.addValueAxis(axis);
 
-    var categoryAxis = forecastChart.categoryAxis;
-    categoryAxis.minPeriod = "DD"; // our data is daily, so we set minPeriod to DD
-    categoryAxis.parseDates = true; // as our data is date-based, we set parseDates to true
-    categoryAxis.autoGridCount = false;
-    categoryAxis.color = "#a0aab3";
-    categoryAxis.gridCount = 50;
-    categoryAxis.gridAlpha = 0.1;
-    //categoryAxis.color = "#a0aab3";
-    categoryAxis.dateFormats = [{
-        period: 'DD',
-        format: 'DD'
-    }, {
-        period: 'WW',
-        format: 'MMM DD'
-    }, {
-        period: 'MM',
-        format: 'MMM'
-    }, {
-        period: 'YYYY',
-        format: 'YYYY'
-    }];
+            var categoryAxis = forecastChart.categoryAxis;
+            categoryAxis.minPeriod = "DD"; // our data is daily, so we set minPeriod to DD
+            categoryAxis.parseDates = true; // as our data is date-based, we set parseDates to true
+            categoryAxis.autoGridCount = false;
+            categoryAxis.color = "#a0aab3";
+            categoryAxis.gridCount = 50;
+            categoryAxis.gridAlpha = 0.1;
+            //categoryAxis.color = "#a0aab3";
+            categoryAxis.dateFormats = [{
+                period: 'DD',
+                format: 'DD'
+            }, {
+                period: 'WW',
+                format: 'MMM DD'
+            }, {
+                period: 'MM',
+                format: 'MMM'
+            }, {
+                period: 'YYYY',
+                format: 'YYYY'
+            }];
 
-    var trueGraph = new AmCharts.AmGraph();
-    trueGraph.id = "maxGraph";
-    trueGraph.title = "真实值";
-    trueGraph.type = "line";
-    trueGraph.valueField = "price_true";
-    trueGraph.balloonText = "真实值: <b>[[value]]</b>";
-    forecastChart.addGraph(trueGraph);
+            var trueGraph = new AmCharts.AmGraph();
+            trueGraph.id = "maxGraph";
+            trueGraph.title = "真实值";
+            trueGraph.type = "line";
+            trueGraph.valueField = "price_true";
+            trueGraph.balloonText = "真实值: <b>[[value]]</b>";
+            forecastChart.addGraph(trueGraph);
 
-    var minGraph = new AmCharts.AmGraph();
-    minGraph.title = "预测值";
-    minGraph.type = "line";
-    minGraph.fillAlphas = 0.2;
-    minGraph.fillToGraph = "maxGraph";
-    minGraph.valueField = "price_predict";
-    minGraph.balloonText = "预测值: <b>[[value]]</b>";
-    forecastChart.addGraph(minGraph);
+            var minGraph = new AmCharts.AmGraph();
+            minGraph.title = "预测值";
+            minGraph.type = "line";
+            minGraph.fillAlphas = 0.2;
+            minGraph.fillToGraph = "maxGraph";
+            minGraph.valueField = "price_predict";
+            minGraph.balloonText = "预测值: <b>[[value]]</b>";
+            forecastChart.addGraph(minGraph);
 
-    // var pointGraph = new AmCharts.AmGraph();
-    // pointGraph.title = "中值";
-    // pointGraph.type = "line";
-    // pointGraph.bullet = "round";
-    // pointGraph.bulletSize = 8;
-    // pointGraph.bulletBorderThickness = 1;
-    // pointGraph.lineAlpha = 0;
-    // pointGraph.valueField = "price_middle";
-    // pointGraph.balloonText = "中值: <b>[[value]]</b>";
-    // forecastChart.addGraph(pointGraph);
+            var cursor = new AmCharts.ChartCursor();
+            cursor.fullWidth = false;
+            forecastChart.chartCursor = cursor;
 
-    var cursor = new AmCharts.ChartCursor();
-    cursor.fullWidth = false;
-    forecastChart.chartCursor = cursor;
+            var legend = new AmCharts.AmLegend();
+            legend.position = "top";
+            legend.color = "#a0aab3";
+            forecastChart.legend = legend;
 
-    var legend = new AmCharts.AmLegend();
-    legend.position = "top";
-    legend.color = "#a0aab3";
-    forecastChart.legend = legend;
+            forecastChart.write("forecast_graph");
+        },
+        error: function() {
+            //alert("current futureData error");
+            console.log("error");
+        }
+    });
 
-    forecastChart.write("forecast_graph");
 }
 
 var gradeHistoryChart;
